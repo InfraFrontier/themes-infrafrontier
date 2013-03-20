@@ -1,0 +1,19 @@
+name = Infrafrontier
+description = Infrafrontier Theme
+package = Core
+version = 1.0
+core = 7.x
+
+stylesheets[all][] = css/default.css
+stylesheets[all][] = css/ebi.css
+
+scripts[] = js/head.min.js
+scripts[] = js/selectivizr-min.js
+scripts[] = js/default.js
+
+
+regions[content] = Content
+regions[sidebar_first] = Sidebar first
+regions[mainnavi] = Main Navigation
+regions[usernavi] = User Navigation
+regions[footernavi] = Footer Navigation
