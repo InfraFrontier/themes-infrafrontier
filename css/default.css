@@ -29,10 +29,16 @@ h6						{ font-size: 14px; }
 p + h1, p + h2, p + h3, p + h4, p + h5, p + h6, ul + h1, ul + h2, ul + h3, ul + h4, ul + h5, ul + h6
 						{ margin-top: 1.2em; }
 p + .splithalf,
+ol + p,
 ul + p,
+p + ol,
 p + ul,
 p + p					{ margin-top: .5em; }
 iframe,table			{ margin: 1em 0; }
+
+/* Justify p */
+.node-page p,
+.view-subpages-teaser p	{ text-align: justify; }
 				
 
 /* Forms General */
@@ -142,6 +148,8 @@ a.icon.more				{ background: url(../img/icon/link_arrow.png) right 7px no-repeat
 a.icon.pdf				{ background: url(../img/icon/pdf.png) left top no-repeat; padding-left: 25px; }
 a.icon.edit				{ background: url(../img/icon/pen.png) left 2px no-repeat; padding-left: 12px; }
 a.icon.remove			{ background: url(../img/icon/remove.png) left 3px no-repeat; padding-left: 16px; }
+a.icon.external			{ background: url(../img/icon/link_external.png) left 7px no-repeat; padding-left: 11px; }
+a.icon.download			{ background: url(../img/icon/link_download.png) left 4px no-repeat; padding-left: 13px; }
 p.icon a:hover,
 a.icon					{ text-decoration: none; cursor: pointer; }
 a.icon:hover			{ text-decoration: underline; }
@@ -152,7 +160,7 @@ a.icon:hover			{ text-decoration: underline; }
 .ie8 #mn li a			{ font-weight: 400; }
 #mn li li a				{ letter-spacing: normal; font-weight: 600; font-size: 14px; color: #fff; padding: 0 0 10px 15px; border-bottom: #ccc 2px solid; background-image: url(../img/icon/mn_arrow_white.png); background-repeat: no-repeat; background-position: 0 4px; }
 .ie8 li li a			{ font-weight: 400; }
-#mn li li li a			{ border: none; padding-top: 8px; padding-bottom: 8px; background-position: 0 11px; }
+#mn li li li a			{ border: none; font-weight: 400; font-size: 13px; padding-top: 6px; padding-bottom: 6px; background-position: 0 9px; }
 #mn li li a:hover		{ text-decoration: underline; }
 #mn li + li				{ background-image: url(../img/icon/mn_trenner.gif); background-position: left center; background-repeat: no-repeat; }
 #mn li					{ list-style: none; float: left; border-radius: 3px 3px 0 0; -webkit-border-radius: 3px 3px 0 0; -moz-border-radius: 3px 3px 0 0; -ms-border-radius: 3px 3px 0 0; }
@@ -209,6 +217,7 @@ a.icon:hover			{ text-decoration: underline; }
 /* Sidebar Navibox */
 #content .block-menu-block .content { padding: 0; }
 #content .block-menu-block a		{ color: #303030; font-weight: 600; padding: 10px 36px 10px 20px; display: block; text-decoration: none; }
+#content .block-menu-block li li a	{ padding-left: 40px; }
 .ie8 #content .block-menu-block a	{ font-weight: 400; }
 #content .block-menu-block a:hover	{ text-decoration: underline; }
 #content .block-menu-block li		{ cursor: pointer; line-height: 1.1em; background-color: #fff; border-bottom: #f1f1f1 1px solid; background-image: url(../img/icon/sn_arrow.png); background-repeat: no-repeat; background-position: 265px 8px; }
@@ -301,6 +310,7 @@ img.floatleft			{ float: left; margin: 0 10px 0 0; }
 .invisible				{ visibility: hidden; }
 .headimage				{ margin-bottom: 20px; }
 .node ul				{ list-style: disc outside; padding-left: 20px; }
+.node ol				{ list-style: decimal outside; padding-left: 20px; }
 
 /* Footer Toplink */
 #toplink				{ position: absolute; width: 956px; font-size: 10px; margin-top: -41px; }
