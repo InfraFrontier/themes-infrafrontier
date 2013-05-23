@@ -1,0 +1,61 @@
+@charset "utf-8";
+
+div#search_bar {
+	margin: 10px 0 0 220px;
+}
+input#searchInputBox, input.submit, input.reset, a.load-local {
+	float: left;
+	margin-right: 5px;
+	height: 1.7em;	
+	width: 50px;	
+}
+input#searchInputBox {
+	line-height: 1.5em;
+	height: 28px;
+	width: 450px;
+	border: 1px solid #C0C0C0;
+	padding-left: 5px;
+}
+input.loupe {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: url("../images/loupe.png") no-repeat scroll center center #FFFFFF;
+    border-color: -moz-use-text-color -moz-use-text-color -moz-use-text-color #C0C0C0;
+    border-image: none;
+    border-radius: 0 0 0 0;
+    border-style: none none none solid;
+    border-width: medium medium medium 1px;
+    height: 20px;
+    margin: 4px 0 0 -34px;
+    position: absolute;
+    width: 28px;
+    z-index: 600;
+}
+span#advSrch, a#biomartAdvSrch, a#ensemblDasSrch {
+	font-size: 1.2em;
+	font-weight: bold;
+	color: #104E8B; /*#36648B; #5C99BA;*/
+	text-decoration: none;
+}
+span#advSrch {
+	margin-right: 5px;
+	color: black;
+	font-size: 1.2em;
+}
+a#ensemblDasSrch {
+	margin-left: 10px;
+}
+
+ul#srchtip {
+	margin-left: 20px;
+	padding: 0;
+}
+a.searchtip {
+	color: #104E8B;
+}
+a:focus {
+	outline: none;
+}
+

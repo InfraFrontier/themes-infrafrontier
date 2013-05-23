@@ -6,10 +6,20 @@ core = 7.x
 
 stylesheets[all][] = css/default.css
 stylesheets[all][] = css/ebi.css
+stylesheets[all][] = emmaSearch/css/jquery-ui-1.8.18.css
+stylesheets[all][] = emmaSearch/css/jquery.dataTables.css
+stylesheets[all][] = emmaSearch/css/strain_gene_search_bar.css
+stylesheets[all][] = emmaSearch/css/strain_list.css
+
 
 scripts[] = js/head.min.js
 scripts[] = js/selectivizr-min.js
 scripts[] = js/default.js
+scripts[] = emmaSearch/js/jquery-1.8.1.min.js
+scripts[] = emmaSearch/js/jquery-ui-1.8.18.min.js
+scripts[] = emmaSearch/js/DataTables-1.9.4/media/js/jquery.dataTables.min.js
+scripts[] = emmaSearch/js/jquery-rounded_corner/jquery.corner.mini.js
+scripts[] = emmaSearch/js/search_browse_strains_genes.js
 
 
 regions[content] = Content
@@ -17,3 +27,11 @@ regions[sidebar_first] = Sidebar first
 regions[mainnavi] = Main Navigation
 regions[usernavi] = User Navigation
 regions[footernavi] = Footer Navigation
+
+; Information added by drush on 2013-04-04
+version = "7.x-1.0-dev"
+core = "7.x"
+project = "infrafrontier"
+datestamp = "1365086454"
+
+

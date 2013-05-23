@@ -1,0 +1,26 @@
+<?php 
+$mutype= array(
+	      "TM"=>"Targeted Mutant Strains", 
+	      "TMKO"=>"Knock-out",
+	      "TMTC"=>"Targeted Conditional",
+	      "TMTNC"=>"Targeted Non-conditional",
+	      "TMKI"=>"Knock-in",
+	      "TMGT"=>"Gene-trap",
+	      "TMPM"=>"Point mutation",
+	      "TMCM"=>"Conditional mutation",
+	      "TMOTH"=>"Other targeted",
+	      "GT"=>"Gene-trap",
+	      "TG"=>"Transgenic Strains",
+	      "IN"=>"Induced Mutant Strains",
+	      "INCH"=>"Chemically-induced",
+	      "INXray"=>"Radiation-induced",
+	      "CH"=>"Chromosomal Anomalies",
+	      "SP"=>"Spontaneous",
+	      "XX"=>"Other",
+	      "Cre"=>"expressing Cre Recombinase",
+	      "Flp"=>"expressing Flp Recombinase",
+	      "TET"=>"with Tet expression system",
+	      "DEL"=>"Deltagen strains",
+	      "LEX"=>"Lexicon strains",
+	      "EUC"=>"EUCOMM strains",);
+?>

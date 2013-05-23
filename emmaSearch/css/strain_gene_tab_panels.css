@@ -1,0 +1,292 @@
+div#browse_by_strains, div#browse_by_genes, div#browse_by_human_diseases,
+div[id^=ui-tabs-] {
+	margin:0;
+	padding: 0;
+	width: auto;
+	height: auto;
+}
+p.strainCategory {
+	color: black;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: left;
+}
+li.strainLink {
+	cursor: pointer;
+	font-size: 10px;
+	padding: 5px;
+	
+}
+div#strain_data {
+	margin: 0 auto;
+	width: auto;
+	clear: both; 
+}
+div#gene_data, div#omim_emma {
+	margin: 0 auto;
+	width: auto; 
+}
+div#strainInfo {
+	border: none;
+	overflow: auto;
+	width: auto;
+	height: 597px;
+}
+table.resultSet {
+	width: auto;
+	height: auto;
+	overflow-y: auto;
+	text-align: center;	
+	border-collapse: collapse;
+	font-size: 1.3em;
+	font-weight: bold;
+}
+table.resultSet tbody tr {
+	border: 1px solid #CCCCFF;	
+	background-color: gray !important;
+}
+table.resultSet a {color: #104E8B;}
+table.resultSet th {padding: 1px 5px !important;} 
+table.resultSet td {
+	border: none;	
+	border-left: 1px solid #F0F0F0; /*#D9D9D9;*/
+	border-right: 1px solid #F0F0F0;
+}
+table.resultSet td.hovered {
+	background-color: #CCCCCC;	
+}	
+li.omd {
+	margin-left: 10px;	
+	padding: 2px;
+}	
+div.letters  {
+	margin: 0;
+	padding: 20px 20px 15px 12px;
+}
+a.ltrLink, a.omLtrLink {
+	padding: 5px;
+	color: #104E8B;
+	font-weight: bold;
+}
+p#errmsg {
+	margin-left: 0px;
+}
+div.loader {
+	text-align: center;
+	margin-top: 100px;
+}
+div.loader {
+	position: absolute;
+	top: 150px;
+	left: 50%;	
+}
+div.loader span {
+	margin: -5px 0 0 5px;
+}
+span.killTab{
+	right: 0px;
+	margin-top: 5px;
+	color: #8B0000;
+	font-weight: bolder;
+	font-size: 12px;
+	font-family: 'arial';
+	/*border: 1px solid #8B0000;*/
+	background-color: #CDC8B1;
+	padding: 0 2px;
+	cursor: pointer;
+}
+span#case {
+	color: #8B2323;
+}
+p#strain_avail {
+	font-size: 1em;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+}
+p#strain_avail a {
+	/*color: #104E8B; */
+	/*color: #455A8B; */
+	color: #2A5A8B;
+}
+p#order {
+	text-align: center;
+	padding-bottom: 10px;
+}
+div.strainType {
+	text-align: center;
+        font-size: 1.3em;
+        font-weight: bold;
+        background-color: #CDC8B1;
+        padding: 5px;   
+}
+a.top {
+	position: absolute;
+	font-size: 10px;
+	right: 30px;
+	font-weight: normal;
+	color: #104E8B;
+}
+table#desc {
+	border-collapse: collapse;
+}
+table#desc ul {
+	margin-left: 12px;
+}
+table#desc td {
+	padding: 3px 5px;
+    background-color: white;
+}
+table#desc a {
+	font-weight: bold;
+}
+td.desc_field {
+	font-weight: bold;
+	text-align: left;
+	padding-right: 20px;
+}
+table#desc td a {
+	color: #104E8B;
+}
+table#desc td.infosec {
+	font-weight: bold;
+	background-color: #CDC8B1;
+	text-align: center;
+}
+p.mutype_info {
+	text-align: center;
+	padding: 10px;
+}
+p.mutype_info a {
+	color: #104E8B;
+}
+div.letters a.homeicon img, div#strain_data a.homeicon img, .ui-tabs-panel a.homeicon img {
+	display: inline;
+	float: right;
+	margin-top: -20px;
+	border: none;
+}
+div#strain_data a.homeicon img, .ui-tabs-panel a.homeicon img {
+	margin-top: 0px;
+}
+div#alinks {
+	text-align: center;
+	margin-bottom: 5px;
+}
+a.a_name {
+	font-size: 9px;
+	color: #104E8B;
+}
+div#hiddenKW {
+	/*visibility: hidden;*/
+	display: none;
+}
+div#bookmark span {
+	display: block;
+	text-align: center;
+	font-size: 0.9em;
+	background-color: #7F7F7F;
+	color: white;
+	margin: 5px 0;;
+}
+table tr.mp {
+	border-left: 10px solid #6E8B3D; /*#8B8878;*/
+}
+ul#ontoNote{
+	list-style-type:square;
+	margin: 30px;
+}
+#desc_general, #desc_ontology {
+	margin: 5px;
+	padding: 2px;
+}
+div[id^=strainDescTabs], div[id^=desc_ontology] {
+	border: none;
+    background-color: white;
+}
+/*-------- EXT JS window styling ----------*/
+
+.x-window-header-text {color: black;}
+
+/*.x-window-mr {background: transparent; border-right: 1px solid gray;}
+.x-window-ml {background: transparent; border-left: 1px solid gray;}
+.x-window-tl {background: #CDC8B1;}
+.x-window-tr {background: #CDC8B1;}
+.x-window {border-bottom: 1px solid gray}
+.x-shadow .xsml, .x-shadow .xsmr {
+    }*/
+
+
+/*.x-toolbar-layout-ct {background: white; border: none; height: 35px;}*/
+
+.x-btn-text {
+	color: #104E8B;	
+	font-weight: bold;
+	padding : 1px 10px;
+}
+/*.x-btn-text-icon {background: white url('../js/extjs/resources/images/arrow1.gif') no-repeat fixed center !important;}*/
+.x-btn-text-icon, .x-btn-text-icon:hover {background-image: url('../js/extjs/resources/images/acrobat.gif'); !important;}
+.x-btn-text-icon, .x-btn-text-icon:hover {background-position: 3px !important;}
+.x-btn-text-icon, .x-btn-text-icon:hover {background-repeat: no-repeat !important;}
+
+button:focus {outline: none;} /*not working*/
+
+.x-toolbar-cell {
+	border: none;
+	border-right: 2px solid #CDC8B1;
+	border-bottom: 2px solid #CDC8B1;
+	background-color: white;	
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;	
+}
+.x-btn-mc:hover {border: none;
+	background-image: url('../js/extjs/resources/images/acrobat.gif'); !important;	
+	background-position: left !important;
+	background-repeat: no-repeat !important;
+}	
+
+.x-toolbar-left {padding-top: 3px;}
+.x-toolbar-left, .x-toolbar-right, td[class^=x-btn-] {border: none;}
+td.x-toolbar-right {display: none;}
+
+
+/*-------- end of EXT JS window styling ----------*/
+div#hasMP {display: none;}	
+
+span.qc {	
+	padding-right: 10px;
+	cursor: pointer;
+	color: #104E8B;
+	font-weight: bold;
+}
+a#qcKB {padding: 0 10px; font-size: 10px; float: right; font-weight: normal !important; text-decoration: none; border: 1px solid gray;
+padding: 2px 3px; background-color: #104E8B; color: white !important;}	
+div#qcData {margin-top: 3px; display: none;}
+table.qc {
+	width: 100%;
+	border-collapse: collapse;	
+	margin: 3px 0 10px 0;
+}
+div.qcCap {font-weight: bold; border-left: 10px solid #2F4F4F; padding-left: 5px;}
+table.qc td.qcCol {color: #2F4F4F; font-weight: bold; font-size: 10px;}
+div.qc_block {margin: 10px 0;
+	font-weight: bold; 	
+	padding: 3px 5px; 
+	background-color: #EEE8CD;
+}
+
+/* jquery minimal UI tabs */
+
+ul.ui-tabs-nav { 
+    padding-left: 0px; 
+    background: transparent; 
+    border-width: 0px 0px 1px 0px; 
+    -moz-border-radius: 0px; 
+    -webkit-border-radius: 0px; 
+    border-radius: 0px; 
+} 
+.ui-tabs-panel { 
+    background: #f5f3e5 url(http://code.jquery.com/ui/1.8.23/themes/south-street/images/ui-bg_highlight-hard_100_f5f3e5_1x100.png) repeat-x scroll 50% top; 
+    border-width: 0px 1px 1px 1px; 
+}
+/* end of jquery minimal UI tabs */

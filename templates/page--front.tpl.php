@@ -40,8 +40,8 @@ render($page['content']);
                         <h6>Search EMMA strains</h6>
                         <p><form><input type="text" placeholder="Search strains..." /><input class="loupe" type="submit" value="" /></form></p>
                         <p><i><b>Search by:</b> Gene name/symbol, strain name, EMMA ID, OMIM name/ID, phenotype, ...</i></p>
-                        <h4>Browse EMMA strains</h4>
-                        <p><a class="btn" href="#">Genes</a> <a class="btn" href="#">Phenotypes</a> <a class="btn" href="#">Human Diseases</a></p>
+                        <h4>Browse EMMA strains</h4>                        
+                        <p><a class="btn" href="/search?keyword=browse_strain_types">Strain Types</a> <a class="btn" href="/search?keyword=browse_genes">Genes</a> <a class="btn" href="/search?keyword=browse_human_diseases">Human Diseases</a></p>
                     	<p>&nbsp;</p>
                         <div class="splithalf">
                         	<div class="box half">
@@ -144,7 +144,7 @@ render($page['content']);
             <div class="boxcontainer">
             
             	<div id="box-abouttext" class="box w640">
-                	<div class="head">About Infrafrontier</div>
+                	<div class="head">About INFRAFRONTIER</div>
 					<div class="boxcontent"><?php print render(field_view_field('node', $node, 'body')); ?></div>
                 </div>
                 
@@ -209,3 +209,13 @@ render($page['content']);
     </footer>
     
 </div>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40422777-1', 'infrafrontier.eu');
+  ga('send', 'pageview');
+
+</script>
