@@ -67,10 +67,10 @@ class EMMA_SQL {
   				foreach ( $omimRows as $row ){  							
 					$links = $this->fetch_omim_display($row);
 					$spacer = "&nbsp;&nbsp;";			 
-					$omimInfos[] = "<li class='omd'>{$links['omimName']} $spacer / $spacer {$links['omimID']}</li>";									
+					$omimInfos[] = "<li class='omd'>{$links['omimNameLink']} $spacer / $spacer {$links['omimIDLink']}</li>";									
 				}
 				$data = join("", $omimInfos); 
-				$field = "MGI associated human diseases for models involving the same allele";	 	
+				$field = "MGI associated human diseases for models involving the same allele (OMIM name / ID)";	 	
 				return "<tr><td class='desc_field'>$field</td> <td>$data</td></tr>";			
   			}  			
   		}
@@ -925,12 +925,15 @@ class EMMA_SQL {
 	function fetch_omim_display($row){
 		if ( $row['omim_id'] ){
 			$omimID = $row['omim_id'];
+            $omimName = $row['omim_name']; 
       		$omimIDlink = "<a href='http://www.omim.org/entry/$omimID' target='_blank'>$omimID</a>";
       		$mgi_internal_omim_id = $row['mgi_internal_omim_id']; 
-      		$mgiOmim = "http://www.informatics.jax.org/javawi2/servlet/WIFetch?page=humanDisease&key=$mgi_internal_omim_id";
-      		$omimName = "<a href='$mgiOmim' target='_blank'>{$row['omim_name']}</a>";
-      		$links['omimName'] = $omimName;
-      		$links['omimID'] = $omimIDlink;
+      		$mgiOmim = "http://www.informatics.jax.org/javawi2/servlet/WIFetch?page=humanDisease&key=$mgi_internal_omim_id";           
+      		$omimNameLink = "<a href='$mgiOmim' target='_blank'>$omimName</a>";
+      		$links['omimNameLink'] = $omimNameLink;
+      		$links['omimIDLink'] = $omimIDlink;
+            $links['omimName'] = $omimName;
+      		$links['omimID'] = $omimID; 
       		return $links;
 		}
 		return false;
@@ -1404,9 +1407,10 @@ TBL;
       				$spacer = "&nbsp;&nbsp;";  	
       				$links = $this->fetch_omim_display($row);
       				if ( $links ){
+                        $idAllele = $row['id_allel'];
 						$omimName = $links['omimName'];
 						$omimID = $links['omimID'];      				  				
-						$table .= "<td class='omim'>$omimName $spacer / $spacer $omimID</td>";
+						$table .= "<td class='omim' rel='$idAllele'>$omimName $spacer / $spacer $omimID</td>";
       				}
       				else {
       					$table .= "<td class='omim'>NA $spacer / $spacer NA</td>";
@@ -1446,20 +1450,7 @@ TBL;
 	  			$superscripted_common_strain_name = $this->derive_common_strain_name($row);      			
 				//$table .= "<td><a class='sticky pdf' href='#' rel='#$id_str' title='Strain description - $intnl_strname'>$superscripted_common_strain_name</a></td>";
                 $table .= "<td>$superscripted_common_strain_name</td>";                
-      			$table .= "<td>$intnl_strname</td>";  // strains.name   
-	
-                /*if ( $has_omim ){  
-      				$spacer = "&nbsp;&nbsp;";  	
-      				$links = $this->fetch_omim_display($row);
-      				if ( $links ){
-						$omimName = $links['omimName'];
-						$omimID = $links['omimID'];      				  				
-						$table .= "<td class='omim'>$omimName $spacer / $spacer $omimID</td>";
-      				}
-      				else {
-      					$table .= "<td class='omim'>NA $spacer / $spacer NA</td>";
-      				}      							
-      			} */
+      			$table .= "<td>$intnl_strname</td>";  // strains.name   	             
 
       			$label = $this->fetch_order_label($row['str_status'], $row['available_to_order']);
 

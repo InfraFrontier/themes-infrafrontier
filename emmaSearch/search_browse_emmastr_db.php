@@ -40,7 +40,7 @@ $sqlb = <<<MS2
 MS2;
 
 $sqlc = <<<MS3
-  SELECT DISTINCT ao.omim_name, ao.omim_id, ao.mgi_internal_omim_id, s.emma_id,      
+  SELECT DISTINCT ao.id_allel, ao.omim_name, ao.omim_id, ao.mgi_internal_omim_id, s.emma_id,      
   GROUP_CONCAT(distinct(g.symbol), '*__*') as symbol,
     ss.name as synonym, 
     s.id_str, 

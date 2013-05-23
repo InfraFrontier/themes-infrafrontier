@@ -1,10 +1,9 @@
 $(document).ready(function(){
-console.log('loaded1');
+
     var regex = /infrafrontier.eu\/$|infrafrontier.eu\/emma/;
     //var regex = /infrafrontier.eu/;
     var domainMatch = regex.exec(window.location.href);
-console.log(domainMatch);
-console.log(window.location.href);
+
     if ( domainMatch ){
        var srchInput = $('div#emmastrains-searchbox input[type=text]');
         var srchSubmit = $('div#emmastrains-searchbox input[type=submit]');
@@ -136,15 +135,7 @@ function fetch_data_by_sublist(sublist){
         aTableIds.push(sublist);
         loadDataTable(url, containerId, aTableIds, 6);	
     }
-    
-
-	/*$.get(url,cre_lines function(data){
-     		$('#strain_data').html(data);
-            $('table#sublist').dataTable();
-     		highlight_hovered_tr($('#strain_data'));				
-			stripe_table($('#strain_data'));	
-     		initDescTabs($('#strain_data'));
-	}); */		
+   	
 }
 
 // -------- functions ----------------
@@ -329,8 +320,7 @@ function makeTable(tblId, aAoColumnConf, iNoSort, record) {
                 injectJsToActionRows(id_str, oAaccordion); 
             });	                    
         }
-        else {
-            console.log('close');
+        else {           
             $(nTr).removeClass('selectedTr');
             /* close this row */
             //this.src = fetch_EMMA_drupal_path() + "/images/plus.png";
