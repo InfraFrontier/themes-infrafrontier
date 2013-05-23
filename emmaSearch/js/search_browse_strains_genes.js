@@ -368,9 +368,9 @@ function makeTable(tblId, aAoColumnConf, iNoSort, record) {
         }
     }); 
 
-    oTable.find('td.order img').mouseover(function(){       
+    oTable.find('td.order img').live('mouseover', function(){       
         $(this).siblings('span.orderTooltip').show();
-    }).mouseout(function(){
+    }).live('mouseout', function(){
         $(this).siblings('span.orderTooltip').hide()
     });
 
