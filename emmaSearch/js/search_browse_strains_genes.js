@@ -285,8 +285,6 @@ function makeTable(tblId, aAoColumnConf, iNoSort, record) {
  
     $('div#' + tblId + '_wrapper').find('#foundEntries').html(record).addClass('span6');  
 
-    
-
     // toggle show/hide of hidden dataTable row   
     // use live so that opening new hidden row will work with pagination                   
     oTable.find('td.emmaID').live('click', function () {
@@ -329,8 +327,6 @@ function makeTable(tblId, aAoColumnConf, iNoSort, record) {
         }
     }); 
     
-
-
     oTable.find('td.toggle img').live('click', function () {
     
         var nTr = this.parentNode.parentNode;
@@ -357,7 +353,7 @@ function makeTable(tblId, aAoColumnConf, iNoSort, record) {
                 injectJsToAccordionTabs(oAaccordion);
         
                 // apply JS to loaded action rows
-                injectJsToActionRows(id_str, oAaccordion); 
+                injectJsToActionRows(id_str, oAaccordion);                
             });	                    
         }
         else {
@@ -368,13 +364,15 @@ function makeTable(tblId, aAoColumnConf, iNoSort, record) {
         }
     }); 
 
+    activate_order_tooltip(oTable);
+
+}
+function activate_order_tooltip(oTable){
     oTable.find('td.order img').live('mouseover', function(){       
         $(this).siblings('span.orderTooltip').show();
     }).live('mouseout', function(){
         $(this).siblings('span.orderTooltip').hide()
     });
-
-
 }
 function injectJsToAccordionTabs(obj){
    

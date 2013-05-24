@@ -699,8 +699,9 @@ span.orderTooltip {
     min-width: 120px;  
     background-color: white;
     border: 1px solid gray;
+    color: black;
 }
-a[name$=i] {
+a {
     text-decoration: none;
 }
 
