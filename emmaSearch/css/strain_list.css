@@ -358,6 +358,7 @@ input.loupe {
 }
 div#foundEntries {
 	float: left;
+    margin-right: 50px;
 }
 div.dataTables_filter label {
 	display: inline;
@@ -704,5 +705,10 @@ span.orderTooltip {
 a {
     text-decoration: none;
 }
-
+div.dataTables_length label {
+    width: 230px ;
+}
+div.dataTables_length select {
+    width: 75px;
+}
 

@@ -280,10 +280,12 @@ function makeTable(tblId, aAoColumnConf, iNoSort, record) {
                 "oLanguage": {
                     "sSearch": "Filter: "
                 },
-                "sDom": "<'row-fluid'<'#foundEntries'><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>"   
+                "sDom": "<'row-fluid'<'#foundEntries'><'span9'lf>r>t<'row-fluid'<'span6'i><'span6'p>>"   
+                //"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>"   
+                
     });  
  
-    $('div#' + tblId + '_wrapper').find('#foundEntries').html(record).addClass('span6');  
+    $('div#' + tblId + '_wrapper').find('#foundEntries').html(record).addClass('span3');  
 
     // toggle show/hide of hidden dataTable row   
     // use live so that opening new hidden row will work with pagination                   
