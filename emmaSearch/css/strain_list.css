@@ -372,6 +372,9 @@ table.dataTable {
     font-size: 11px !important;  
     width: 100%;  
     text-align: left;
+    border-collapse: collapse;
+    border: none;
+    padding-top: 20px;   
 }
 table.dataTable th.sorting_disabled {
 	background-color: white;
@@ -710,5 +713,7 @@ div.dataTables_length label {
 }
 div.dataTables_length select {
     width: 75px;
+    background: none;
+    outline:none;
 }
 
