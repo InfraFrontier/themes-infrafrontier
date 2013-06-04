@@ -30,12 +30,12 @@ function initSlider() {
 	sliderFunction('#logoslidecontrols','logoslidercontainer','logoslide',960);
 }
 function sliderFunction(controls,container,slide,width) {
-	$(controls+' div').click(function() {
-		if ($(this).hasClass('prev')) {
+	$(controls+' div').click(function() {   
+		if ($(this).hasClass('prev')) {     
 			$('#'+container+' .'+slide+':last').detach().prependTo('#'+container);
 			$('#'+container).animate({marginLeft: '-='+width+'px'},0);
 			$('#'+container).animate({marginLeft: '+='+width+'px'},1000);
-		} else {
+		} else {      
 			$('#'+container).animate({marginLeft: '-='+width+'px'},1000,function() {
 				$('#'+container+' .'+slide+':first').detach().appendTo('#'+container);
 				$('#'+container).animate({marginLeft: '+='+width+'px'},0);

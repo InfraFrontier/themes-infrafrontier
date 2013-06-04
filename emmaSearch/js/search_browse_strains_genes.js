@@ -288,18 +288,25 @@ function makeTable(tblId, aAoColumnConf, iNoSort, record) {
     // toggle show/hide of hidden dataTable row   
     // use live so that opening new hidden row will work with pagination                   
     oTable.find('td.emmaID').live('click', function () {
-    
-        var nTr = this.parentNode;
+        
+        var nTr = this.parentNode;        
+        var allTrs = this.parentNode.parentNode.childNodes;
+       
+        for ( var i=0; i<allTrs.length; i++){           
+            if ( $(allTrs[i]).attr('class') && nTr != allTrs[i] && $(allTrs[i]).attr('class').indexOf('selectedTr') != -1  ){         
+                $(allTrs[i]).removeClass('selectedTr').find('td.toggle img').attr('src', fetch_EMMA_drupal_path() + "/images/plus.png");
+                oTable.fnClose(allTrs[i]);
+            }
+        }
 
         // change tr bg color to mark for selected row
         $('table#'+tblId + ' tr').removeClass('selectedTr');
         $(nTr).addClass('selectedTr');
-    
-        //if ( this.src.match('plus') ){
+               
+        console.log($(this).siblings('td.toggle').find('img').attr('src'));
         if ( $(this).siblings('td.toggle').find('img').attr('src').match('plus') ){
-            /* This row is not yet open - open it */
-                           
-            //this.src = fetch_EMMA_drupal_path() + "/images/minus.png";
+            /* This row is not yet open - open it */                          
+           console.log('plus');
             $(this).siblings('td.toggle').find('img').attr('src', fetch_EMMA_drupal_path() + "/images/minus.png");
             var id_str = $(nTr).attr('id');
        
@@ -307,9 +314,9 @@ function makeTable(tblId, aAoColumnConf, iNoSort, record) {
             var url2 = fetch_url() + "?id_str=" + id_str; 
             $.get(url2, function(data){                  
 
-                oTable.fnOpen( nTr, data ); 
-            
-                oAaccordion = $('div#descAccordion'+id_str).accordion({ autoHeight: false }); 
+                oTable.fnOpen( nTr, data );            
+
+                oAaccordion = $('div#descAccordion'+id_str).accordion({ autoHeight: false, collapsible: true, active: false }); 
 
                 // apply JS to loaded accordion tabs
                 injectJsToAccordionTabs(oAaccordion);
@@ -318,19 +325,26 @@ function makeTable(tblId, aAoColumnConf, iNoSort, record) {
                 injectJsToActionRows(id_str, oAaccordion); 
             });	                    
         }
-        else {           
+        else {             
             $(nTr).removeClass('selectedTr');
-            /* close this row */
-            //this.src = fetch_EMMA_drupal_path() + "/images/plus.png";
+            /* close this row */        
             $(this).siblings('td.toggle').find('img').attr('src', fetch_EMMA_drupal_path() + "/images/plus.png");
             oTable.fnClose( nTr );
         }
+ 
     }); 
     
-    oTable.find('td.toggle img').live('click', function () {
+    oTable.find('td.toggle span img').live('click', function () {
     
-        var nTr = this.parentNode.parentNode;
-
+        var nTr = this.parentNode.parentNode.parentNode;
+        var allTrs = this.parentNode.parentNode.parentNode.parentNode.childNodes;
+       
+        for ( var i=0; i<allTrs.length; i++){           
+            if ( $(allTrs[i]).attr('class') && nTr != allTrs[i] && $(allTrs[i]).attr('class').indexOf('selectedTr') != -1  ){         
+                $(allTrs[i]).removeClass('selectedTr').find('td.toggle img').attr('src', fetch_EMMA_drupal_path() + "/images/plus.png");
+                oTable.fnClose(allTrs[i]);
+            }
+        }
         // change tr bg color to mark for selected row
         $('table#'+tblId + ' tr').removeClass('selectedTr');
         $(nTr).addClass('selectedTr');
@@ -364,15 +378,21 @@ function makeTable(tblId, aAoColumnConf, iNoSort, record) {
         }
     }); 
 
-    activate_order_tooltip(oTable);
+    activate_tooltip(oTable);
 
 }
-function activate_order_tooltip(oTable){
-    oTable.find('td.order img').live('mouseover', function(){       
-        $(this).siblings('span.orderTooltip').show();
-    }).live('mouseout', function(){
-        $(this).siblings('span.orderTooltip').hide()
+function activate_tooltip(oTable){
+    oTable.find('td.order img, td.emmaID span, td.toggle img').live('mouseover', function(){    
+        $(this).siblings('span.instantToolTip').show();
+    }).live('mouseout', function(){      
+        $(this).siblings('span.instantToolTip').hide()
     });
+    
+    /*oTable.find('td.emmaID span, td.toggle img').live('mouseover', function(){         
+        $(this).siblings('span.instantToolTip').show();
+    }).live('mouseout', function(){     
+        $(this).siblings('span.instantToolTip').hide()
+    });*/
 }
 function injectJsToAccordionTabs(obj){
    

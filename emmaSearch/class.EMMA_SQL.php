@@ -691,13 +691,13 @@ class EMMA_SQL {
 	    global $drupalScriptPath;
         $icon = false;
         if ( $label == 'order' ){
-            $icon = "<img src='${drupalScriptPath}/images/green_dot_20.png' /><span class='orderTooltip'>Order mice</span>";
+            $icon = "<img src='${drupalScriptPath}/images/green_dot_20.png' /><span class='instantToolTip'>Order mice</span>";
         }
         else if ( $label == 'register interest' ){
-            $icon = "<img src='${drupalScriptPath}/images/red_dot_20.png' /><span class='orderTooltip'>Register interest</span>";
+            $icon = "<img src='${drupalScriptPath}/images/red_dot_20.png' /><span class='instantToolTip'>Register interest</span>";
         }
         else if ( $label == 'order (only small colony available)' ){
-            $icon = "<img src='${drupalScriptPath}/images/yellow_dot_20.png' /><span class='orderTooltip'>Order mice - only small colony available</span>";
+            $icon = "<img src='${drupalScriptPath}/images/yellow_dot_20.png' /><span class='instantToolTip'>Order mice - only small colony available</span>";
         }
         return $icon;
     }
@@ -1397,9 +1397,8 @@ TBL;
       			$table .= ($has_MP == 1 and $is_leaf == 'false') ?  "<tr class='mp' id='$id_str'>" : "<tr id='$id_str'>";
       			
 				$emmaid = $row['emma_id'];                
-      			$table .= "<td class='emmaID'>$emmaid</td>";
-      			
-                
+      			$table .= "<td class='emmaID'><span><span>$emmaid</span><span class='instantToolTip'>Click to toggle strain description</span></span></td>";
+      			 
                 if ( $has_omim ){  
       				$spacer = "&nbsp;&nbsp;";  	
       				$links = $this->fetch_omim_display($row);
@@ -1477,12 +1476,12 @@ TBL;
 	 				: "https://www.emmanet.org/apps/RegisterInterest/requestFormView.emma?new=y". "&id=$emmaid" . "&sname=" . urlencode($strname) . "&cname=$cname"; 
 
 	 			$url .= "&pid=$project_id";
-                //echo "icon: " . $this->fetch_order_icon($label) . "\n";
+                // use alt as a trick to sort images
                 $table .= "<td class='order' rel='$url'><span alt='$label'>" . $this->fetch_order_icon($label) . "</span></td>";
                      			
 
                 // strain desc toggle    
-                $table .= "<td class='toggle'><img src='${drupalScriptPath}/images/plus.png' id='$id_str' title='Click to view strain description'/></td>"; 
+                $table .= "<td class='toggle'><span><img src='${drupalScriptPath}/images/plus.png' id='$id_str' /><span class='instantToolTip'>Click to toggle strain description</span></span></td>"; 
              
 
       			$table .= "</tr>";
