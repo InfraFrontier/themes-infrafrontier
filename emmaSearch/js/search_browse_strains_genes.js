@@ -92,14 +92,12 @@ $(document).ready(function(){
     });
 
 
-
     $('ul.menu ul li a').live('click', function(){  
         $('ul.menu ul').hide();
         $('span.submenu').removeClass('ulOpen').addClass('ulClose');
     });
 
-    $('ul.menu li.menu').mouseover(function(){  
-        console.log('over');
+    $('ul.menu li.menu').mouseover(function(){         
         //$('ul.menu ul').hide();
         $(this).find('>ul').show();
     }).mouseout(function(){
@@ -421,11 +419,17 @@ function injectJsToActionRows(id_str, oAaccordion) {
         }
     });
     
-    oAR.find('span.availabilities').click(function(){       
-       oAaccordion.accordion('activate', 0); // show first tab: general information         
+    oAR.find('span.availabilities').click(function(){ 
+        // this button, when not grayout, toggles the first accordion tab, but don't close it if already opened        
+        if ( $(this).attr('class').indexOf('grayout') == -1 ){
+            if ( (typeof oAaccordion.accordion("option", "active") == 'number' && oAaccordion.accordion("option", "active") != 0) ||
+                 (typeof oAaccordion.accordion("option", "active") == 'boolean') ){         
+                oAaccordion.accordion('activate', 0); // show first tab: general information         
+            }
+        }
     });
 
-    // mice order form  
+    // dynamic mice order button label on the action button rows of the detailed view  
     var link = $('tr#' + id_str).find('td.order').attr('rel');  
     // dynamically change text of order button
     if (link.indexOf("&wr=1") != -1){

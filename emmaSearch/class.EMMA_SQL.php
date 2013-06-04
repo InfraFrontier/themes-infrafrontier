@@ -420,7 +420,7 @@ class EMMA_SQL {
 		    	}
 			}
 		}
-		$pricingAndDeliveryLink = "<a href='http://www.emmanet.org/strains.php' target='_blank'>";
+		$pricingAndDeliveryLink = "<a href='/resources-and-services/access-emma-mouse-resources/strain-ordering' target='_blank'>";
 		$material_info .= "<tr><td colspan=2>${pricingAndDeliveryLink} More detail on pricing and delivery times</a></td></tr>"; 
         $bottom_icon_rows['pricingAndDelivery'] = $pricingAndDeliveryLink . "Pricing and Delivery</a>";
 
@@ -1004,9 +1004,6 @@ class EMMA_SQL {
   		$qry_term_name = $get['term_name'];
         global $sLimit, $sOrder, $sWhere;  
 
-        
-
-
 
         $this->dataTableValsForSql($_GET);
 
@@ -1447,7 +1444,8 @@ TBL;
 
                 $intnl_strname = $this->derive_international_strain_name($row); 
 
-	  			$superscripted_common_strain_name = $this->derive_common_strain_name($row);      			
+	  			$superscripted_common_strain_name = $this->derive_common_strain_name($row);      			               
+
 				//$table .= "<td><a class='sticky pdf' href='#' rel='#$id_str' title='Strain description - $intnl_strname'>$superscripted_common_strain_name</a></td>";
                 $table .= "<td>$superscripted_common_strain_name</td>";                
       			$table .= "<td>$intnl_strname</td>";  // strains.name   	             
@@ -1468,6 +1466,12 @@ TBL;
 					 ."Availability and time to delivery cannot be guaranteed.";
 	
  			   	// links to order strains
+
+                $strname = $row['name']; # original utf-8 string
+      			$cname = $row['synonym'];
+      			$synonym = $cname ? $cname : $row['code_internal'];      			      			
+      			if ( ! $cname ){ $cname = $synonym; }
+
 				$url= $label == 'register interest' 
 	  				? "https://www.emmanet.org/apps/RegisterInterest/requestFormView.emma?id=$emmaid" . "&sname=" . urlencode($strname) . "&cname=$cname" . "&wr=1"
 	 				: "https://www.emmanet.org/apps/RegisterInterest/requestFormView.emma?new=y". "&id=$emmaid" . "&sname=" . urlencode($strname) . "&cname=$cname"; 

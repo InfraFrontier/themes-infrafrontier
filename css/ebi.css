@@ -1,0 +1,6 @@
+span.file {
+    display: block;
+}
+span.file a[href*=public] {
+    color: green;
+}

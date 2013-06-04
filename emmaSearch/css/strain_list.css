@@ -33,11 +33,14 @@ table#searchBanner td:nth-child(3){
 table#searchBanner td:nth-child(4){
         width: 10%;	
 }
-table#searchBanner td {
+div.table#searchBanner td {
 	vertical-align: middle;
 }
 div.helpBox {
     margin-top: 15px;
+}
+div.descAccordion a {
+   color: #104E8B !important;    
 }
 a.icon.help {
     background: url("../images/help.png") no-repeat scroll left center transparent;
