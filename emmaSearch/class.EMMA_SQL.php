@@ -13,6 +13,7 @@ $sOrder = ""; // ordering
 $sWhere = ""; // filtering
 
 $drupalScriptPath = '/sites/infrafrontier.eu/themes/custom/infrafrontier/emmaSearch';
+$drupalFilePath   = '/sites/infrafrontier.eu/files/upload/public';
 
 class EMMA_SQL {
 
@@ -93,6 +94,7 @@ class EMMA_SQL {
 	}
 	function compose_strain_description($id_str, $mutype, $pdf){
 		
+        global $drupalFilePath; 
 		$qcTables = false;
 		$desc  = '';
 	  	$avais = '';
@@ -266,9 +268,10 @@ class EMMA_SQL {
 					    }					   
 					    else if ( $field == 'MTA' ){
 					    	$mta_file = $row[$field];
-                                
+                            $mtaLink = $drupalFilePath . "/mtas/${mta_file}";                                  
+                
 					      	$mta = "Distribution of this strain is subject to a Material Transfer Agreement (MTA)."
-					      	     . "<b> Both signing of the <a href='mtas/$mta_file' target='_blank'>MTA</a> "
+					      	     . "<b> Both signing of the <a href='$mtaLink' target='_blank'>MTA</a> "
 					      	     . "  and submission of the online EMMA<br>Mutant Request Form are required</b> before "
 					      	     . "frozen material or live mice can be shipped.";
 
@@ -287,7 +290,8 @@ class EMMA_SQL {
 					    }					    
 					    else if ( $field == 'Genotyping protocol' ){
 					    	if ( $filename = $row[$field] ){
-								$gtfile = "<a href='http://www.emmanet.org/genotype_protocols/$filename' target='_blank'>$filename</a>";
+                                $gplink = $drupalFilePath . "genotype_protocols/$filename";
+								$gtfile = "<a href='$gplink' target='_blank'>$filename</a>";
                                 $bottom_icon_rows['genotyping'] = $filename; 
 
 								$geno_protocol = "<tr><td class='desc_field'>$field</td> <td>$gtfile</td></tr>"; 					        	
@@ -430,7 +434,7 @@ class EMMA_SQL {
         
         $healthReportFile = $this->fetch_health_report_file($id_str);
         $bottom_icon_rows['healthReportFile'] = $healthReportFile;
-        $healthReportFileUrl = "http://www.emmanet.org/procedures/${healthReportFile}";
+        $healthReportFileUrl = "$drupalFilePath/procedures/${healthReportFile}";
         $emma_info .= "<tr><td>Example health report</td><td><a href=$healthReportFileUrl target='_blank'>${healthReportFile}</a></td></tr>";
      
 		if ($provider_info){			
@@ -1508,39 +1512,47 @@ TBL;
   		}
 	}
     function compose_bottom_icon_rows($id_str, $bottom_icon_rows){
+        global $drupalFilePath;
+        $pdfPath = "$drupalFilePath/pdf";
+
         $nameVals = array(
-                "infoSheet"          => array('label' => 'Info sheet', 'val' => true, 'link' => false),  // default, action via js
-                "mgiLink"            => array('label' => 'MGI allele', 'val' => true, 'link' => false),  // default, action via js
-                "genotyping"         => array('label' => 'Genotyping', 'val' => $bottom_icon_rows['genotyping'], 'link' => true, 'folder' => 'genotype_protocols'),
-                "healthReportFile"   => array('label' => 'Health report', 'val' => $bottom_icon_rows['healthReportFile'], 'link' => true, 'folder' => 'procedures'),
-                "availabilities"     => array('label' => 'Availabilities', 'val' => $bottom_icon_rows['availabilities'], 'link' => false), // opens general info tab in accordion
-                "pricingAndDelivery" => array('label' => 'Pricing & delivery', 'val' => $bottom_icon_rows['pricingAndDelivery'], 'link' => true), 
-                "mta"                => array('label' => 'MTA', 'val' => $bottom_icon_rows['mta'], 'link' => true, 'folder' => 'mtas'),
-                "order"              => array('label' => 'Order', 'val' => true, 'link' => false) // default, actual value by js
+                "infoSheet"          => array('label' => 'Info sheet', 'val' => true, 'baseUrl' => false),  // default, action via js
+                "mgiLink"            => array('label' => 'MGI allele', 'val' => true, 'baseUrl' => false),  // default, action via js
+                "genotyping"         => array('label' => 'Genotyping', 'val' => $bottom_icon_rows['genotyping'], 'baseUrl' => $pdfPath, 'folder' => 'genotype_protocols'),
+                "healthReportFile"   => array('label' => 'Health report', 'val' => $bottom_icon_rows['healthReportFile'], 'baseUrl' => $pdfPath, 'folder' => 'procedures'),
+                "availabilities"     => array('label' => 'Availabilities', 'val' => $bottom_icon_rows['availabilities'], 'baseUrl' => false), // opens general info tab in accordion
+                "pricingAndDelivery" => array('label' => 'Pricing & delivery', 'val' => $bottom_icon_rows['pricingAndDelivery'], 'baseUrl' => true), 
+                "mta"                => array('label' => 'MTA', 'val' => $bottom_icon_rows['mta'], 'baseUrl' => $pdfPath, 'folder' => 'mtas'),
+                "order"              => array('label' => 'Order', 'val' => true, 'baseUrl' => false) // default, actual value by js
                 );
 
         $spans = '';    
         $class = false;
         foreach( $nameVals as $name=>$KV ){          
-            $class = $KV['val'] ? '' : 'grayout';  
-            if ( $KV['val'] && $KV['link'] ){
-                if ( $KV['folder'] ) {
-                    $url = "<a href='http://www.emmanet.org/${KV['folder']}/${KV['val']}' target='_blank'>${KV['label']}</a>";                    
+            $class = $KV['val'] ? '' : 'grayout';                        
+
+            if ( $KV['val'] && $KV['baseUrl'] ){
+                if ( $KV['folder'] ) {                                  
+                   $url = "<a href='${KV['baseUrl']}/${KV['folder']}/${KV['val']}' target='_blank'>${KV['label']}</a>"; 
                 }
                 else {                    
                     $url = $KV['val'];
-                }
-                $spans .= "<span class='$class descAction $name'>$url</span>"; 
+                }                                 
+
+                $spans .= "<span class='$class descAction $name'>$url</span>";                 
             }
             else { 
                 if ( $name == 'mgiLink' ){
                     // make a div (none-display) as container for multiple links, so that users can choose
                     // activate only if there is multiple links by JS
-                    $spans .= "<span class='$class descAction $name'>${KV['label']} <div></div></span>"; 
-                    
+                    $spans .= "<span class='$class descAction $name'>${KV['label']} <div></div></span>";                     
                 }
-                else {                    
-                    $spans .= "<span class='$class descAction $name'>${KV['label']}</span>";                
+                else {                                      
+                    $toolTip = null;
+                    if ( $name == 'mta' and $class == 'grayout' ){
+                        $toolTip = "<span class='instantToolTip'>MTA not needed for this strain</span>";                     
+                    }     
+                    $spans .= "<span class='$class descAction $name'>${KV['label']} $toolTip</span>";                
                 }    
             }    
         }

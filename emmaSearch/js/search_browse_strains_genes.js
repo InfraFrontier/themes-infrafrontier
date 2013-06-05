@@ -382,17 +382,17 @@ function makeTable(tblId, aAoColumnConf, iNoSort, record) {
 
 }
 function activate_tooltip(oTable){
-    oTable.find('td.order img, td.emmaID span, td.toggle img').live('mouseover', function(){    
+    oTable.find('td.order img, td.emmaID span, td.toggle img, ').live('mouseover', function(){    
         $(this).siblings('span.instantToolTip').show();
     }).live('mouseout', function(){      
         $(this).siblings('span.instantToolTip').hide()
-    });
-    
-    /*oTable.find('td.emmaID span, td.toggle img').live('mouseover', function(){         
-        $(this).siblings('span.instantToolTip').show();
-    }).live('mouseout', function(){     
-        $(this).siblings('span.instantToolTip').hide()
-    });*/
+    });  
+
+    oTable.find('span.mta').live('mouseover', function(){    
+        $(this).find('span.instantToolTip').show();
+    }).live('mouseout', function(){      
+        $(this).find('span.instantToolTip').hide()
+    });   
 }
 function injectJsToAccordionTabs(obj){
    

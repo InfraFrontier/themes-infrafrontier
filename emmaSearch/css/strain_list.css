@@ -379,6 +379,10 @@ table.dataTable {
     border: none;
     padding-top: 20px;   
 }
+table.dataTable th {
+    padding-top: 15px !important;
+    border-top: 1px solid gray;
+}
 table.dataTable th.sorting_disabled {
 	background-color: white;
 }
@@ -695,7 +699,7 @@ span.useMsg {
     font-size: 11px;
     margin-left: 15px;
 }
-td.order > span, td.emmaID > span, td.toggle > span {
+td.order > span, td.emmaID > span, td.toggle > span, span.mta {
     position: relative;
 }
 span.instantToolTip {
@@ -705,11 +709,14 @@ span.instantToolTip {
     top: 0px;
     left: 30px; 
     min-width: 120px;  
-    background-color: white;
-    border: 1px solid gray;
-    color: black;
+    background-color: white !important;
+    border: 1px solid gray !important;
+    color: black !important;
     padding: 2px 5px;
     text-align: center;
+}
+span.mta span.instantToolTip {
+    top: 23px;
 }
 a {
     text-decoration: none;
