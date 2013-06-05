@@ -268,7 +268,7 @@ class EMMA_SQL {
 					    }					   
 					    else if ( $field == 'MTA' ){
 					    	$mta_file = $row[$field];
-                            $mtaLink = $drupalFilePath . "/mtas/${mta_file}";                                  
+                            $mtaLink = $drupalFilePath . "/pdf/mtas/${mta_file}";                                  
                 
 					      	$mta = "Distribution of this strain is subject to a Material Transfer Agreement (MTA)."
 					      	     . "<b> Both signing of the <a href='$mtaLink' target='_blank'>MTA</a> "
@@ -290,7 +290,7 @@ class EMMA_SQL {
 					    }					    
 					    else if ( $field == 'Genotyping protocol' ){
 					    	if ( $filename = $row[$field] ){
-                                $gplink = $drupalFilePath . "genotype_protocols/$filename";
+                                $gplink = $drupalFilePath . "pdf/genotype_protocols/$filename";
 								$gtfile = "<a href='$gplink' target='_blank'>$filename</a>";
                                 $bottom_icon_rows['genotyping'] = $filename; 
 
