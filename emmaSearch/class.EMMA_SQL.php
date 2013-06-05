@@ -434,7 +434,7 @@ class EMMA_SQL {
         
         $healthReportFile = $this->fetch_health_report_file($id_str);
         $bottom_icon_rows['healthReportFile'] = $healthReportFile;
-        $healthReportFileUrl = "$drupalFilePath/procedures/${healthReportFile}";
+        $healthReportFileUrl = "$drupalFilePath/pdf/procedures/${healthReportFile}";
         $emma_info .= "<tr><td>Example health report</td><td><a href=$healthReportFileUrl target='_blank'>${healthReportFile}</a></td></tr>";
      
 		if ($provider_info){			
