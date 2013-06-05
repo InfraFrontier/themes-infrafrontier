@@ -290,7 +290,7 @@ class EMMA_SQL {
 					    }					    
 					    else if ( $field == 'Genotyping protocol' ){
 					    	if ( $filename = $row[$field] ){
-                                $gplink = $drupalFilePath . "pdf/genotype_protocols/$filename";
+                                $gplink = $drupalFilePath . "/pdf/genotype_protocols/$filename";
 								$gtfile = "<a href='$gplink' target='_blank'>$filename</a>";
                                 $bottom_icon_rows['genotyping'] = $filename; 
 
