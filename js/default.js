@@ -142,7 +142,10 @@ function parseContent() {
 	$('.toggle:first').addClass('first');
 	$('.toggle:last').addClass('last');
 }
+function biomartHack(){
+   console.log($('#main .title').text());
 
+}
 // Ready
 $(document).ready(function() {	
 	
@@ -155,8 +158,19 @@ $(document).ready(function() {
 	initTooltips();
 	parseContent();
 	fixPlaceholder();
-	
+ 
 	if ($('body').hasClass('front')) { autoHeightFront(); }
+
+    // Read more link/text hack for EMMA Biomart section on page
+    if ( window.location.pathname == '/resources-and-services/access-emma-mouse-resources' ){  
+        $('div.view-content div h3').find('a').each(function(){          
+            if ( $(this).text() == 'Advanced BioMart search' ){
+                var biomartUrl = 'https://www.emmanet.org/biomart/martview/';
+                $(this).attr('href', biomartUrl);
+                $(this).parent().siblings('p.more').find('a').text('Search EMMA Biomart').attr('href', biomartUrl);                
+           } 
+        });
+    }
 	
 });
 

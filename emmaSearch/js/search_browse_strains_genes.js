@@ -388,7 +388,7 @@ function activate_tooltip(oTable){
         $(this).siblings('span.instantToolTip').hide()
     });  
 
-    oTable.find('span.mta').live('mouseover', function(){    
+    oTable.find('span.mta, span.genotyping, span.availabilities').live('mouseover', function(){    
         $(this).find('span.instantToolTip').show();
     }).live('mouseout', function(){      
         $(this).find('span.instantToolTip').hide()

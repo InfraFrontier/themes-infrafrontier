@@ -699,7 +699,7 @@ span.useMsg {
     font-size: 11px;
     margin-left: 15px;
 }
-td.order > span, td.emmaID > span, td.toggle > span, span.mta {
+td.order > span, td.emmaID > span, td.toggle > span, span.mta, span.genotyping, span.availabilities {
     position: relative;
 }
 span.instantToolTip {
@@ -715,7 +715,7 @@ span.instantToolTip {
     padding: 2px 5px;
     text-align: center;
 }
-span.mta span.instantToolTip {
+span.mta span.instantToolTip, span.genotyping span.instantToolTip, span.availabilities span.instantToolTip {
     top: 23px;
 }
 a {
