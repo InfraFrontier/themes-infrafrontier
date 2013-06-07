@@ -301,12 +301,11 @@ function makeTable(tblId, aAoColumnConf, iNoSort, record) {
 
         // change tr bg color to mark for selected row
         $('table#'+tblId + ' tr').removeClass('selectedTr');
-        $(nTr).addClass('selectedTr');
-               
-        console.log($(this).siblings('td.toggle').find('img').attr('src'));
+        $(nTr).addClass('selectedTr');              
+        
         if ( $(this).siblings('td.toggle').find('img').attr('src').match('plus') ){
             /* This row is not yet open - open it */                          
-           console.log('plus');
+           
             $(this).siblings('td.toggle').find('img').attr('src', fetch_EMMA_drupal_path() + "/images/minus.png");
             var id_str = $(nTr).attr('id');
        
