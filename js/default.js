@@ -177,7 +177,6 @@ function customiseReadMoreText(){
 	}
 }
 
-// Ready
 $(document).ready(function() {	
 	
 	initTabContent();
