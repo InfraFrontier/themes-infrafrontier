@@ -146,6 +146,37 @@ function biomartHack(){
    console.log($('#main .title').text());
 
 }
+function customiseReadMoreText(){
+	
+	// hacking 'Read more' text for some pages
+	var readMores = {
+		'biomart': {
+			'path': '/resources-and-services/access-emma-mouse-resources',
+			'url': 'https://www.emmanet.org/biomart/martview/',
+			'label': 'Search EMMA Biomart',
+			'title': 'Advanced BioMart search'
+		},		
+		'submission': {
+			'path': '/resources-and-services/deposit-mice-emma-repository',
+			'url': 'http://dev.infrafrontier.eu/emma/publicSubmission/submissionForm.emma',
+			'label': 'Submit mice to EMMA',
+			'title': 'Submission form'
+		}	
+	};
+	for ( var i in readMores ){
+		if ( window.location.pathname == readMores[i].path ){  
+		    $('div.view-content div h3').find('a').each(function(){          
+		        if ( $(this).text() == readMores[i].title ){
+		            //resources-and-services/access-emma-mouse-resources/advanced-biomart-search
+		            var url = readMores[i].url;
+		            $(this).attr('href', url);
+		            $(this).parent().siblings('p.more').find('a').text(readMores[i].label).attr('href', url);                
+		       } 
+		    });
+		}		
+	}
+}
+
 // Ready
 $(document).ready(function() {	
 	
@@ -158,21 +189,10 @@ $(document).ready(function() {
 	initTooltips();
 	parseContent();
 	fixPlaceholder();
- 
+	customiseReadMoreText();
+	
 	if ($('body').hasClass('front')) { autoHeightFront(); }
 
-    // 'Read more' link/text hack for EMMA Biomart section on page
-    if ( window.location.pathname == '/resources-and-services/access-emma-mouse-resources' ){  
-        $('div.view-content div h3').find('a').each(function(){          
-            if ( $(this).text() == 'Advanced BioMart search' ){
-                //resources-and-services/access-emma-mouse-resources/advanced-biomart-search
-                var biomartUrl = 'https://www.emmanet.org/biomart/martview/';
-                $(this).attr('href', biomartUrl);
-                $(this).parent().siblings('p.more').find('a').text('Search EMMA Biomart').attr('href', biomartUrl);                
-           } 
-        });
-    }
-	
 });
 
 })(jQuery);
