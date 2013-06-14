@@ -1,0 +1,249 @@
+<!DOCTYPE HTML>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en" class="no-js"><!--<![endif]-->
+<head>
+
+<!-- Infrafrontier -->
+<title>EMMA - the European Mouse Mutant Archive</title>
+<meta charset="utf-8">
+<meta name="author" content="Infrafrontier" />
+<meta name="description" content="EMMA is a non-profit repository for the collection, archiving (via cryopreservation) and distribution of relevant mutant strains essential for basic biomedical" />
+<meta name="keywords" content="EMMA, Infrafrontier" />
+<meta name="copyright" content="Infrafrontier" />
+<link rel="canonical" href="http://www.emmanet.org" />
+<base href="http://localdev.infrafrontier.eu" />
+
+<!-- css -->
+<link href="//fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet" type="text/css" />
+<link href="/sites/infrafrontier.eu/themes/custom/infrafrontier/css/default.css" rel="stylesheet" type="text/css" />
+<link href="/sites/infrafrontier.eu/themes/custom/infrafrontier/css/ebi.css" rel="stylesheet" type="text/css" />
+<link href="http://www.byte-box.com/projekte/infrafrontier/emma/emma.css" rel="stylesheet" type="text/css" />
+
+<!-- js -->
+<script type="text/javascript" src="/misc/jquery.js?v=1.4.4"></script>
+<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js'></script>
+<script>window.jQuery || document.write('<script src="http://dev.emmanet.org/js/jquery-1.8.1.min.js"><\/script><script src="http://dev.emmanet.org/js/jquery-ui-1.8.18.min.js"><\/script><link type="text/css" rel="stylesheet" href="http://dev.emmanet.org/css/jquery-ui-1.8.18.css" />');</script> 
+<script type="text/javascript" src="/sites/infrafrontier.eu/themes/custom/infrafrontier/js/head.min.js"></script>
+<script type="text/javascript" src="/sites/infrafrontier.eu/themes/custom/infrafrontier/js/selectivizr-min.js"></script>
+<script type="text/javascript" src="/sites/infrafrontier.eu/themes/custom/infrafrontier/js/default.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        console.log('loaded');
+        var srchInput = $('div#emmastrains-searchbox input[type=text]');
+        var srchSubmit = $('div#emmastrains-searchbox input[type=submit]');
+
+        srchSubmit.click(function(){
+            var sInput = srchInput.val();
+            if ( sInput == '' ){
+                alert('Sorry, but the search keyword is missing ...');
+                return false;
+            }
+            else {
+                window.open('http://dev.emmanet.org/mutant_types.php?keyword=' +  sInput);
+            }
+        });          
+    });
+
+</script>
+
+
+</head>
+
+<body class="html front not-logged-in no-sidebars emma">	
+
+<div id="wrapper">
+
+	<header id="header">        
+        <div id="innerheader">    
+            <div id="logo">
+                <a href="/" title="Infrafrontier"><img src="http://www.byte-box.com/projekte/infrafrontier/emma/logo-emma.png" /></a>
+            </div>      
+            <div class="clear"></div>        
+        </div>    
+    </header>
+	
+    <div id="container">
+        
+        <section id="content"> 
+                                    
+            <div class="boxcontainer">
+        
+                <div class="box w640">
+                    <div class="boxcontent nopadding">
+                    	<div id="slider">
+    <div id="slidecontainer">
+    
+                <div class="slide ">
+	
+    <div class="slideimage"><img src="http://dev.infrafrontier.eu/sites/infrafrontier.eu/files/slideimage/slide_1.jpg" width="640" height="300" alt="" /></div>
+    
+    <div class="slidedescription">
+    	<h2>Infrafrontier services</h2><p>Diversified service portfolio by integrating the European Mouse Mutant Archive into the Infrafrontier Research Infrastructure</p>    </div>
+        
+        <div class="learnmore">
+        <a href="/resources-and-services">Learn more</a>    </div>
+            
+</div>
+                    
+    </div>
+</div>               	
+                    </div>
+                </div>
+                
+                <div id="emmastrains-searchbox" class="box w300">
+                    <div class="head">EMMA strains</div>
+                    <div class="boxcontent">
+                        <h6>Search EMMA strains</h6>
+                        <p><form><input type="text" placeholder="Search strains..." /><input class="loupe" type="submit" value="" /></form></p>
+                        <p><i><b>Search by:</b> Gene name/symbol, strain name, EMMA ID, OMIM name/ID, phenotype, ...</i></p>
+                        <h4>Browse EMMA strains</h4>
+                        <p><a class="btn" href="http://dev.emmanet.org/mutant_types.php?keyword=browse_strain_types">Strain Types</a> <a class="btn" href="http://dev.emmanet.org/mutant_types.php?keyword=browse_genes">Genes</a> <a class="btn" href="http://dev.emmanet.org/mutant_types.php?keyword=browse_human_diseases">Human Diseases</a></p>
+                    	<p>&nbsp;</p>
+                        <div class="splithalf">
+                        	<div class="box half">
+                            	<p><a id="togglehelp" class="icon help" href="#">Help</a></p>
+                            </div>
+                        </div>                       
+                    </div>
+                </div>
+                
+                <div id="stooltip">
+                	<h6>You could search the following</h6>
+                    <ul>
+                    	<li>Affected gene<br /><span>e.g. Sema3e or semaphorin 3E</span></li>
+                        <li>International strain designation<br /><span>e.g. B6.129P2-Sema3e&lt;tm1Ddg</li>
+                        <li>Common strain name<br /><span>e.g. Sema3E</span></li>
+                        <li>Phenotype description<br /><span>e.g. open field test</span></li>
+                        <li>EMMA ID<br /><span>e.g. EM:01373</span></li>
+                    </ul>
+                    <p>The search returns a list of strains whose description contains one or more matches to your query. The search is case insensitive and partial terms can be entered.</p>
+                </div>
+                
+                <div class="clear"></div>
+            
+            </div>
+                        
+            <div class="boxcontainer">
+            
+                <div class="box w640 floatingboxes">
+                	
+                                        
+                    <div class="head">Resources and Services</div>
+                    
+                    <div class="floatbox">
+                    	<div class="boxicon"><img src="/sites/infrafrontier.eu/themes/custom/infrafrontier/img/icon/boxicon/deposit.png" /></div>
+                        <h3><a href="/resources-and-services/deposit-mice-emma-repository">Deposit mice</a></h3><p><a href="/resources-and-services/deposit-mice-emma-repository" class="icon more">EMMA archives your mouse mutant free of charge</a></p>                    </div>
+                    
+                    <div class="floatbox last">
+                    	<div class="boxicon"><img src="/sites/infrafrontier.eu/themes/custom/infrafrontier/img/icon/boxicon/order.png" /></div>
+                        <h3><a href="/resources-and-services/access-emma-mouse-resources">Order mice</a></h3><p><a href="/resources-and-services/access-emma-mouse-resources" class="icon more">Over 3000 mouse mutants, major collections and research tools</a></p>                    </div>
+                    
+                    <div class="floatbox">
+                    	<div class="boxicon"><img src="/sites/infrafrontier.eu/themes/custom/infrafrontier/img/icon/boxicon/axenic.png" /></div>
+                        <h3><a href="/resources-and-services/axenic-service">Axenic service</a></h3><p><a href="/resources-and-services/axenic-service" class="icon more">EMMA produces germ-free mice free of charge</a></p>                    </div>
+                                                            
+                    <div class="floatbox last">
+                    	<div class="boxicon"><img src="/sites/infrafrontier.eu/themes/custom/infrafrontier/img/icon/boxicon/training.png" /></div>
+                        <h3><a href="/resources-and-services/training-and-consulting-services">Training and consulting</a></h3><p><a href="/resources-and-services/training-and-consulting-services" class="icon more">Hands-on courses in cryopreservation and phenotyping</a></p>                    </div>
+                    
+                </div>
+                
+                <div class="box w300">
+					<div class="head">Information</div>
+                    <div class="boxcontent"><h3>Procedures</h3><p>Information on service fees, legal issues, health monitoring and animal welfare.</p><p><a href="/procedures" class="icon more">Read more</a></p></div>
+                	<div class="boxcontent"><h3>Knowledgebase</h3><p>Validated laboratory protocols and a comprehensive list of relevant publications.</p><p><a href="/knowledgebase" class="icon more">Read more</a></p></div>
+                </div>
+                
+                <div class="clear"></div>
+            
+            </div>
+                        
+            <div class="boxcontainer">
+            
+            	<div id="box-abouttext" class="box w640">
+                	<div class="head">About EMMA</div>
+					<div class="boxcontent">
+                    	<p>The European Mouse Mutant Archive (EMMA) is a non-profit repository for the collection, archiving (via cryopreservation) and distribution of relevant mutant strains essential for basic biomedical research.The laboratory mouse is the most important mammalian model for studying genetic and multi-factorial diseases in man. Thus the work of EMMA will play a crucial role in exploiting the tremendous potential benefits to human health presented by the current research in mammalian genetics.</p>
+						<p>The EMMA network is a partnership of several laboratories and other institutions throughout Europe. EMMA has joined forces with the European phenotyping community under the umbrella of the Infrafrontier Research Infrastructure. Infrafrontier offers a broad portfolio of services to the international scientic community.</p>
+                    </div>
+                </div>
+                
+                <div id="box-partnership" class="box w300">
+                    <div class="head">European Partnership</div>
+                                        <div class="boxcontent">
+                    	<p><img src="/media/upload/img/logo-esfri.jpg" class="floatleft" height="60" width="60">Infrastructure on the ESFRI Roadmap</p><p><a href="/infrafrontier-research-infrastructure/organisation" class="icon more">Learn more</a></p>                    </div>
+                    <div class="boxcontent">
+                    	<p><img src="/media/upload/img/logo-eu.jpg" class="floatleft" height="40" width="60">Infrafrontier is supported by the partner institutions, national research programmes and by the European Commission.</p>                    </div>
+                </div>
+                
+                <div class="clear"></div>
+            
+            </div>
+            
+            <div id="logoslider">
+                <div id="logoslidecontrols">
+                    <div class="prev"></div>
+                    <div class="next"></div>
+                </div>            	
+                <div id="logoslidercontainer">
+                    <div class="logoslide"><img src="/sites/infrafrontier.eu/themes/custom/infrafrontier/img/logoslider/1.jpg" /></div>
+                    <div class="logoslide"><img src="/sites/infrafrontier.eu/themes/custom/infrafrontier/img/logoslider/1.jpg" /></div>
+                </div>
+            </div>
+            
+        </section>
+    
+	</div>
+    
+    <footer id="footer">
+    
+    	<div class="innerfooter">        
+        	<div id="toplink"><a href="#top">to top</a></div>        	           
+            <div id="tn">
+            	  <div class="region region-usernavi">
+    <div id="block-menu-block-4" class="block block-menu-block">
+  <div class="menu-block-wrapper menu-block-4 menu-name-user-menu parent-mlid-0 menu-level-1">
+  <ul class="menu"><li class="first leaf menu-mlid-433"><a href="/infrafrontier-research-infrastructure/public-relations/contacts" title="">Contact</a></li>
+<li class="leaf menu-mlid-506"><a href="/imprint" title="">Imprint</a></li>
+<li class="last leaf menu-mlid-409"><a href="/user/login" title="">Login / Register</a></li>
+</ul></div>
+  
+</div>
+  </div>
+            </div>        
+        </div>
+        
+        <div id="footerline">        	
+            <div class="innerfooter">
+            	<div class="splithalf">
+                	<div class="half">
+                		&copy; Infrafrontier 2013 - all rights reserved
+                    </div>
+                    <div class="half">
+                    	<div id="bn">
+                              <div class="region region-usernavi">
+      <div class="region region-usernavi">
+    <div id="block-menu-block-4" class="block block-menu-block">
+    
+  <div class="menu-block-wrapper menu-block-4 menu-name-user-menu parent-mlid-0 menu-level-1">
+  <ul class="menu"><li class="first leaf menu-mlid-433"><a href="/infrafrontier-research-infrastructure/public-relations/contacts" title="">Contact</a></li>
+<li class="leaf menu-mlid-506"><a href="/imprint" title="">Imprint</a></li>
+<li class="last leaf menu-mlid-409"><a href="/user/login" title="">Login / Register</a></li>
+</ul></div>
+  
+</div>
+  </div>
+  </div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+        
+    </footer>
+    
+</div></body>
+</html>
