@@ -392,6 +392,8 @@ class EMMA_SQL {
 		 				else {
 						  if ( $data = $row[$field] ){
 						    $data = $this->capitalize_first_letter_of_sentence($data);
+						    // temporary hack as the live site is still emmanet.org
+						    $data = str_replace("http://www.emmanet.org/mutant_types.php?", "/search?", $data);						   
 						    $emma_info .= "<tr><td class='desc_field'>$field</td> <td>$data</td></tr>";
 						  }
 						}
@@ -478,7 +480,7 @@ class EMMA_SQL {
 		<Query  virtualSchemaName = "default" formatter = "TSV" header = "0" uniqueRows = "0" count = "" datasetConfigVersion = "0.6" >	
          <Dataset name = "idcc_targ_rep" interface = "default" >
 			<Attribute name = "production_qc_five_prime_screen" />
-			<Attribute name = "production_qc_loxp_screen" />
+			<Attribute $bodytag = str_replace("%body%", "black", "<body text='%body%'>");name = "production_qc_loxp_screen" />
 			<Attribute name = "production_qc_three_prime_screen" />
 			<Attribute name = "production_qc_loss_of_allele" />
 			<Attribute name = "production_qc_vector_integrity" />
