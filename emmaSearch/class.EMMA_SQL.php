@@ -12,11 +12,12 @@ $sLimit = ""; // paging
 $sOrder = ""; // ordering
 $sWhere = ""; // filtering
 
-$drupalScriptPath = '/sites/infrafrontier.eu/themes/custom/infrafrontier/emmaSearch';
-$drupalFilePath   = '/sites/infrafrontier.eu/files/upload/public';
 
 class EMMA_SQL {
 
+	public $drupalScriptPath = '/sites/infrafrontier.eu/themes/custom/infrafrontier/emmaSearch';
+	public $drupalFilePath   = '/sites/infrafrontier.eu/files/upload/public';
+		
 	function fetch_rtools(){
 		$code_rtls_id = array(
 		      'Cre' => 1,
@@ -94,7 +95,6 @@ class EMMA_SQL {
 	}
 	function compose_strain_description($id_str, $mutype, $pdf){
 		
-        global $drupalFilePath; 
 		$qcTables = false;
 		$desc  = '';
 	  	$avais = '';
@@ -268,7 +268,7 @@ class EMMA_SQL {
 					    }					   
 					    else if ( $field == 'MTA' ){
 					    	$mta_file = $row[$field];
-                            $mtaLink = $drupalFilePath . "/pdf/mtas/${mta_file}";                                  
+                            $mtaLink = $this->drupalFilePath . "/pdf/mtas/${mta_file}";                                  
                 
 					      	$mta = "Distribution of this strain is subject to a Material Transfer Agreement (MTA)."
 					      	     . "<b> Both signing of the <a href='$mtaLink' target='_blank'>MTA</a> "
@@ -290,7 +290,7 @@ class EMMA_SQL {
 					    }					    
 					    else if ( $field == 'Genotyping protocol' ){
 					    	if ( $filename = $row[$field] ){
-                                $gplink = $drupalFilePath . "/pdf/genotype_protocols/$filename";
+                                $gplink = $this->drupalFilePath . "/pdf/genotype_protocols/$filename";
 								$gtfile = "<a href='$gplink' target='_blank'>$filename</a>";
                                 $bottom_icon_rows['genotyping'] = $filename; 
 
@@ -436,7 +436,7 @@ class EMMA_SQL {
         
         $healthReportFile = $this->fetch_health_report_file($id_str);
         $bottom_icon_rows['healthReportFile'] = $healthReportFile;
-        $healthReportFileUrl = "$drupalFilePath/pdf/procedures/${healthReportFile}";
+        $healthReportFileUrl = "{$this->drupalFilePath}/pdf/procedures/${healthReportFile}";
         $emma_info .= "<tr><td>Example health report</td><td><a href=$healthReportFileUrl target='_blank'>${healthReportFile}</a></td></tr>";
      
 		if ($provider_info){			
@@ -694,16 +694,16 @@ class EMMA_SQL {
 	  	return $label;
 	}
     function fetch_order_icon($label){
-	    global $drupalScriptPath;
+	    
         $icon = false;
         if ( $label == 'order' ){
-            $icon = "<img src='${drupalScriptPath}/images/green_dot_20.png' /><span class='instantToolTip'>Order mice</span>";
+            $icon = "<img src='{$this->drupalScriptPath}/images/green_dot_20.png' /><span class='instantToolTip'>Order mice</span>";
         }
         else if ( $label == 'register interest' ){
-            $icon = "<img src='${drupalScriptPath}/images/red_dot_20.png' /><span class='instantToolTip'>Register interest</span>";
+            $icon = "<img src='{$this->drupalScriptPath}/images/red_dot_20.png' /><span class='instantToolTip'>Register interest</span>";
         }
         else if ( $label == 'order (only small colony available)' ){
-            $icon = "<img src='${drupalScriptPath}/images/yellow_dot_20.png' /><span class='instantToolTip'>Order mice - only small colony available</span>";
+            $icon = "<img src='{$this->drupalScriptPath}/images/yellow_dot_20.png' /><span class='instantToolTip'>Order mice - only small colony available</span>";
         }
         return $icon;
     }
@@ -1328,8 +1328,7 @@ class EMMA_SQL {
         return $intnl_strname;
     }
 	function make_table($sql, $post, $get, $tblClass, $qrystr, $mode){
-
-        global $drupalScriptPath;
+        
 		$mpid    = $post['mpid'];
   		$is_leaf = $post['leaf'];
   		$qry_term_name = $get['term_name'];
@@ -1487,7 +1486,7 @@ TBL;
                      			
 
                 // strain desc toggle    
-                $table .= "<td class='toggle'><span><img src='${drupalScriptPath}/images/plus.png' id='$id_str' /><span class='instantToolTip'>Click to toggle strain description</span></span></td>"; 
+                $table .= "<td class='toggle'><span><img src='{$this->drupalScriptPath}/images/plus.png' id='$id_str' /><span class='instantToolTip'>Click to toggle strain description</span></span></td>"; 
              
 
       			$table .= "</tr>";
@@ -1514,8 +1513,8 @@ TBL;
   		}
 	}
     function compose_bottom_icon_rows($id_str, $bottom_icon_rows){
-        global $drupalFilePath;
-        $pdfPath = "$drupalFilePath/pdf";
+        
+        $pdfPath = "{$this->drupalFilePath}/pdf";
 
         $nameVals = array(
                 "infoSheet"          => array('label' => 'Info sheet', 'val' => true, 'baseUrl' => false),  // default, action via js
