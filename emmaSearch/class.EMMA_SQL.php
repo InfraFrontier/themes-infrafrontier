@@ -1555,10 +1555,10 @@ TBL;
                         $toolTip = "<span class='instantToolTip'>MTA not needed for this strain</span>";                     
                     }     
                     else if ( $name == 'genotyping' and $class == 'grayout' ){
-                        $toolTip = "<span class='instantToolTip'>Genotyping not available for this strain</span>";                     
+                        $toolTip = "<span class='instantToolTip'>Genotyping protocol not available online</span>";                     
                     } 
                     else if ( $name == 'availabilities' and $class == 'grayout' ){
-                        $toolTip = "<span class='instantToolTip'>Mice/frozen embryos not available for this strain</span>";                     
+                        $toolTip = "<span class='instantToolTip'>Strain under development</span>";                     
                     } 
                     $spans .= "<span class='$class descAction $name'>${KV['label']} $toolTip</span>";                
                 }    
