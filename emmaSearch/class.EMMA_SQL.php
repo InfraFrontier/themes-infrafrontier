@@ -17,7 +17,8 @@ class EMMA_SQL {
 
 	public $drupalScriptPath = '/sites/infrafrontier.eu/themes/custom/infrafrontier/emmaSearch';
 	public $drupalFilePath   = '/sites/infrafrontier.eu/files/upload/public';
-		
+	public $lab_code_id;
+ 
 	function fetch_rtools(){
 		$code_rtls_id = array(
 		      'Cre' => 1,
@@ -158,6 +159,7 @@ class EMMA_SQL {
 		$sql4 = "SELECT s.owner_xref as 'Other EMMA lines from the same provider', 
              s.mutation_xref as 'Other EMMA lines with the same mutation',  
              CONCAT(l.name, ', ', l.town, ', ', l.country) as 'Archiving centre',
+             l.id_labo,
              a.breeding as 'Breeding at archiving centre',             
              a.embryo_state as 'Stage of embryos',
              a.male_bg_id,
@@ -377,6 +379,9 @@ class EMMA_SQL {
 
 						else if ( $field == "Archiving centre" ){
 						  if ( $data = $row[$field] ){
+                                                     
+                            $this->lab_code_id = $row['id_labo'];                           
+
 						    $data = $this->capitalize_first_letter_of_sentence($data);
 						    if ($data == 'MRC, Medical Research Council, Harwell, Didcot, United Kingdom'){
 						      $emmaid = $row['emma_id'];
@@ -434,7 +439,7 @@ class EMMA_SQL {
 		
 		$emma_info .= $geno_protocol; 
         
-        $healthReportFile = $this->fetch_health_report_file($id_str);
+        $healthReportFile = $this->fetch_health_report_file($this->lab_code_id);
         $bottom_icon_rows['healthReportFile'] = $healthReportFile;
         $healthReportFileUrl = "{$this->drupalFilePath}/pdf/procedures/${healthReportFile}";
         $emma_info .= "<tr><td>Example health report</td><td><a href=$healthReportFileUrl target='_blank'>${healthReportFile}</a></td></tr>";
@@ -459,11 +464,11 @@ class EMMA_SQL {
         $DATA['desc'] = $desc;
 		
         return $DATA; 
-	}	
-    function fetch_health_report_file($id_str){
+	}	   
+    function fetch_health_report_file($id_labo){
         global $db;
-
-        $sql = "select l.filename from sources_strains ss, laboratory_health_report l where ss.str_id_str=${id_str} and ss.lab_id_labo=l.id_labo";
+        
+        $sql = "select filename from laboratory_health_report where id_labo={$id_labo}";
         $rows = $db->db_fetch($sql);			
 		if ($rows == 'ERROR'){			
 			die("Can't execute query: ".mysql_error());
