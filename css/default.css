@@ -10,7 +10,7 @@ b,strong				{ font-weight: 600; }
 
 /* Links */
 a						{ color: #303030; text-decoration: underline; }
-a:hover					{ color: #303030; text-decoration: underline; }
+a:hover					{ color: #303030; text-decoration: underline !important; }
 .boxlink,
 .boxlink:hover			{ text-decoration: inherit; }
 
@@ -19,6 +19,7 @@ h1 a,h2 a,h3 a,h4 a,h5 a,h6 a,h1,h2,h3,h4,h5,h6
 						{ text-decoration: none; color: #303030 !important; margin-bottom: 0.6em; line-height: 1em; font-weight: 600; font-family: 'Open Sans', Arial, Helvetica, sans-serif; }
 h1 a:hover,h2 a:hover,h3 a:hover,h4 a:hover,h5 a:hover,h6 a:hover { text-decoration: underline !important; }
 h1						{ font-size: 24px; }
+.node-page h1			{ font-size: 24px !important; }
 h2						{ font-size: 20px; }
 h3						{ font-size: 18px; }
 h4						{ font-size: 18px; }
@@ -38,7 +39,7 @@ iframe,table			{ margin: 1em 0; }
 
 /* Justify p */
 .node-page p,
-.view-subpages-teaser p	{ text-align: justify; }
+.view-subpages-teaser p	{ text-align: justify; line-height: 1.3em; }
 				
 
 /* Forms General */
@@ -405,3 +406,6 @@ input[type="password"].error,
 .form .boxcontainer	+ .boxcontainer	{ margin-top: 30px; border-top: #cacaca 1px solid; padding-top: 30px; }
 p + .form-item			{ margin-top: 1em; }
 p + .boxcontainer		{ margin-top: 20px; }
+
+/* Sup & sub */
+sup 					{ vertical-align: baseline; position: relative; top: -0.4em; }
