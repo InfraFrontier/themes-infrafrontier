@@ -90,8 +90,7 @@ $(document).ready(function(){
             $(this).removeClass('ulClose').addClass('ulOpen');
         }
     });
-
-
+    
     $('ul.menu ul li a').live('click', function(){  
         $('ul.menu ul').hide();
         $('span.submenu').removeClass('ulOpen').addClass('ulClose');
@@ -285,6 +284,16 @@ function makeTable(tblId, aAoColumnConf, iNoSort, record) {
  
     $('div#' + tblId + '_wrapper').find('#foundEntries').html(record).addClass('span3');  
 
+    $('span.omimToggleAll').click(function(){    	
+    	$(this).parent().siblings('.omimAll').show(); 
+    	$(this).parent().siblings('.omimAll').find('li').css({'list-style-type':'disc','margin-left':'8px'});
+    	$(this).parent().hide();    
+    });
+    $('span.omimToggleLess').click(function(){    	
+		$(this).parent().siblings('.omimLess').show();		
+		$(this).parent().hide();
+    });		
+        
     // toggle show/hide of hidden dataTable row   
     // use live so that opening new hidden row will work with pagination                   
     oTable.find('td.emmaID').live('click', function () {

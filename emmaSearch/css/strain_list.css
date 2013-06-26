@@ -141,7 +141,21 @@ div#strainInfo {
 li.omd {
 	margin-left: 10px;	
 	padding: 2px;
-}	
+	list-style: none;	
+}
+
+td.omim li.omd {
+	/*display: inline;*/
+	margin: 0;	
+	padding: 0;
+	/*list-style-position: inside !important;*/	
+}
+span.omimAll {
+	display: none;	
+}
+span.omimToggleAll, span.omimToggleLess {
+	cursor: pointer;	
+}
 div.letters  {
 	margin: 0;
 	padding: 0 20px 10px 12px;

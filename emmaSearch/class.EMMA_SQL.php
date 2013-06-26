@@ -59,7 +59,7 @@ class EMMA_SQL {
     		return $ids; 		   		
   		}	
 	}
-	function fetch_omim_by_strain_id($id_str) {	
+	function fetch_omim_by_strain_id($id_str, $mode) {	
 		// MGI associated human diseases for models involving the same allele
   		$alIds = $this->fetch_allele_ids_by_strain_id($id_str);
   		if ( $alIds[0] ){  		
@@ -69,12 +69,17 @@ class EMMA_SQL {
   				$omimInfos = false;	
   				foreach ( $omimRows as $row ){  							
 					$links = $this->fetch_omim_display($row);
-					$spacer = "&nbsp;&nbsp;";			 
+					$spacer = "&nbsp;";			 
 					$omimInfos[] = "<li class='omd'>{$links['omimNameLink']} $spacer / $spacer {$links['omimIDLink']}</li>";									
 				}
-				$data = join("", $omimInfos); 
-				$field = "MGI associated human diseases for models involving the same allele (OMIM name / ID)";	 	
-				return "<tr><td class='desc_field'>$field</td> <td>$data</td></tr>";			
+				if ( !$mode ){
+					$data = join("", $omimInfos); 
+					$field = "MGI associated human diseases for models involving the same allele (OMIM name / ID)";	 	
+					return "<tr><td class='desc_field'>$field</td> <td>$data</td></tr>";
+				}	
+				else {
+					return $omimInfos;					
+				}		
   			}  			
   		}
   		else {
@@ -103,7 +108,7 @@ class EMMA_SQL {
 		$material_info = '';
 		$provider_info = '';
 		$emma_info = '';
-		$emma_info .= $this->fetch_omim_by_strain_id($id_str);  		
+		$emma_info .= $this->fetch_omim_by_strain_id($id_str, false);  		
 		$mta_info      = '';
 		$archiving_ctr = '';
 		$geno_protocol = '';		
@@ -1410,13 +1415,22 @@ TBL;
       			$table .= "<td class='emmaID'><span><span>$emmaid</span><span class='instantToolTip'>Click to toggle strain description</span></span></td>";
       			 
                 if ( $has_omim ){  
-      				$spacer = "&nbsp;&nbsp;";  	
-      				$links = $this->fetch_omim_display($row);
+      				$spacer   = "&nbsp;";      				
+      				//$links = $this->fetch_omim_display($row);
+      				$links = $this->fetch_omim_by_strain_id($id_str, $mode);      				
       				if ( $links ){
-                        $idAllele = $row['id_allel'];
+                        /*$idAllele = $row['id_allel'];
 						$omimName = $links['omimName'];
 						$omimID = $links['omimID'];      				  				
-						$table .= "<td class='omim' rel='$idAllele'>$omimName $spacer / $spacer $omimID</td>";
+						$table .= "<td class='omim' rel='$idAllele'>$omimName $spacer / $spacer $omimID</td>";*/
+      					if ( count($links) == 1 ){
+      						$table .= "<td class='omim' rel='$idAllele'>${links[0]}</td>";
+      					}
+      					else {
+      						$omimLess = "<span class='omimLess'>" . $links[0] . "<span class='omimToggleAll'> ... [+]</span></span>";
+      						$omimAll  = "<span class='omimAll'>" . join("", $links) . "<span class='omimToggleLess'> ... [-]</span></span>";      						
+      						$table .= "<td class='omim' rel='$idAllele'>$omimLess $omimAll</td>";
+      					}      					
       				}
       				else {
       					$table .= "<td class='omim'>NA $spacer / $spacer NA</td>";
