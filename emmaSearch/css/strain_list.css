@@ -145,10 +145,9 @@ li.omd {
 }
 
 td.omim li.omd {
-	/*display: inline;*/
+	/*display: inline;*/ /*will make disc disappear */
 	margin: 0;	
-	padding: 0;
-	/*list-style-position: inside !important;*/	
+	padding: 0;	
 }
 span.omimAll {
 	display: none;	
