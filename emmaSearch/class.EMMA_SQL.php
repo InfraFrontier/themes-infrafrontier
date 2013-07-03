@@ -1348,7 +1348,7 @@ class EMMA_SQL {
   		$qry_term_name = $get['term_name'];
         $DATA = array();
   		$sql .= ' GROUP BY s.emma_id ORDER BY s.emma_id';
-  		//echo $sql;  				
+  		#echo $sql;  				
   		
   		global $db;
 		$rows = $db->db_fetch($sql);
