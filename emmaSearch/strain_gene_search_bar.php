@@ -48,7 +48,7 @@ $srchbar =<<<SRCH
                 <li id='redDot'>Register interest</li>
             </ul>
         </div>    
-         <div id='srchBlkR' class='span2'><a href='/'><img src='http://dev.emmanet.org/images/logo-emma.pngs' /></a></div>
+         <div id='srchBlkR' class='span2'><a href='/infrafrontier-research-infrastructure/international-collaborations-and-projects/european-mouse'><img src='http://dev.emmanet.org/images/logo-emma.pngs' /></a></div>
     </div>    
 SRCH;
 

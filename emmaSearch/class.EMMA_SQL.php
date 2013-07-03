@@ -69,17 +69,20 @@ class EMMA_SQL {
   				$omimInfos = false;	
   				foreach ( $omimRows as $row ){  							
 					$links = $this->fetch_omim_display($row);
-					$spacer = "&nbsp;";			 
-					$omimInfos[] = "<li class='omd'>{$links['omimNameLink']} $spacer / $spacer {$links['omimIDLink']}</li>";									
+					$spacer = "&nbsp;";		
+                    $allele_form = $this->superscript_munging($row['alls_form']);	 
+					$omimInfos[] = "<li class='omd'>$allele_form : {$links['omimNameLink']} $spacer / $spacer {$links['omimIDLink']}</li>";									
 				}
-				if ( !$mode ){
-					$data = join("", $omimInfos); 
-					$field = "MGI associated human diseases for models involving the same allele (OMIM name / ID)";	 	
-					return "<tr><td class='desc_field'>$field</td> <td>$data</td></tr>";
-				}	
-				else {
-					return $omimInfos;					
-				}		
+				
+                if ( $count ){
+                    return count($omimInfos);
+                }
+                else {
+				    $data = join("", $omimInfos); 
+				    //$field = "MGI associated human diseases for models involving the same allele (OMIM name / ID)";	 	
+                    $field = "MGI allele-associated human diseases models (OMIM name / ID)";
+				    return "<tr><td class='desc_field'>$field</td> <td>$data</td></tr>";					
+                }
   			}  			
   		}
   		else {
@@ -89,7 +92,7 @@ class EMMA_SQL {
 	function fetch_omim_info_by_allele_id_list($alIds){
 		global $db;	  	
 		$ids = join(",", $alIds);		
-		$sql = "select distinct omim_id, omim_name, mgi_internal_omim_id from alleles_omims where id_allel in ($ids)";		
+		$sql = "select distinct a.alls_form, ao.omim_id, ao.omim_name, ao.mgi_internal_omim_id from alleles_omims ao, alleles a where ao.id_allel = a.id_allel and a.id_allel in ($ids)";		
 	  	$rows = $db->db_fetch($sql);
 	  	
 		if ($rows == 'ERROR'){	  	
@@ -108,7 +111,7 @@ class EMMA_SQL {
 		$material_info = '';
 		$provider_info = '';
 		$emma_info = '';
-		$emma_info .= $this->fetch_omim_by_strain_id($id_str, false);  		
+		$emma_info .= $this->fetch_omim_by_strain_id($id_str);  		
 		$mta_info      = '';
 		$archiving_ctr = '';
 		$geno_protocol = '';		
@@ -939,6 +942,7 @@ class EMMA_SQL {
 	    . " AND rs.rtls_id = $rtool_id ";  
 	} 
 	function fetch_omim_display($row){
+
 		if ( $row['omim_id'] ){
 			$omimID = $row['omim_id'];
             $omimName = $row['omim_name']; 
@@ -1416,21 +1420,23 @@ TBL;
       			 
                 if ( $has_omim ){  
       				$spacer   = "&nbsp;";      				
-      				//$links = $this->fetch_omim_display($row);
-      				$links = $this->fetch_omim_by_strain_id($id_str, $mode);      				
-      				if ( $links ){
-                        /*$idAllele = $row['id_allel'];
+      				$links = $this->fetch_omim_display($row);
+      				$nameCount = $this->fetch_omim_by_strain_id($id_str, $count=true);      				
+      				if ( $links ){                       	
+      					$idAllele = $row['id_allel'];
 						$omimName = $links['omimName'];
-						$omimID = $links['omimID'];      				  				
-						$table .= "<td class='omim' rel='$idAllele'>$omimName $spacer / $spacer $omimID</td>";*/
-      					if ( count($links) == 1 ){
-      						$table .= "<td class='omim' rel='$idAllele'>${links[0]}</td>";
+						$omimID = $links['omimID'];
+						   
+      					if ( $nameCount == 1 ){      						   				  				
+							$table .= "<td class='omim' rel='$idAllele'>$omimName $spacer/$spacer $omimID</td>";
+      						//$table .= "<td class='omim' rel='$idAllele'>${links[0]}</td>";
       					}
       					else {
-      						$omimLess = "<span class='omimLess'>" . $links[0] . "<span class='omimToggleAll'> ... [+]</span></span>";
+      						/*$omimLess = "<span class='omimLess'>" . $links[0] . "<span class='omimToggleAll'> ... [+]</span></span>";
       						$omimAll  = "<span class='omimAll'>" . join("", $links) . "<span class='omimToggleLess'> ... [-]</span></span>";      						
-      						$table .= "<td class='omim' rel='$idAllele'>$omimLess $omimAll</td>";
-      					}      					
+      						$table .= "<td class='omim' rel='$idAllele'>$omimLess $omimAll</td>";*/
+                            $table .= "<td class='omim' rel='$idAllele'>$omimName $spacer/$spacer $omimID <span id=$id_str class='omimToggleAll'> [... view all OMIMs]</span></td>"; 
+      					}     					
       				}
       				else {
       					$table .= "<td class='omim'>NA $spacer / $spacer NA</td>";
@@ -1480,7 +1486,7 @@ TBL;
       			$lab_id = $this->fetch_lab_id_by_strain_id($id_str);
 
       			$registerTitle = $lab_id == 1961 
-					? "This option offers a potential earlier opportunity " 
+					? "This option offers a potentiafetch_omim_displayl earlier opportunity " 
 					 ."to obtain mice if available prior to archiving for sustainable distribution. "
 					 ."Sanger MGP generates mutant mouse lines for in-house primary phenotypic studies " 
 					 ."and is not a distribution centre. Availability and time to delivery cannot be guaranteed."

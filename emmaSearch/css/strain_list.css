@@ -139,11 +139,10 @@ div#strainInfo {
 	width: auto;
 }
 li.omd {
-	margin-left: 10px;	
+	margin-left: 0;	
 	padding: 2px;
 	list-style: none;	
 }
-
 td.omim li.omd {
 	/*display: inline;*/ /*will make disc disappear */
 	margin: 0;	
@@ -152,8 +151,10 @@ td.omim li.omd {
 span.omimAll {
 	display: none;	
 }
-span.omimToggleAll, span.omimToggleLess {
+span.omimToggleAll {
 	cursor: pointer;	
+    font-size: 10px;
+    font-style:italic;
 }
 div.letters  {
 	margin: 0;

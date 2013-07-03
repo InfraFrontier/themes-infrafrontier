@@ -265,7 +265,8 @@ function loadDataTable(url, containerId, tblIds, iCols){
     }
 }
 function makeTable(tblId, aAoColumnConf, iNoSort, record) {
-  
+    EMMA.multiOmimRowId = false;
+    
     var oTable = $('table#'+ tblId).dataTable({        
                 "bSortClasses": false,
                 "aoColumnDefs": [
@@ -283,16 +284,8 @@ function makeTable(tblId, aAoColumnConf, iNoSort, record) {
     });  
  
     $('div#' + tblId + '_wrapper').find('#foundEntries').html(record).addClass('span3');  
-
-    $('span.omimToggleAll').click(function(){    	
-    	$(this).parent().siblings('.omimAll').show(); 
-    	$(this).parent().siblings('.omimAll').find('li').css({'list-style-type':'disc','margin-left':'8px'});
-    	$(this).parent().hide();    
-    });
-    $('span.omimToggleLess').click(function(){    	
-		$(this).parent().siblings('.omimLess').show();		
-		$(this).parent().hide();
-    });		
+   
+	var oAaccordion;
         
     // toggle show/hide of hidden dataTable row   
     // use live so that opening new hidden row will work with pagination                   
@@ -309,7 +302,7 @@ function makeTable(tblId, aAoColumnConf, iNoSort, record) {
         }
 
         // change tr bg color to mark for selected row
-        $('table#'+tblId + ' tr').removeClass('selectedTr');
+        $('table#'+tblId + ' tr').removeClass('selectedTr');        
         $(nTr).addClass('selectedTr');              
         
         if ( $(this).siblings('td.toggle').find('img').attr('src').match('plus') ){
@@ -343,7 +336,7 @@ function makeTable(tblId, aAoColumnConf, iNoSort, record) {
     }); 
     
     oTable.find('td.toggle span img').live('click', function () {
-    
+        
         var nTr = this.parentNode.parentNode.parentNode;
         var allTrs = this.parentNode.parentNode.parentNode.parentNode.childNodes;
        
@@ -387,6 +380,24 @@ function makeTable(tblId, aAoColumnConf, iNoSort, record) {
     }); 
 
     activate_tooltip(oTable);
+
+    $('span.omimToggleAll').live('click', function(){   
+        var id = $(this).attr('id');
+        var img = $('td.toggle').find('img#' + id);
+        var src = img.attr('src');
+    
+        if ( src.indexOf('plus.png') != -1 ){
+            // open hidden tr
+            EMMA.multiOmimRowId = id;
+            img.click();  // reuse already defined event                                         
+        } 
+        else {
+            if ( (typeof oAaccordion.accordion("option", "active") == 'number' && oAaccordion.accordion("option", "active") != 2) ||
+                 (typeof oAaccordion.accordion("option", "active") == 'boolean') ){         
+                oAaccordion.accordion('activate', 2); // show 3rd tab: information from EMMA
+            }
+        }       
+    });	
 
 }
 function activate_tooltip(oTable){
@@ -456,6 +467,11 @@ function injectJsToActionRows(id_str, oAaccordion) {
             }
         }
     });
+
+    if ( EMMA.multiOmimRowId == id_str ){
+        oAaccordion.accordion('activate', 2); // show 3rd tab: information from EMMA  
+    }
+
 
     // dynamic mice order button label on the action button rows of the detailed view  
     var link = $('tr#' + id_str).find('td.order').attr('rel');  
