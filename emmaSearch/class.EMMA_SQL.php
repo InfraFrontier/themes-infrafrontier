@@ -1359,7 +1359,7 @@ class EMMA_SQL {
 		$has_omim = false;
 		# check rows include omim info (when available)
 		foreach ( $rows as $row ){			
-            if ( $this->fetch_omim_by_strain_id($row['id_str'], 'omimCount') && preg_match('/^omim/', $mode) ){		
+            if ( $this->fetch_omim_by_strain_id($row['id_str'], 'omimCount') && preg_match('/^[omim|search]/', $mode)  ){		
 				$has_omim = true;
 				break;		
 			}
