@@ -74,8 +74,11 @@ class EMMA_SQL {
 					$omimInfos[] = "<li class='omd'>$allele_form : {$links['omimNameLink']} $spacer / $spacer {$links['omimIDLink']}</li>";									
 				}
 				
-                if ( $count ){
+                if ( $mode == 'omimCount' ){
                     return count($omimInfos);
+                }
+                else if ( $mode == 'overview' ){
+                    return $links;
                 }
                 else {
 				    $data = join("", $omimInfos); 
@@ -1355,8 +1358,8 @@ class EMMA_SQL {
 		
 		$has_omim = false;
 		# check rows include omim info (when available)
-		foreach ( $rows as $row ){
-			if ( $row['omim_id'] ) {
+		foreach ( $rows as $row ){			
+            if ( $this->fetch_omim_by_strain_id($row['id_str'], 'omimCount') && preg_match('/^omim/', $mode) ){		
 				$has_omim = true;
 				break;		
 			}
@@ -1419,9 +1422,9 @@ TBL;
       			$table .= "<td class='emmaID'><span><span>$emmaid</span><span class='instantToolTip'>Click to toggle strain description</span></span></td>";
       			 
                 if ( $has_omim ){  
-      				$spacer   = "&nbsp;";      				
-      				$links = $this->fetch_omim_display($row);
-      				$nameCount = $this->fetch_omim_by_strain_id($id_str, $count=true);      				
+      				$spacer   = "&nbsp;";      				      				
+                    $links = $this->fetch_omim_by_strain_id($id_str, 'overview');  
+      				$nameCount = $this->fetch_omim_by_strain_id($id_str, 'omimCount');      				
       				if ( $links ){                       	
       					$idAllele = $row['id_allel'];
 						$omimName = $links['omimName'];

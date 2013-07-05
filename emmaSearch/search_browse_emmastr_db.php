@@ -208,9 +208,16 @@ else if ( isset($_GET['query']) ){
     $qrystr = '%' . $_GET['query'] .'%';   
     $restriction = "LIKE '$qrystr'";
 
+    if ( preg_match('/^\d+$/', $_GET['query']) ){
+        $id_str_restriction = $_GET['query'];              
+    }
+    else {
+        $id_str_restriction = $restriction;
+    }
     $randomId = intval(rand());
 
-    $sql = "SELECT DISTINCT ao.id_allel, ao.omim_name, ao.omim_id, ao.mgi_internal_omim_id, s.emma_id,      
+    //$sql = "SELECT DISTINCT ao.id_allel, ao.omim_name, ao.omim_id, ao.mgi_internal_omim_id, s.emma_id,    
+    $sql = "SELECT DISTINCT ao.id_allel, s.emma_id,  
                     GROUP_CONCAT(distinct(g.symbol), '*__*') as symbol,
                     ss.name as synonym, 
                     s.id_str, 
@@ -241,8 +248,9 @@ else if ( isset($_GET['query']) ){
      . " OR s.pheno_text    $restriction"
      . " OR ao.omim_name    $restriction"
      . " OR ao.omim_id      $restriction"
-     . " OR convert(s.emma_id using latin1) collate latin1_general_ci $restriction)";  
-   
+     //. " OR convert(s.emma_id using latin1) collate latin1_general_ci $restriction)";  
+     . " OR s.id_str=$id_str_restriction)";
+
     $mode = 'search'. $randomId;     
     $DATA = $emmaSql->make_table($sql, $_POST, $_GET, $tblClass, $qrystr, $mode);    
     //to_browser($DATA); 
