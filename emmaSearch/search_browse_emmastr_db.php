@@ -205,9 +205,14 @@ else if ( isset($_POST['id_strs']) ){
     to_browser($DATA);
 }
 else if ( isset($_GET['query']) ){
-    $qrystr1 = trim($_GET['query']);
+    $qrystr = '%' . $_GET['query'] .'%';   
+   	$restriction = "LIKE '$qrystr'";
+
+    /*$qrystr1 = trim($_GET['query']);
     $qrystr = '%' . $qrystr1 .'%';   
     $restriction = "LIKE '$qrystr'";
+
+    $id_str_restriction = null;
 
     if ( preg_match('/^\d+$/', $qrystr1) ){
         $id_str_restriction = $qrystr1;              
@@ -215,45 +220,41 @@ else if ( isset($_GET['query']) ){
     else if (preg_match('/^EM:(\d+)$/i', $qrystr1, $matches) ){
         $id_str_restriction = $matches[1];
     } 
-    else {
-        $id_str_restriction = $restriction;
-    }
+    */
     $randomId = intval(rand());
 
-    //$sql = "SELECT DISTINCT ao.id_allel, ao.omim_name, ao.omim_id, ao.mgi_internal_omim_id, s.emma_id,    
-    $sql = "SELECT DISTINCT ao.id_allel, s.emma_id,  
-                    GROUP_CONCAT(distinct(g.symbol), '*__*') as symbol,
-                    ss.name as synonym, 
-                    s.id_str, 
-                    s.name,       
-                    s.str_status,    
-                    s.available_to_order,     
-                    s.code_internal,
-                    a.mgi_ref
-                    FROM       
-                    alleles a LEFT JOIN alleles_omims ao ON a.id_allel=ao.id_allel,  
-                    mutations m,      
-                    mutations_strains ms,    
-                            strains s LEFT JOIN syn_strains ss ON ss.str_id_str=s.id_str,                                   
-                            genes g LEFT JOIN syn_genes sg ON sg.gen_id_gene=g.id_gene                                    
-                    WHERE g.id_gene=a.gen_id_gene     
-                    AND a.id_allel=m.alls_id_allel     
-                    AND m.id=ms.mut_id     
-                    AND ms.str_id_str=s.id_str     
-                    AND s.str_access = 'P'     
-                    AND s.str_status IN ('TNA','ARRD','ARING','ARCHD')"      
-     . " AND (g.symbol      $restriction"
-     . " OR g.name          $restriction"
-     . " OR sg.symbol       $restriction"
-     . " OR s.name          $restriction"
-     . " OR s.code_internal $restriction"
-     . " OR ss.name         $restriction"
-     . " OR s.pheno_text    $restriction"
-     . " OR s.pheno_text    $restriction"
-     . " OR ao.omim_name    $restriction"
-     . " OR ao.omim_id      $restriction"
-     //. " OR convert(s.emma_id using latin1) collate latin1_general_ci $restriction)";  
-     . " OR s.id_str=$id_str_restriction)";
+    $sql = "SELECT DISTINCT ao.omim_name, ao.omim_id, ao.mgi_internal_omim_id, s.emma_id,      
+  			GROUP_CONCAT(distinct(g.symbol), '*__*') as symbol,
+    			ss.name as synonym, 
+    			s.id_str, 
+    			s.name,       
+    			s.str_status,    
+    			s.available_to_order,     
+    			s.code_internal,
+    			a.mgi_ref
+  			FROM       
+    			alleles a LEFT JOIN alleles_omims ao ON a.id_allel=ao.id_allel,  
+    			mutations m,      
+    			mutations_strains ms,    
+   		 		strains s LEFT JOIN syn_strains ss ON ss.str_id_str=s.id_str,   		 		
+  				genes g LEFT JOIN syn_genes sg ON sg.gen_id_gene=g.id_gene  				      
+  			WHERE g.id_gene=a.gen_id_gene     
+  			AND a.id_allel=m.alls_id_allel     
+  			AND m.id=ms.mut_id     
+  			AND ms.str_id_str=s.id_str     
+  			AND s.str_access = 'P'     
+  			AND s.str_status IN ('TNA','ARRD','ARING','ARCHD')"  	 
+    	 . " AND (g.symbol      $restriction"
+     	 . " OR g.name          $restriction"
+         . " OR sg.symbol       $restriction"
+     	 . " OR s.name          $restriction"
+     	 . " OR s.code_internal $restriction"
+     	 . " OR ss.name         $restriction"
+     	 . " OR s.pheno_text    $restriction"
+     	 . " OR s.pheno_text    $restriction"
+     	 . " OR ao.omim_name    $restriction"
+     	 . " OR ao.omim_id      $restriction"
+     	 . " OR convert(s.emma_id using latin1) collate latin1_general_ci $restriction)";  
 
     $mode = 'search'. $randomId;     
     $DATA = $emmaSql->make_table($sql, $_POST, $_GET, $tblClass, $qrystr, $mode);    
