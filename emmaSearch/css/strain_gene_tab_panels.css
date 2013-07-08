@@ -71,18 +71,6 @@ a.ltrLink, a.omLtrLink {
 p#errmsg {
 	margin-left: 0px;
 }
-div.loader {
-	text-align: center;
-	margin-top: 100px;
-}
-div.loader {
-	position: absolute;
-	top: 150px;
-	left: 50%;	
-}
-div.loader span {
-	margin: -5px 0 0 5px;
-}
 span.killTab{
 	right: 0px;
 	margin-top: 5px;

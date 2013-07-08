@@ -171,10 +171,8 @@ p#errmsg {
 div.loader {
 	text-align: center;
 	margin-top: 100px;
-}
-div.loader {
 	position: absolute;
-	top: 150px;
+	top: 50px;
 	left: 50%;	
 }
 div.loader span {
