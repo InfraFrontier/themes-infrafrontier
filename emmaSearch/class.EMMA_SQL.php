@@ -1419,8 +1419,8 @@ TBL;
       			$table .= ($has_MP == 1 and $is_leaf == 'false') ?  "<tr class='mp' id='$id_str'>" : "<tr id='$id_str'>";
       			
 				$emmaid = $row['emma_id'];                
-      			$table .= "<td class='emmaID'><span><span>$emmaid</span><span class='instantToolTip'>Click to toggle strain description</span></span></td>";
-      			 
+      			$table .= "<td class='emmaID'><span><span>$emmaid</span><span class='instantToolTip'>Click to toggle strain description</span></span></td>";      			
+
                 if ( $has_omim ){  
       				$spacer   = "&nbsp;";      				      				
                     $links = $this->fetch_omim_by_strain_id($id_str, 'overview');  
@@ -1516,7 +1516,6 @@ TBL;
                 // strain desc toggle    
                 $table .= "<td class='toggle'><span><img src='{$this->drupalScriptPath}/images/plus.png' id='$id_str' /><span class='instantToolTip'>Click to toggle strain description</span></span></td>"; 
              
-
       			$table .= "</tr>";
                // $table .= "<tr class='hiddenRow'><td colspan=$colCount></td></tr>";
     		}     		

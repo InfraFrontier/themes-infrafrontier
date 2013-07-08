@@ -205,12 +205,16 @@ else if ( isset($_POST['id_strs']) ){
     to_browser($DATA);
 }
 else if ( isset($_GET['query']) ){
-    $qrystr = '%' . $_GET['query'] .'%';   
+    $qrystr1 = trim($_GET['query']);
+    $qrystr = '%' . $qrystr1 .'%';   
     $restriction = "LIKE '$qrystr'";
 
-    if ( preg_match('/^\d+$/', $_GET['query']) ){
-        $id_str_restriction = $_GET['query'];              
+    if ( preg_match('/^\d+$/', $qrystr1) ){
+        $id_str_restriction = $qrystr1;              
     }
+    else if (preg_match('/^EM:(\d+)$/i', $qrystr1, $matches) ){
+        $id_str_restriction = $matches[1];
+    } 
     else {
         $id_str_restriction = $restriction;
     }

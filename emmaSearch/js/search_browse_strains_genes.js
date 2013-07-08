@@ -286,55 +286,7 @@ function makeTable(tblId, aAoColumnConf, iNoSort, record) {
     $('div#' + tblId + '_wrapper').find('#foundEntries').html(record).addClass('span3');  
    
 	var oAaccordion;
-        
-    // toggle show/hide of hidden dataTable row   
-    // use live so that opening new hidden row will work with pagination                   
-    oTable.find('td.emmaID').live('click', function () {
-        
-        var nTr = this.parentNode;        
-        var allTrs = this.parentNode.parentNode.childNodes;
-       
-        for ( var i=0; i<allTrs.length; i++){           
-            if ( $(allTrs[i]).attr('class') && nTr != allTrs[i] && $(allTrs[i]).attr('class').indexOf('selectedTr') != -1  ){         
-                $(allTrs[i]).removeClass('selectedTr').find('td.toggle img').attr('src', fetch_EMMA_drupal_path() + "/images/plus.png");
-                oTable.fnClose(allTrs[i]);
-            }
-        }
 
-        // change tr bg color to mark for selected row
-        $('table#'+tblId + ' tr').removeClass('selectedTr');        
-        $(nTr).addClass('selectedTr');              
-        
-        if ( $(this).siblings('td.toggle').find('img').attr('src').match('plus') ){
-            /* This row is not yet open - open it */                          
-           
-            $(this).siblings('td.toggle').find('img').attr('src', fetch_EMMA_drupal_path() + "/images/minus.png");
-            var id_str = $(nTr).attr('id');
-       
-            // fetch strain desc
-            var url2 = fetch_url() + "?id_str=" + id_str; 
-            $.get(url2, function(data){                  
-
-                oTable.fnOpen( nTr, data );            
-
-                oAaccordion = $('div#descAccordion'+id_str).accordion({ autoHeight: false, collapsible: true, active: false }); 
-
-                // apply JS to loaded accordion tabs
-                injectJsToAccordionTabs(oAaccordion);
-        
-                // apply JS to loaded action rows
-                injectJsToActionRows(id_str, oAaccordion); 
-            });	                    
-        }
-        else {             
-            $(nTr).removeClass('selectedTr');
-            /* close this row */        
-            $(this).siblings('td.toggle').find('img').attr('src', fetch_EMMA_drupal_path() + "/images/plus.png");
-            oTable.fnClose( nTr );
-        }
- 
-    }); 
-    
     oTable.find('td.toggle span img').live('click', function () {
         
         var nTr = this.parentNode.parentNode.parentNode;
@@ -378,8 +330,26 @@ function makeTable(tblId, aAoColumnConf, iNoSort, record) {
             oTable.fnClose( nTr );
         }
     }); 
-
-    activate_tooltip(oTable);
+        
+    // toggle show/hide of hidden dataTable row   
+    // use live so that opening new hidden row will work with pagination                   
+    oTable.find('td.emmaID').live('click', function () {
+        var nTr = this.parentNode;
+        var id = $(this).parent().attr('id');
+        var img = $('td.toggle').find('img#' + id);
+        var src = img.attr('src');
+    
+        if ( src.indexOf('plus.png') != -1 ){
+            // open hidden tr           
+            img.click();  // reuse already defined event                                         
+        } 
+        else {       
+            $(nTr).removeClass('selectedTr');
+            // close this row 
+            img.attr('src', fetch_EMMA_drupal_path() + "/images/plus.png");
+            oTable.fnClose( nTr );
+        }
+    }); 
 
     $('span.omimToggleAll').live('click', function(){   
         var id = $(this).attr('id');
@@ -399,9 +369,10 @@ function makeTable(tblId, aAoColumnConf, iNoSort, record) {
         }       
     });	
 
+    activate_tooltip(oTable);
 }
 function activate_tooltip(oTable){
-    oTable.find('td.order img, td.emmaID span, td.toggle img, ').live('mouseover', function(){    
+    oTable.find('td.order img, td.emmaID span, td.toggle img').live('mouseover', function(){      
         $(this).siblings('span.instantToolTip').show();
     }).live('mouseout', function(){      
         $(this).siblings('span.instantToolTip').hide()
