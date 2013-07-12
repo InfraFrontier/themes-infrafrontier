@@ -174,7 +174,7 @@ function customiseReadMoreText(){
 		},		
 		'submission': {
 			'path': '/resources-and-services/deposit-mice-emma-repository',
-			'url': 'http://dev.infrafrontier.eu/emma/publicSubmission/submissionForm.emma',
+			'url': '/emma/publicSubmission/submissionForm.emma',
 			'label': 'Submit mice to EMMA',
 			'title': 'Submission form'
 		}	

@@ -186,7 +186,7 @@ a.icon:hover			{ text-decoration: underline; }
 #mn li:hover ul			{ display: block; }
 
 /* Footernavi */
-#fn						{ background: url(../img/logo-infrafrontier-soft.png) 720px 160px no-repeat; min-height: 200px; }
+#fn						{ /*background: url(../img/logo-infrafrontier-soft.png) 720px 160px no-repeat; min-height: 200px; */}
 #fn li					{ float: left; width: 22%; padding-right: 3%; font-family: 'Open Sans',Arial,Helvetica,sans-serif;  }
 #fn li.last				{ width: 25%; padding-right: 0; }
 .logged-in #fn li		{ width: 18%; padding-right: 2%; }
