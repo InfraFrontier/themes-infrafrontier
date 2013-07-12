@@ -24,12 +24,12 @@ function fixPlaceholder() {
 
 // Slider
 function initSlider() {
-	/* Main Slider */
-	sliderFunction('.slidecontrol','slidecontainer','slide',638);
+	// Main Slider
+	sliderFunction('.slidecontrol','slidecontainer','slide',638,5000);
 	// Logoslider
-	sliderFunction('#logoslidecontrols','logoslidercontainer','logoslide',960);
+	sliderFunction('#logoslidecontrols','logoslidercontainer','logoslide',960,5000);
 }
-function sliderFunction(controls,container,slide,width) {
+function sliderFunction(controls,container,slide,width,interval) {
 	$(controls+' div').click(function() {   
 		if ($(this).hasClass('prev')) {     
 			$('#'+container+' .'+slide+':last').detach().prependTo('#'+container);
@@ -41,7 +41,23 @@ function sliderFunction(controls,container,slide,width) {
 				$('#'+container).animate({marginLeft: '+='+width+'px'},0);
 			});
 		}
-	});
+	}); 
+
+    // auto slide in defined time interval for both slides and logos    
+    if ( slide == 'slide' ){
+        autoSlider('.slidecontrol','slidecontainer','slide',638, interval);
+    }  
+    else {
+        autoSlider('#logoslidecontrols','logoslidercontainer','logoslide',960, interval);
+    }
+}
+function autoSlider(controls,container,slide,width,interval){ 
+    var timer = setInterval(function() {       
+            $('#'+container).animate({marginLeft: '-='+width+'px'},1000,function() {
+		        $('#'+container+' .'+slide+':first').detach().appendTo('#'+container);
+		        $('#'+container).animate({marginLeft: '+='+width+'px'},0);
+	        });     
+        }, interval);
 }
 
 // Sidenavi
