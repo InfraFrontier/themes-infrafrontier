@@ -1,0 +1,16 @@
+bootstrap.inc
+	changes: added @ for some statement to prevent from printing warning messages
+	location: [docroot]/html/includes
+LdapServer.class.php
+	changes: saving active directory password as 'unicodePwd' is required in 2 occassions: 
+ 		 (1) when a new user is created: via createLdapEntry()
+ 		 (2) when existing user changes password: via modifyLdapEntry()
+	location: [docroot]/html/sites/infrafrontier.eu/modules/contrib/ldap/ldap_servers/
+settings.php
+	changes:  $base_url = '//dev.infrafrontier.eu';  // remove protocol, so that EBI loadbalancer can switch automatically between http and https
+	[docroot]/html/sites/infrafrontier.eu/
+user.module
+	changes: added 'https:' in $replacements['[user:one-time-login-url]'] = 'https:' . user_pass_reset_url($data['user']);
+		 otherwise the one-time url to which user will point to to login in will have have no protocol in front of '//'
+	[docroot]/html/modules/user/
+
