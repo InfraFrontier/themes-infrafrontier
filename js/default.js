@@ -158,10 +158,7 @@ function parseContent() {
 	$('.toggle:first').addClass('first');
 	$('.toggle:last').addClass('last');
 }
-function biomartHack(){
-   console.log($('#main .title').text());
 
-}
 function customiseReadMoreText(){
 	
 	// hacking 'Read more' text for some pages

@@ -169,8 +169,10 @@ render($page['content']);
                     <div class="next"></div>
                 </div>            	
                 <div id="logoslidercontainer">
-                    <div class="logoslide"><img src="/<?php print $directory ?>/img/logoslider/1.jpg" /></div>
-                    <div class="logoslide"><img src="/<?php print $directory ?>/img/logoslider/1.jpg" /></div>
+                    <div class="logoslide"><img src="/<?php print $directory ?>/img/logoslider/logoslide_1.jpg" /></div>
+                    <div class="logoslide"><img src="/<?php print $directory ?>/img/logoslider/logoslide_2.jpg" /></div>
+                    <div class="logoslide"><img src="/<?php print $directory ?>/img/logoslider/logoslide_3.jpg" /></div>
+                    <div class="logoslide"><img src="/<?php print $directory ?>/img/logoslider/logoslide_4.jpg" /></div>
                 </div>
             </div>
             
