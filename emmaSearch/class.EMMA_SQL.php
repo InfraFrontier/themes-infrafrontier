@@ -494,9 +494,9 @@ class EMMA_SQL {
 		urlencode('<?xml version="1.0" encoding="UTF-8"?>
 		<!DOCTYPE Query>
 		<Query  virtualSchemaName = "default" formatter = "TSV" header = "0" uniqueRows = "0" count = "" datasetConfigVersion = "0.6" >	
-         <Dataset name = "idcc_targ_rep" interface = "default" >
+         <Dataset name = "genes_targ_rep" interface = "default" >
 			<Attribute name = "production_qc_five_prime_screen" />
-			<Attribute $bodytag = str_replace("%body%", "black", "<body text='%body%'>");name = "production_qc_loxp_screen" />
+			<Attribute name = "production_qc_loxp_screen" />
 			<Attribute name = "production_qc_three_prime_screen" />
 			<Attribute name = "production_qc_loss_of_allele" />
 			<Attribute name = "production_qc_vector_integrity" />
@@ -522,7 +522,7 @@ class EMMA_SQL {
 			<Attribute name = "user_qc_three_prime_lr_pcr" />
 			<Attribute name = "user_qc_comment" />
 		</Dataset> 
-                <Dataset name = "imits" interface = "default" >
+                <Dataset name = "imits2" interface = "default" >
                          <Filter name = "escell_clone" value = "' . $cname . '"/>
                          <Filter name = "microinjection_status" value = "Genotype confirmed"/>
                          <Filter name = "distribution_centre" value = "' . $center . '"/>
@@ -595,10 +595,13 @@ class EMMA_SQL {
 	}
 	function compose_qc_table($cols, $vals, $caption){
 		$trs = '';	
-		for ($i=0; $i<count($cols); $i=$i+3){		
-			$tds = "<td class='qcCol'>{$cols[$i]}</td><td>{$vals[$i]}</td>
-		  	        <td class='qcCol'>{$cols[$i+1]}</td><td>{$vals[$i+1]}</td>
-		 	        <td class='qcCol'>{$cols[$i+2]}</td><td>{$vals[$i+2]}</td>";
+		for ($i=0; $i<count($cols); $i=$i+3){	
+            $val1 = $vals[$i] ? $vals[$i] : '-';
+            $val2 = $vals[$i+1] ? $vals[$i+1] : '-';
+            $val3 = $vals[$i+2] ? $vals[$i+2] : '-';
+			$tds = "<td class='qcCol'>{$cols[$i]}</td><td>{$val1}</td>
+		  	        <td class='qcCol'>{$cols[$i+1]}</td><td>{$val2}</td>
+		 	        <td class='qcCol'>{$cols[$i+2]}</td><td>{$val3}</td>";
 			$trs .= "<tr>$tds</tr>";		
 		}
         
