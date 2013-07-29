@@ -37,7 +37,7 @@ function initSlider() {
 	sliderFunction('#logoslidecontrols','logoslidercontainer','logoslide',960,16000);
 }
 function sliderFunction(controls,container,slide,width,interval) {
-    var interval_ori = interval;
+ 
 	$(controls+' div').click(function() {   
 		if ($(this).hasClass('prev')) {     
 			$('#'+container+' .'+slide+':last').detach().prependTo('#'+container);
