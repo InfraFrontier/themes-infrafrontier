@@ -1,5 +1,12 @@
 (function($){
-	
+
+	if(typeof(window.EMMA) === 'undefined') {
+            window.EMMA = {};          
+    }
+
+    EMMA.sliderTimer = null;
+    EMMA.logoSliderTimer = null;
+
 // Fix Placeholder
 function fixPlaceholder() {
 	jQuery.support.placeholder = false;
@@ -25,11 +32,12 @@ function fixPlaceholder() {
 // Slider
 function initSlider() {
 	// Main Slider
-	sliderFunction('.slidecontrol','slidecontainer','slide',638,5000);
+	sliderFunction('.slidecontrol','slidecontainer','slide',638,8000);
 	// Logoslider
-	sliderFunction('#logoslidecontrols','logoslidercontainer','logoslide',960,5000);
+	sliderFunction('#logoslidecontrols','logoslidercontainer','logoslide',960,16000);
 }
 function sliderFunction(controls,container,slide,width,interval) {
+    var interval_ori = interval;
 	$(controls+' div').click(function() {   
 		if ($(this).hasClass('prev')) {     
 			$('#'+container+' .'+slide+':last').detach().prependTo('#'+container);
@@ -43,6 +51,19 @@ function sliderFunction(controls,container,slide,width,interval) {
 		}
 	}); 
 
+    // mouseover to stop sliding
+    $('div#slider').mouseover(function(){                         
+        clearInterval(EMMA.sliderTimer); // stops interval, ie, turn off sliding
+    }).mouseout(function(){
+        autoSlider('.slidecontrol','slidecontainer','slide',638, interval);
+    });
+
+    $('div#logoslider').mouseover(function(){                          
+        clearInterval(EMMA.logoSliderTimer); // stops interval, ie, turn off sliding
+    }).mouseout(function(){  
+        autoSlider('#logoslidecontrols','logoslidercontainer','logoslide',960, interval);
+    });  
+
     // auto slide in defined time interval for both slides and logos    
     if ( slide == 'slide' ){
         autoSlider('.slidecontrol','slidecontainer','slide',638, interval);
@@ -52,12 +73,29 @@ function sliderFunction(controls,container,slide,width,interval) {
     }
 }
 function autoSlider(controls,container,slide,width,interval){ 
-    var timer = setInterval(function() {       
+
+    if (slide == 'slide' ){        
+        if(EMMA.sliderTimer){
+            clearInterval(EMMA.sliderTimer);
+        }
+        EMMA.sliderTimer = setInterval(function() {       
             $('#'+container).animate({marginLeft: '-='+width+'px'},1000,function() {
 		        $('#'+container+' .'+slide+':first').detach().appendTo('#'+container);
 		        $('#'+container).animate({marginLeft: '+='+width+'px'},0);
 	        });     
-        }, interval);
+        }, interval);        
+    }
+    else {
+        if(EMMA.logoSliderTimer){
+            clearInterval(EMMA.logoSliderTimer);
+        }    
+        EMMA.logoSliderTimer = setInterval(function() {       
+            $('#'+container).animate({marginLeft: '-='+width+'px'},1000,function() {
+		        $('#'+container+' .'+slide+':first').detach().appendTo('#'+container);
+		        $('#'+container).animate({marginLeft: '+='+width+'px'},0);
+	        });     
+        }, interval);                
+    }        
 }
 
 // Sidenavi
