@@ -423,7 +423,7 @@ class EMMA_SQL {
     			foreach ( $rows as $row ){      				
 					$cname = $row['code_internal'];
 					$center = $row['kermits_center'];
-								
+					
 					$qcTables = $this->fetch_qc_tables($this->fetch_ws_xml($cname, $center));
 					                  
 					$viewData = "<span class='qc'>View data</span>";
@@ -596,9 +596,11 @@ class EMMA_SQL {
 	function compose_qc_table($cols, $vals, $caption){
 		$trs = '';	
 		for ($i=0; $i<count($cols); $i=$i+3){	
-            $val1 = $vals[$i] ? $vals[$i] : '-';
-            $val2 = $vals[$i+1] ? $vals[$i+1] : '-';
-            $val3 = $vals[$i+2] ? $vals[$i+2] : '-';
+
+            $val1 = $vals[$i] ? $vals[$i] : '-';            
+            $val2 = $cols[$i+1] ? ($vals[$i+1] ? $vals[$i+1] : '-') : '';
+            $val3 = $cols[$i+2] ? ($vals[$i+2] ? $vals[$i+2] : '-') : '';
+
 			$tds = "<td class='qcCol'>{$cols[$i]}</td><td>{$val1}</td>
 		  	        <td class='qcCol'>{$cols[$i+1]}</td><td>{$val2}</td>
 		 	        <td class='qcCol'>{$cols[$i+2]}</td><td>{$val3}</td>";

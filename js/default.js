@@ -88,7 +88,7 @@ function autoSlider(controls,container,slide,width,interval){
     else {
         if(EMMA.logoSliderTimer){
             clearInterval(EMMA.logoSliderTimer);
-        }    
+        }
         EMMA.logoSliderTimer = setInterval(function() {       
             $('#'+container).animate({marginLeft: '-='+width+'px'},1000,function() {
 		        $('#'+container+' .'+slide+':first').detach().appendTo('#'+container);
