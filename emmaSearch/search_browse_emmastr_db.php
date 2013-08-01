@@ -272,7 +272,7 @@ else if( isset($_GET['id_str']) ){
     
     $DATA =$emmaSql->compose_strain_description($id_str, $mutype);
   
-    echo $DATA['descActionRow'] . $DATA['desc'] . $DATA['descActionRow'];
+    echo $DATA['desc'] . $DATA['descActionRow'];    
     exit;
 }
 /*else if ( isset($_GET['mp_idstr']) and isset($_GET['mp_id_allele']) ){
