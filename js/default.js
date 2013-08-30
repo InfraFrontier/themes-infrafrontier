@@ -212,10 +212,16 @@ function customiseReadMoreText(){
 			'url': '/emma/publicSubmission/submissionForm.emma',
 			'label': 'Submit mice to EMMA',
 			'title': 'Submission form'
-		}	
+		},
+        'meetings': {
+			'path': '/infrafrontier-research-infrastructure/public-relations',
+			'url': '/meetingtool',
+			'label': 'Meeting tool',
+			'title': 'Meeting Registration'
+		},	
 	};
-	for ( var i in readMores ){
-		if ( window.location.pathname == readMores[i].path ){  
+	for ( var i in readMores ){ 
+		if ( window.location.pathname == readMores[i].path ){         
 		    $('div.view-content div h3').find('a').each(function(){          
 		        if ( $(this).text() == readMores[i].title ){
 		            //resources-and-services/access-emma-mouse-resources/advanced-biomart-search
