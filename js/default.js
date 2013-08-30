@@ -217,7 +217,7 @@ function customiseReadMoreText(){
 			'path': '/infrafrontier-research-infrastructure/public-relations',
 			'url': '/meetingtool',
 			'label': 'Meeting tool',
-			'title': 'Meeting Registration'
+			'title': 'Meeting registration'
 		},	
 	};
 	for ( var i in readMores ){ 
