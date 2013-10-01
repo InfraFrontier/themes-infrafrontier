@@ -713,13 +713,13 @@ class EMMA_SQL {
 	    
         $icon = false;
         if ( $label == 'order' ){
-            $icon = "<img src='{$this->drupalScriptPath}/images/green_dot_20.png' /><span class='instantToolTip'>Order mice</span>";
+            $icon = "<img src='{$this->drupalScriptPath}/images/green_dot_20.png' /><span class='instantToolTip'>Line available to order – click ‘+’ to order</span>";
         }
         else if ( $label == 'register interest' ){
-            $icon = "<img src='{$this->drupalScriptPath}/images/red_dot_20.png' /><span class='instantToolTip'>Register interest</span>";
+            $icon = "<img src='{$this->drupalScriptPath}/images/red_dot_20.png' /><span class='instantToolTip'>Line under development – click ‘+’ to register interest</span>";
         }
         else if ( $label == 'order (only small colony available)' ){
-            $icon = "<img src='{$this->drupalScriptPath}/images/yellow_dot_20.png' /><span class='instantToolTip'>Order mice - only small colony available</span>";
+            $icon = "<img src='{$this->drupalScriptPath}/images/yellow_dot_20.png' /><span class='instantToolTip'>Only small colony available – click ‘+’ to order</span>";
         }
         return $icon;
     }
