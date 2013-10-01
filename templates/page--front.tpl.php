@@ -197,7 +197,7 @@ render($page['content']);
             <div class="innerfooter">
             	<div class="splithalf">
                 	<div class="half">
-                		&copy; Infrafrontier <?php print date('Y') ?> - all rights reserved
+                		&copy; INFRAFRONTIER <?php print date('Y') ?> - all rights reserved
                     </div>
                     <div class="half">
                     	<div id="bn">
