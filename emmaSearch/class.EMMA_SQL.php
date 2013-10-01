@@ -423,7 +423,7 @@ class EMMA_SQL {
     			foreach ( $rows as $row ){      				
 					$cname = $row['code_internal'];
 					$center = $row['kermits_center'];
-					
+								
 					$qcTables = $this->fetch_qc_tables($this->fetch_ws_xml($cname, $center));
 					                  
 					$viewData = "<span class='qc'>View data</span>";
@@ -494,9 +494,9 @@ class EMMA_SQL {
 		urlencode('<?xml version="1.0" encoding="UTF-8"?>
 		<!DOCTYPE Query>
 		<Query  virtualSchemaName = "default" formatter = "TSV" header = "0" uniqueRows = "0" count = "" datasetConfigVersion = "0.6" >	
-         <Dataset name = "genes_targ_rep" interface = "default" >
+         <Dataset name = "idcc_targ_rep" interface = "default" >
 			<Attribute name = "production_qc_five_prime_screen" />
-			<Attribute name = "production_qc_loxp_screen" />
+			<Attribute $bodytag = str_replace("%body%", "black", "<body text='%body%'>");name = "production_qc_loxp_screen" />
 			<Attribute name = "production_qc_three_prime_screen" />
 			<Attribute name = "production_qc_loss_of_allele" />
 			<Attribute name = "production_qc_vector_integrity" />
@@ -522,7 +522,7 @@ class EMMA_SQL {
 			<Attribute name = "user_qc_three_prime_lr_pcr" />
 			<Attribute name = "user_qc_comment" />
 		</Dataset> 
-                <Dataset name = "imits2" interface = "default" >
+                <Dataset name = "imits" interface = "default" >
                          <Filter name = "escell_clone" value = "' . $cname . '"/>
                          <Filter name = "microinjection_status" value = "Genotype confirmed"/>
                          <Filter name = "distribution_centre" value = "' . $center . '"/>
@@ -595,15 +595,10 @@ class EMMA_SQL {
 	}
 	function compose_qc_table($cols, $vals, $caption){
 		$trs = '';	
-		for ($i=0; $i<count($cols); $i=$i+3){	
-
-            $val1 = $vals[$i] ? $vals[$i] : '-';            
-            $val2 = $cols[$i+1] ? ($vals[$i+1] ? $vals[$i+1] : '-') : '';
-            $val3 = $cols[$i+2] ? ($vals[$i+2] ? $vals[$i+2] : '-') : '';
-
-			$tds = "<td class='qcCol'>{$cols[$i]}</td><td>{$val1}</td>
-		  	        <td class='qcCol'>{$cols[$i+1]}</td><td>{$val2}</td>
-		 	        <td class='qcCol'>{$cols[$i+2]}</td><td>{$val3}</td>";
+		for ($i=0; $i<count($cols); $i=$i+3){		
+			$tds = "<td class='qcCol'>{$cols[$i]}</td><td>{$vals[$i]}</td>
+		  	        <td class='qcCol'>{$cols[$i+1]}</td><td>{$vals[$i+1]}</td>
+		 	        <td class='qcCol'>{$cols[$i+2]}</td><td>{$vals[$i+2]}</td>";
 			$trs .= "<tr>$tds</tr>";		
 		}
         
@@ -1212,12 +1207,10 @@ class EMMA_SQL {
 					 ."Availability and time to delivery cannot be guaranteed.";
 	
  			   	// links to order strains
-			        var formBaseUrl = "https://dev.infrafrontier.eu/emma/RegisterInterest/requestFormView.emma?";
+				$formBaseUrl = "https://dev.infrafrontier.eu/emma/RegisterInterest/requestFormView.emma";
 				$url= $label == 'register interest' 
-			
-	  				? "https://www.emmanet.org/apps/RegisterInterest/requestFormView.emma?id=$emmaid" . "&sname=" . urlencode($strname) . "&cname=$cname" . "&wr=1"
-					
-	 				: "https://www.emmanet.org/apps/RegisterInterest/requestFormView.emma?new=y". "&id=$emmaid" . "&sname=" . urlencode($strname) . "&cname=$cname"; 
+	  				? $formBaseUrl . "?id=$emmaid" . "&sname=" . urlencode($strname) . "&cname=$cname" . "&wr=1"
+	 				: $formBaseUrl . "?new=y". "&id=$emmaid" . "&sname=" . urlencode($strname) . "&cname=$cname"; 
 
 	 			$url .= "&pid=$project_id";
 
@@ -1488,44 +1481,47 @@ TBL;
 
 				//$table .= "<td><a class='sticky pdf' href='#' rel='#$id_str' title='Strain description - $intnl_strname'>$superscripted_common_strain_name</a></td>";
                 $table .= "<td>$superscripted_common_strain_name</td>";                
-      			$table .= "<td>$intnl_strname</td>";  // strains.name   	             
+		$table .= "<td>$intnl_strname</td>";  // strains.name   	             
 
-      			$label = $this->fetch_order_label($row['str_status'], $row['available_to_order']);
+		$label = $this->fetch_order_label($row['str_status'], $row['available_to_order']);
 
-	  			$project_id = $this->fetch_project_id_by_strain_id($id_str);
-      
-      			$lab_id = $this->fetch_lab_id_by_strain_id($id_str);
+  			$project_id = $this->fetch_project_id_by_strain_id($id_str);
 
-      			$registerTitle = $lab_id == 1961 
-					? "This option offers a potentiafetch_omim_displayl earlier opportunity " 
-					 ."to obtain mice if available prior to archiving for sustainable distribution. "
-					 ."Sanger MGP generates mutant mouse lines for in-house primary phenotypic studies " 
-					 ."and is not a distribution centre. Availability and time to delivery cannot be guaranteed."
-					: "This option offers a potential earlier opportunity "
-					 ."to obtain mice if available prior to archiving for sustainable distribution. "
-					 ."Availability and time to delivery cannot be guaranteed.";
-	
- 			   	// links to order strains
+		$lab_id = $this->fetch_lab_id_by_strain_id($id_str);
 
-                $strname = $row['name']; # original utf-8 string
-      			$cname = $row['synonym'];
-      			$synonym = $cname ? $cname : $row['code_internal'];      			      			
-      			if ( ! $cname ){ $cname = $synonym; }
+		$registerTitle = $lab_id == 1961 
+				? "This option offers a potentiafetch_omim_displayl earlier opportunity " 
+				 ."to obtain mice if available prior to archiving for sustainable distribution. "
+				 ."Sanger MGP generates mutant mouse lines for in-house primary phenotypic studies " 
+				 ."and is not a distribution centre. Availability and time to delivery cannot be guaranteed."
+				: "This option offers a potential earlier opportunity "
+				 ."to obtain mice if available prior to archiving for sustainable distribution. "
+				 ."Availability and time to delivery cannot be guaranteed.";
 
-				$url= $label == 'register interest' 
-	  				? "https://www.emmanet.org/apps/RegisterInterest/requestFormView.emma?id=$emmaid" . "&sname=" . urlencode($strname) . "&cname=$cname" . "&wr=1"
-	 				: "https://www.emmanet.org/apps/RegisterInterest/requestFormView.emma?new=y". "&id=$emmaid" . "&sname=" . urlencode($strname) . "&cname=$cname"; 
+		   	// links to order strains
 
-	 			$url .= "&pid=$project_id";
-                // use alt as a trick to sort images
-                $table .= "<td class='order' rel='$url'><span alt='$label'>" . $this->fetch_order_icon($label) . "</span></td>";
+       		$strname = $row['name']; # original utf-8 string
+		$cname = $row['synonym'];
+		$synonym = $cname ? $cname : $row['code_internal'];      			      			
+		if ( ! $cname ){ $cname = $synonym; }
+
+			// links to order strains
+			$formBaseUrl = "https://dev.infrafrontier.eu/emma/RegisterInterest/requestFormView.emma";
+			$url= $label == 'register interest' 
+				? $formBaseUrl . "?id=$emmaid" . "&sname=" . urlencode($strname) . "&cname=$cname" . "&wr=1"
+				: $formBaseUrl . "?new=y". "&id=$emmaid" . "&sname=" . urlencode($strname) . "&cname=$cname"; 
+
+			$url .= "&pid=$project_id";				
+
+                	// use alt as a trick to sort images
+                	$table .= "<td class='order' rel='$url'><span alt='$label'>" . $this->fetch_order_icon($label) . "</span></td>";
                      			
 
-                // strain desc toggle    
-                $table .= "<td class='toggle'><span><img src='{$this->drupalScriptPath}/images/plus.png' id='$id_str' /><span class='instantToolTip'>Click to toggle strain description</span></span></td>"; 
+                	// strain desc toggle    
+                	$table .= "<td class='toggle'><span><img src='{$this->drupalScriptPath}/images/plus.png' id='$id_str' /><span class='instantToolTip'>Click to toggle strain description</span></span></td>"; 
              
       			$table .= "</tr>";
-               // $table .= "<tr class='hiddenRow'><td colspan=$colCount></td></tr>";
+              	 	// $table .= "<tr class='hiddenRow'><td colspan=$colCount></td></tr>";
     		}     		
     		
     		if ( $row_count == 0 ){
