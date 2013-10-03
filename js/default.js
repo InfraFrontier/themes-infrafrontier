@@ -199,6 +199,11 @@ function parseContent() {
 
 function customiseReadMoreTextAndLinks(){
 	
+	if (window.location.pathname == '/' ){
+		$('ul.menu li').find('a[href*="meetingtool"]').attr({'target':'__blank'});
+	}
+	
+
 	// hacking 'Read more' text for some pages
 	var readMores = {
 		'biomart': {
