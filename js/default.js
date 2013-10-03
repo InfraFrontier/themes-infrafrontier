@@ -230,6 +230,7 @@ function customiseReadMoreText(){
 		            $(this).parent().siblings('p.more').find('a').text(readMores[i].label).attr({'href': url, 'target':'__blank'});                
 		       } 
 		    });
+		   $('ul.menu li').find('a[href*="meetingtool"]').attr({'target':'__blank'}); 
 		}		
 	}
 }
