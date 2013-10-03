@@ -227,7 +227,7 @@ function customiseReadMoreText(){
 		            //resources-and-services/access-emma-mouse-resources/advanced-biomart-search
 		            var url = readMores[i].url;
 		            $(this).attr('href', url);
-		            $(this).parent().siblings('p.more').find('a').text(readMores[i].label).attr('href', url);                
+		            $(this).parent().siblings('p.more').find('a').text(readMores[i].label).attr({'href': url, 'target':'__blank'});                
 		       } 
 		    });
 		}		
