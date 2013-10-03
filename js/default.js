@@ -197,7 +197,7 @@ function parseContent() {
 	$('.toggle:last').addClass('last');
 }
 
-function customiseReadMoreText(){
+function customiseReadMoreTextAndLinks(){
 	
 	// hacking 'Read more' text for some pages
 	var readMores = {
@@ -213,7 +213,7 @@ function customiseReadMoreText(){
 			'label': 'Submit mice to EMMA',
 			'title': 'Submission form'
 		},
-        'meetings': {
+        	'meetings': {
 			'path': '/infrafrontier-research-infrastructure/public-relations',
 			'url': '/meetingtool',
 			'label': 'Register to a meeting',
@@ -232,7 +232,8 @@ function customiseReadMoreText(){
 		    });
 		   $('ul.menu li').find('a[href*="meetingtool"]').attr({'target':'__blank'}); 
 		}		
-	}
+	}	
+	
 }
 
 $(document).ready(function() {	
@@ -246,7 +247,7 @@ $(document).ready(function() {
 	initTooltips();
 	parseContent();
 	fixPlaceholder();
-	customiseReadMoreText();
+	customiseReadMoreTextAndLinks();
 	
 	if ($('body').hasClass('front')) { autoHeightFront(); }
 
