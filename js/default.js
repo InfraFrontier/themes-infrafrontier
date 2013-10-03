@@ -199,6 +199,7 @@ function parseContent() {
 
 function customiseReadMoreTextAndLinks(){
 	
+	// open meetingtool page on a new tab
 	if (window.location.pathname == '/' ){
 		$('ul.menu li').find('a[href*="meetingtool"]').attr({'target':'__blank'});
 	}
