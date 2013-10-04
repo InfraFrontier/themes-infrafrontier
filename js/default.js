@@ -203,7 +203,9 @@ function customiseReadMoreTextAndLinks(){
 	if (window.location.pathname == '/' ){
 		$('ul.menu li').find('a[href*="meetingtool"]').attr({'target':'__blank'});
 	}
-	
+	if (window.location.pathname.indexOf('/')){
+		$('ul.menu li').find('a[href*="biomart/martview"]').attr({'target':'__blank', 'href': '/biomar/martview'});
+	}
 
 	// hacking 'Read more' text for some pages
 	var readMores = {
