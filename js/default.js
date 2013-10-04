@@ -203,7 +203,9 @@ function customiseReadMoreTextAndLinks(){
 	if (window.location.pathname == '/' ){
 		$('ul.menu li').find('a[href*="meetingtool"]').attr({'target':'__blank'});
 	}
-	
+	if (window.location.pathname == '/resources-and-services' ){
+		$('ul.menu li').find('a[href*="biomart/martview"]').attr({'target':'__blank', 'href': '/biomar/martview'});
+	}
 
 	// hacking 'Read more' text for some pages
 	var readMores = {
@@ -236,6 +238,7 @@ function customiseReadMoreTextAndLinks(){
 		            $(this).parent().siblings('p.more').find('a').text(readMores[i].label).attr({'href': url, 'target':'__blank'});                
 		       } 
 		    });
+
 		   $('ul.menu li').find('a[href*="meetingtool"]').attr({'target':'__blank'}); 
 		}		
 	}	
