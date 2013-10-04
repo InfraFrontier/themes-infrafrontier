@@ -227,16 +227,18 @@ function customiseReadMoreTextAndLinks(){
 		},	
 	};
 	for ( var i in readMores ){ 
-		if ( window.location.pathname == readMores[i].path ){         
-		    $('div.view-content div h3').find('a').each(function(){          
-		        if ( $(this).text() == readMores[i].title ){
-		            //resources-and-services/access-emma-mouse-resources/advanced-biomart-search
-		            var url = readMores[i].url;
-		            $(this).attr('href', url);
-		            $(this).parent().siblings('p.more').find('a').text(readMores[i].label).attr({'href': url, 'target':'__blank'});                
-		       } 
-		    });
-		   $('ul.menu li').find('a[href*="meetingtool"]').attr({'target':'__blank'}); 
+		if ( window.location.pathname == readMores[i].path ){   
+			$('ul.menu li').find('a[href*="biomart/martview"]').attr({'target':'__blank', 'href': '/biomar/martview'});		      
+		    	$('div.view-content div h3').find('a').each(function(){          
+		        	if ( $(this).text() == readMores[i].title ){
+				    //resources-and-services/access-emma-mouse-resources/advanced-biomart-search
+				    var url = readMores[i].url;
+				    $(this).attr('href', url);
+				    $(this).parent().siblings('p.more').find('a').text(readMores[i].label).attr({'href': url, 'target':'__blank'}); 		               
+		       		} 
+		    	});
+
+		   	$('ul.menu li').find('a[href*="meetingtool"]').attr({'target':'__blank'}); 
 		}		
 	}	
 	
