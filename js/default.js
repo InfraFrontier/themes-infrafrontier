@@ -209,7 +209,7 @@ function customiseReadMoreTextAndLinks(){
 	var readMores = {
 		'biomart': {
 			'path': '/resources-and-services/access-emma-mouse-resources',
-			'url': 'https://www.emmanet.org/biomart/martview/',
+			'url': '/biomart/martview/',
 			'label': 'Search EMMA Biomart',
 			'title': 'Advanced BioMart search'
 		},		
