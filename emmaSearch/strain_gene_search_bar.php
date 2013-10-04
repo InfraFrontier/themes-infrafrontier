@@ -43,9 +43,9 @@ $srchbar =<<<SRCH
         <div id="srchBlkC1" class='span1'>$srchTip</div>	        
         <div id='srchBlkC2' class='span3'>
             <ul class='order'>
-                <li id='greenDot'>Order</li>
-                <li id='orangeDot'>Order (only small colony available)</li>
-                <li id='redDot'>Register interest</li>
+                <li id='greenDot'>Line available to order</li>
+                <li id='orangeDot'>Only small colony available</li>
+                <li id='redDot'>Line under development</li>
             </ul>
         </div>    
          <div id='srchBlkR' class='span2'><a href='/infrafrontier-research-infrastructure/international-collaborations-and-projects/european-mouse'><img src='http://dev.emmanet.org/images/logo-emma.pngs' /></a></div>

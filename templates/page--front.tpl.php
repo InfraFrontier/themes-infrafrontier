@@ -197,7 +197,7 @@ render($page['content']);
             <div class="innerfooter">
             	<div class="splithalf">
                 	<div class="half">
-                		&copy; Infrafrontier <?php print date('Y') ?> - all rights reserved
+                		&copy; INFRAFRONTIER <?php print date('Y') ?> - all rights reserved
                     </div>
                     <div class="half">
                     	<div id="bn">
@@ -211,7 +211,10 @@ render($page['content']);
     </footer>
     
 </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> a07d7483b32aa3cfb798ce8d871bce7b180e3297
 <!--
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
