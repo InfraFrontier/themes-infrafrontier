@@ -1207,7 +1207,7 @@ class EMMA_SQL {
 					 ."Availability and time to delivery cannot be guaranteed.";
 	
  			   	// links to order strains
-				$formBaseUrl = "https://dev.infrafrontier.eu/emma/RegisterInterest/requestFormView.emma";
+				$formBaseUrl = "/emma/RegisterInterest/requestFormView.emma";
 				$url= $label == 'register interest' 
 	  				? $formBaseUrl . "?id=$emmaid" . "&sname=" . urlencode($strname) . "&cname=$cname" . "&wr=1"
 	 				: $formBaseUrl . "?new=y". "&id=$emmaid" . "&sname=" . urlencode($strname) . "&cname=$cname"; 
