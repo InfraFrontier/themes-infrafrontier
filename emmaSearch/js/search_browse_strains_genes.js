@@ -15,8 +15,7 @@ $(document).ready(function(){
                 return false;
             }
             else {            	
-            	window.location.href = '/search?keyword=' +  sInput;            	
-            	console.log(window.location.href);               
+            	window.location.href = '/search?keyword=' +  sInput;  
             	return false;  // so that Drupal does not go to new page for this link
             }
         });      
