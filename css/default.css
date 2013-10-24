@@ -291,7 +291,7 @@ a.icon:hover			{ text-decoration: underline; }
 .active .togglehead		{ border-color: #909090; background-color: #909090; color: #fff; background-image: url(../img/icon/minus.png); }
 .active .togglehead.over { background-image: url(../img/icon/minus_over.png); }
 .togglehead .helper		{ position: absolute; right: 20px; top: 9px; width: 20px; height: 20px; }
-.togglecontent			{ display: none; padding: 20px; }
+.togglecontent			{ display: none; padding: 20px; background-color: white;}
 .toggle + .toggle		{ margin-top: -20px; }
 .toggle + p				{ margin-top: 20px; }
 
