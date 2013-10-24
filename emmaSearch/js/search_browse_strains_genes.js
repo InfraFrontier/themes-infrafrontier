@@ -14,8 +14,10 @@ $(document).ready(function(){
                 alert('Sorry, but the search keyword is missing ...');
                 return false;
             }
-            else {
-                window.open('/search?keyword=' +  sInput);
+            else {            	
+            	window.location.href = '/search?keyword=' +  sInput;            	
+            	console.log(window.location.href);               
+            	return false;  // so that Drupal does not go to new page for this link
             }
         });      
 
