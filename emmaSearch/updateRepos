@@ -1,0 +1,16 @@
+git checkout 7.x-1.0
+git pull origin dev_7.x-1.0
+git push origin 7.x-1.0
+
+git checkout master
+git pull origin dev_7.x-1.0
+git push origin master
+
+git checkout staging_7.x-1.0
+git pull origin dev_7.x-1.0
+git push origin staging_7.x-1.0
+
+git checkout prod_7.x-1.0
+git pull origin dev_7.x-1.0
+git push origin prod_7.x-1.0
+
