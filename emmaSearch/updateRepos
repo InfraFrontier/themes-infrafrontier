@@ -14,3 +14,4 @@ git checkout prod_7.x-1.0
 git pull origin dev_7.x-1.0
 git push origin prod_7.x-1.0
 
+git checkout dev_7.x-1.0
