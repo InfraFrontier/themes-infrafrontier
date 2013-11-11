@@ -242,6 +242,9 @@ function customiseReadMoreTextAndLinks(){
 	}	
 	
 }
+function hide_imprint_login_register(){
+	$('div#tn').find('.hide_this').hide();
+}
 
 $(document).ready(function() {	
 	
@@ -255,6 +258,7 @@ $(document).ready(function() {
 	parseContent();
 	fixPlaceholder();
 	customiseReadMoreTextAndLinks();
+	hide_imprint_login_register();
 	
 	if ($('body').hasClass('front')) { autoHeightFront(); }
 
