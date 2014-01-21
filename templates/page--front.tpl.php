@@ -211,15 +211,8 @@ render($page['content']);
     </footer>
     
 </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> a07d7483b32aa3cfb798ce8d871bce7b180e3297
-<!--
-=======
 <!-- this is now controlled by drupal google analytics module
->>>>>>> 41a7740a842d2deecf8b9c03102cea7e360d66ee
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
