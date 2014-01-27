@@ -5,6 +5,7 @@
 
 #require_once('ontology/scripts/jsonwrapper/jsonwrapper.php'); // our server is still < than PHP 5.2
 require_once("class.EMMA_SQL.php");
+
 require_once("mut_types.php");
 
 // makes sure PHP doc handles utf-8
@@ -275,6 +276,14 @@ else if( isset($_GET['id_str']) ){
     echo $DATA['desc'] . $DATA['descActionRow'];    
     exit;
 }
+else if( isset($_GET['nki']) ){
+    // fetch strain desc into popup desc window
+      
+    $DATA =$emmaSql->fetch_nki_dataRows();  	
+    echo $DATA['table'];    
+ 	exit;
+}
+
 /*else if ( isset($_GET['mp_idstr']) and isset($_GET['mp_id_allele']) ){
     // fetch info for annotated MP terms of allele
     $id_str = $_GET['mp_idstr'];

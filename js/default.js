@@ -245,7 +245,17 @@ function customiseReadMoreTextAndLinks(){
 function hide_imprint_login_register(){
 	$('div#tn').find('.hide_this').hide();
 }
-
+function do_NKI_cells_page() {
+	if (window.location.pathname == '/resources-and-services/access-emma-mouse-resources/nki-es-cells' ){
+		// load NKI cells dataTable		
+		$('div.content').append("<div id='nki'></div>");
+		var url = fetch_url() + "?nki=true";
+	
+		$.get(url, function(data){  
+			$('div#nki').html(data);          
+		});
+	}
+}
 $(document).ready(function() {	
 	
 	initTabContent();
@@ -259,7 +269,8 @@ $(document).ready(function() {
 	fixPlaceholder();
 	customiseReadMoreTextAndLinks();
 	hide_imprint_login_register();
-	
+	do_NKI_cells_page();
+
 	if ($('body').hasClass('front')) { autoHeightFront(); }
 
 });

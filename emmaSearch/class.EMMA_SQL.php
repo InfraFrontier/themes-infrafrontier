@@ -1,5 +1,6 @@
 <?php 
 #require('ontology/scripts/jsonwrapper/jsonwrapper.php'); // our server is still < than PHP 5.2
+
 require_once("class.database.php");
 require_once("mut_types.php");
 $db = new database();
@@ -105,6 +106,37 @@ class EMMA_SQL {
 	  		return $rows;
 	  	}	 	
 	}
+	function fetch_nki_dataRows(){
+		global $db;
+		$sql = "select * from nki_es_cells";
+		$rows = $db->db_fetch($sql);			
+		if ($rows == 'ERROR'){			
+			die("Can't execute query: ".mysql_error());
+		}
+		else {		
+			$fields = array('clone_id', 'genotype_strain', 'strain_background', 'coat_color', 'es_cell_clone_number', 'col1a1_locus', 
+							'mgi_allele_symbol', 'mgi_allele_id', 'strain_name', 'targeting_qc', 'genomic_qc', 'embryo_stage', 
+							'chimera_embryo_number' ,'germline_transmission', 'pmid', 'principal_scientist'); 
+			$ths = '';
+			$trs = '';
+			$count = 0;
+		  	foreach ( $rows as $row ){
+				$count++;
+				$tds = false; 				
+				foreach ( $fields as $f ){					
+					if ( $count == 1 ){
+						$ths .= "<th>" . $f . "</th>";
+					}				
+					$tds .= "<td>" . $row[$f] . "</td>";					
+				}				
+				$trs .= "<tr>" . $tds . "</tr>";				
+			}		
+			$DATA['table'] = "<table><tr>$ths</tr>$trs</table>";			
+			return $DATA;
+		}   	
+	}
+
+
 	function compose_strain_description($id_str, $mutype, $pdf){
 		
 		$qcTables = false;
@@ -961,7 +993,7 @@ class EMMA_SQL {
 		}
 		return false;
 	}	
-    function dataTableValsForSql($_GET){
+	function dataTableValsForSql(){
          
 	    /* 
 	     * Paging
@@ -1021,14 +1053,15 @@ class EMMA_SQL {
 		    }
 	    }
     }
-    function makeDataTable($sql, $post, $get, $tblClass, $qrystr, $dataType, $_GET){
+	
+	function makeDataTable($sql, $post, $get, $tblClass, $qrystr, $dataType){
 		$mpid    = $post['mpid'];
   		$is_leaf = $post['leaf'];
   		$qry_term_name = $get['term_name'];
         global $sLimit, $sOrder, $sWhere;  
 
 
-        $this->dataTableValsForSql($_GET);
+        $this->dataTableValsForSql();
 
   		$sql .= ' GROUP BY s.emma_id ';
         $sqlLimit = $sql . "  $where $sLimit";
@@ -1254,7 +1287,7 @@ class EMMA_SQL {
     		#return $DATA;
   		}
 	}
-	function fetch_symbol_mgi_links_list($symbol_concat, $id_str){
+    function fetch_symbol_mgi_links_list($symbol_concat, $id_str){
         $symbols = explode('*__*', $symbol_concat);
 
       	// mysql GROUP_CONCAT() adds one empty element to end of list, why? -> remove it
@@ -1542,8 +1575,8 @@ TBL;
     	
             return $DATA;           		
   		}
-	}
-    function compose_bottom_icon_rows($id_str, $bottom_icon_rows){
+	}	
+	function compose_bottom_icon_rows($id_str, $bottom_icon_rows){
         
         $pdfPath = "{$this->drupalFilePath}/pdf";
 
@@ -2138,6 +2171,7 @@ TBL;
 		}		        			
 	}
 	
-	
-}	
+}
+
+
 ?>
