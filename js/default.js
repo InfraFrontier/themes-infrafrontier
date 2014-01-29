@@ -246,7 +246,7 @@ function hide_imprint_login_register(){
 	$('div#tn').find('.hide_this').hide();
 }
 function do_NKI_cells_page() {
-	if (window.location.pathname == '/resources-and-services/access-emma-mouse-resources/nki-es-cells-ordering' ){
+	if (window.location.pathname == '/resources-and-services/access-emma-mouse-resources/nki-gemm-esc-archive' ){
 		// load NKI cells dataTable		
 		$('div.content').append("<div id='nki'></div>");
 		var url = fetch_url() + "?nki=true";
