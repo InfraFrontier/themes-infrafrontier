@@ -114,7 +114,7 @@ class EMMA_SQL {
 			die("Can't execute query: ".mysql_error());
 		}
 		else {		
-			$fields = array('clone_id', 'genotype_strain', 'strain_background', 'coat_color', 'es_cell_clone_number', 'col1a1_locus', 
+			$fields = array('clone_id', 'clone_description', 'genotype_strain', 'strain_background', 'coat_color', 'es_cell_clone_number', 'col1a1_locus', 
 							'mgi_allele_symbol', 'mgi_allele_id', 'strain_name', 'targeting_qc', 'genomic_qc', 'embryo_stage', 
 							'chimera_embryo_number' ,'germline_transmission', 'pmid', 'principal_scientist'); 
 			$ths = '';
