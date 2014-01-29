@@ -127,7 +127,10 @@ class EMMA_SQL {
 					if ( $count == 1 ){
 						$ths .= "<th>" . $f . "</th>";
 					}				
-					$tds .= "<td>" . $row[$f] . "</td>";					
+
+					$val = (strpos($row[$f], '<') !== FALSE) ? $this->superscript_munging($row[$f]) : $row[$f]; 					
+					
+					$tds .= "<td>$val</td>";					
 				}				
 				$trs .= "<tr>" . $tds . "</tr>";				
 			}		
