@@ -108,6 +108,15 @@ class EMMA_SQL {
 	}
 	function fetch_nki_dataRows(){
 		global $db;
+
+		// links to order strains
+		/*$formBaseUrl = "/emma/RegisterInterest/requestFormView.emma";
+		$url= $label == 'register interest' 
+	  		? $formBaseUrl . "?id=$emmaid" . "&sname=" . urlencode($strname) . "&cname=$cname" . "&wr=1"
+	 		: $formBaseUrl . "?new=y". "&id=$emmaid" . "&sname=" . urlencode($strname) . "&cname=$cname"; 
+
+	 	$url .= "&pid=$project_id";
+		*/
 		$sql = "select * from nki_es_cells";
 		$rows = $db->db_fetch($sql);			
 		if ($rows == 'ERROR'){			
@@ -119,24 +128,44 @@ class EMMA_SQL {
 							'chimera_embryo_number' ,'germline_transmission', 'pmid', 'principal_scientist'); 
 			$ths = '';
 			$trs = '';
+			$ths2 = '';
+			$trs2 = '';
+			$extraTh = "<th>MTA</th><th>Order</th>";		
+			$extraTd = "<td class='mtadoc'></td><td class='cady'></td>";
 			$count = 0;
 		  	foreach ( $rows as $row ){
 				$count++;
-				$tds = false; 				
+				$tds = false; 
+				$tds2 = false;		
+				$fCount = 0;		
 				foreach ( $fields as $f ){					
+					$fCount++;
 					if ( $count == 1 ){
 						$ths .= "<th>" . $f . "</th>";
+						if ( $fCount < 3 ){
+							$ths2 .= "<th>" . $f . "</th>";
+						}
 					}				
 
 					$val = (strpos($row[$f], '<') !== FALSE) ? $this->superscript_munging($row[$f]) : $row[$f]; 					
 					
 					$tds .= "<td>$val</td>";					
+					if ( $fCount < 3 ){						
+						if ( $fCount == 2 ){							
+							$val = "<span class='nkiShort display'>" . $row[$fields[2]] . "<br>Show more ...</br></span><span class='nkiLong'>" . $val . "<br>Show less ...</br></span>";
+						}
+						$tds2 .= "<td>$val</td>";
+					}
 				}				
 				$trs .= "<tr>" . $tds . "</tr>";				
+				$trs2 .= "<tr>" . $tds2 . $extraTd . "</tr>";
 			}		
-			$DATA['table'] = "<table><tr>$ths</tr>$trs</table>";			
+
+			$DATA['fullTable'] = "<table><tr>$ths</tr>$trs</table>";			
+			$DATA['subTable'] = "<table><tr>$ths2 . $extraTh . </tr>$trs2</table>";		
+
 			return $DATA;
-		}   	
+		}  
 	}
 
 

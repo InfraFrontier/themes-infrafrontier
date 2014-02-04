@@ -280,7 +280,7 @@ else if( isset($_GET['nki']) ){
     // fetch strain desc into popup desc window
       
     $DATA =$emmaSql->fetch_nki_dataRows();  	
-    echo $DATA['table'];    
+    echo json_encode($DATA);    
  	exit;
 }
 

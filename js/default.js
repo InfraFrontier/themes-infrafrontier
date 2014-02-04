@@ -252,10 +252,29 @@ function do_NKI_cells_page() {
 		var url = fetch_url() + "?nki=true";
 	
 		$.get(url, function(data){  
-			$('div#nki').html(data);          
+			var data = eval('(' + data + ')');
+			
+			$('div.content div.toggle.first .togglecontent').append(data.subTable);
+			$('div#nki').html(data.fullTable);   
+			
+       		$('span.nkiShort').click(function(){
+				
+				if ( $(this).hasClass('display') ){
+					$(this).removeClass('display');
+					$(this).siblings('.nkiLong').addClass('display');
+				}
+			});
+			$('span.nkiLong').click(function(){
+				
+				if ( $(this).hasClass('display') ){
+					$(this).removeClass('display');
+					$(this).siblings('.nkiShort').addClass('display');
+				}
+			});
 		});
 	}
 }
+
 $(document).ready(function() {	
 	
 	initTabContent();

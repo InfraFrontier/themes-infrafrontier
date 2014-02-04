@@ -746,6 +746,20 @@ div.dataTables_length select {
     outline:none;
 }
 
+/* NKI */
+td.cady {
+	background: url("../images/cady.png") no-repeat center center;
+}
+td.mtadoc {
+	background: url("../images/doc.png") no-repeat center center;
+}
+span.nkiShort, span.nkiLong {
+	display: none;
+	font-size: 11px;
+}
+span.display {
+	display: block;
+}
 
 
 
