@@ -141,10 +141,10 @@ class EMMA_SQL {
 				foreach ( $fields as $f ){					
 					$fCount++;
 					if ( $count == 1 ){
-						$f = ucfirst(str_replace("_", " ", $f));
-						$ths .= "<th>$f</th>";
+						$f2 = ucfirst(str_replace("_", " ", $f));
+						$ths .= "<th>$f2</th>";
 						if ( $fCount < 3 ){
-							$ths2 .= "<th>$f</th>";
+							$ths2 .= "<th>$f2</th>";
 						}
 					}				
 
