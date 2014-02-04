@@ -141,9 +141,9 @@ class EMMA_SQL {
 				foreach ( $fields as $f ){					
 					$fCount++;
 					if ( $count == 1 ){
-						$ths .= "<th>" . $f . "</th>";
+						$ths .= "<th>$f</th>";
 						if ( $fCount < 3 ){
-							$ths2 .= "<th>" . $f . "</th>";
+							$ths2 .= "<th>$f</th>";
 						}
 					}				
 
@@ -157,12 +157,12 @@ class EMMA_SQL {
 						$tds2 .= "<td>$val</td>";
 					}
 				}				
-				$trs .= "<tr>" . $tds . "</tr>";				
-				$trs2 .= "<tr>" . $tds2 . $extraTd . "</tr>";
+				$trs .= "<tr>$tds</tr>";				
+				$trs2 .= "<tr>$tds2 $extraTd</tr>";
 			}		
 
 			$DATA['fullTable'] = "<table><tr>$ths</tr>$trs</table>";			
-			$DATA['subTable'] = "<table><tr>$ths2 . $extraTh . </tr>$trs2</table>";		
+			$DATA['subTable'] = "<table><tr>$ths2 $extraTh </tr>$trs2</table>";		
 
 			return $DATA;
 		}  
