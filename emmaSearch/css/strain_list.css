@@ -756,6 +756,7 @@ td.mtadoc {
 span.nkiShort, span.nkiLong {
 	display: none;
 	font-size: 11px;
+	cursor: pointer;
 }
 span.display {
 	display: block;
