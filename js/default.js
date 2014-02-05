@@ -255,7 +255,7 @@ function do_NKI_cells_page() {
 			var data = eval('(' + data + ')');
 			
 			$('div.content div.toggle.first .togglecontent').append(data.subTable);
-			$('div#nki').html(data.fullTable);   
+			//$('div#nki').html(data.fullTable);   
 			
        		$('span.nkiShort').click(function(){
 				

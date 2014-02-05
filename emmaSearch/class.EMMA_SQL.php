@@ -110,13 +110,9 @@ class EMMA_SQL {
 		global $db;
 
 		// links to order strains
-		/*$formBaseUrl = "/emma/RegisterInterest/requestFormView.emma";
-		$url= $label == 'register interest' 
-	  		? $formBaseUrl . "?id=$emmaid" . "&sname=" . urlencode($strname) . "&cname=$cname" . "&wr=1"
-	 		: $formBaseUrl . "?new=y". "&id=$emmaid" . "&sname=" . urlencode($strname) . "&cname=$cname"; 
-
-	 	$url .= "&pid=$project_id";
-		*/
+		$formBaseUrl = "http://dev.infrafrontier.eu/emma/RegisterInterest/requestFormView.emma";
+		$imgBaseUrl  = "/sites/infrafrontier.eu/themes/custom/infrafrontier/emmaSearch/images";
+		$docBaseUrl  = "/sites/infrafrontier.eu/files/upload/public/pdf/mtas";
 		$sql = "select * from nki_es_cells";
 		$rows = $db->db_fetch($sql);			
 		if ($rows == 'ERROR'){			
@@ -131,7 +127,7 @@ class EMMA_SQL {
 			$ths2 = '';
 			$trs2 = '';
 			$extraTh = "<th>MTA</th><th>Order</th>";		
-			$extraTd = "<td class='mtadoc'></td><td class='cady'></td>";
+			
 			$count = 0;
 		  	foreach ( $rows as $row ){
 				$count++;
@@ -152,23 +148,31 @@ class EMMA_SQL {
 					
 					$tds .= "<td>$val</td>";					
 					if ( $fCount < 3 ){						
-						if ( $fCount == 2 ){							
-							$val = "<span class='nkiShort display'>" . $row[$fields[2]] . "<br>Show more ...</br></span><span class='nkiLong'>" . $val . "<br>Show less ...</br></span>";
+						if ( $f == 'clone_description' ){							
+							$val = "<span class='nkiShort display'>" . $row['genotype_strain'] . "<br>Show more ...</br></span><span class='nkiLong'>" . $val . "<br>Show less ...</br></span>";
 						}
 						$tds2 .= "<td>$val</td>";
 					}
 				}				
-				$trs .= "<tr>$tds</tr>";				
-				$trs2 .= "<tr>$tds2 $extraTd</tr>";
+				$trs .= "<tr>$tds</tr>";
+
+				$mtaUrl = $docBaseUrl . '/MTA ' . $row['clone_id'] . ' clone final.doc';
+				$mtaLink = "<a href='" . $mtaUrl . "'><img src='${imgBaseUrl}/doc.png' /></a>";
+				$mtaTd   = "<td class='mtadoc'>$mtaLink</td>";				
+				
+				$orderUrl= $formBaseUrl . "?new=y" . "&type=nkiescells". "&id=${row['clone_id']}" . "&sname=" . urlencode($row['strain_name']) . "&cname="; 
+				$orderLink = "<a href='" . $orderUrl . "'><img src='${imgBaseUrl}/cady.png' /></a>";	
+				$orderTd = "<td class=''>$orderLink</td>";				
+
+				$trs2 .= "<tr>$tds2 $mtaTd $orderTd</tr>";
 			}		
 
 			$DATA['fullTable'] = "<table><tr>$ths</tr>$trs</table>";			
-			$DATA['subTable'] = "<table><tr>$ths2 $extraTh </tr>$trs2</table>";		
+			$DATA['subTable'] = "<table id='nki'><tr>$ths2 $extraTh </tr>$trs2</table>";		
 
 			return $DATA;
 		}  
 	}
-
 
 	function compose_strain_description($id_str, $mutype, $pdf){
 		
