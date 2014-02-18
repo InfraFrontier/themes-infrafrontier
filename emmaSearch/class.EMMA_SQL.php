@@ -860,7 +860,7 @@ class EMMA_SQL {
 	  	if ( preg_match("/DELTAGEN/", $code_internal) ){
 	    	$funded = $tracking;
 	    	//$del_lex = "<p><a href='http://www.emmanet.org/deltagen/$code_internal' target='_blank'>"
-			$del_lex = "<p><a href='" . $drupalFilePath  . "/deltagen/$code_internal' target='_blank'>"
+			$del_lex = "<p><a href='" . $this->drupalFilePath  . "/deltagen/$code_internal' target='_blank'>"
 	    	         . "Deltagen phenotyping data</a>: the phenotypic data and presentation format were provided by "
 	    	         . "Deltagen Inc. and are presented as received. EMMA has not verified the content or format of "
 	    	         . "the material.";
@@ -875,7 +875,7 @@ class EMMA_SQL {
 	      		$short_lex = substr($code_internal, 0, $pos);
 	    	}	 
 	    	#$del_lex = "<p><a href='http://www.emmanet.org/lexicon/combined_lexicon_data/${short_lex}-treeFrame.html' "
-			$del_lex ="<p><a href='" . $drupalFilePath . "lexicon/combined_lexicon_data/${short_lex}-treeFrame.html' "
+			$del_lex ="<p><a href='" . $this->drupalFilePath . "/lexicon/combined_lexicon_data/${short_lex}-treeFrame.html' "
 	    	         . "target='_blank'>Lexicon phenotyping data</a>: the phenotypic data and presentation format were "
 	    	         . "provided by Lexicon Pharmaceuticals and are presented as received. EMMA has not verified the content "
 	    	         . "or format of the material.";
