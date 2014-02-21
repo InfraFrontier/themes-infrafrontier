@@ -274,6 +274,32 @@ function do_NKI_cells_page() {
 		});
 	}
 }
+function redirectLoggedInUserByRoles(){
+
+	var oUser = Drupal.settings.infrautils.drupaluser;
+	alert(oUser.name);
+	if (window.location.pathname == '/users/' + oUser.name){
+		var aRoles = ['infrafrontier', 'Infrafrontier GmbH', 'nfrafrontier I3', 'EMMA', 'InfraCoMP', 'emma_infra13','administrator'];			
+		var oUser_roles = oUser.roles;	
+
+		// check user roles for page redirect
+		for (var r in oUser_roles ){		
+			if ( inArray(oUser_roles[r], aRoles) ){				
+				window.location.href = "/internal";		
+				break;
+			}
+		}	
+	}
+}
+function inArray(item, list) {
+    var length = list.length;
+    for(var i = 0; i < length; i++) {
+        if(list[i] == item){
+			return true;
+		}
+    }
+    return false;
+}
 
 $(document).ready(function() {	
 	
@@ -288,7 +314,8 @@ $(document).ready(function() {
 	fixPlaceholder();
 	customiseReadMoreTextAndLinks();
 	hide_imprint_login_register();
-	do_NKI_cells_page();
+	do_NKI_cells_page();	
+	redirectLoggedInUserByRoles();
 
 	if ($('body').hasClass('front')) { autoHeightFront(); }
 
