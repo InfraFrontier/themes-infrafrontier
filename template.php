@@ -2,7 +2,16 @@
 
 // preprocess_html
 function infrafrontier_preprocess_html(&$vars) {
+
+	/*
+	* Useful custom PHP variable to be used by JS:	
+	* We can add stuff here for getting use all Drupal settings of a user
+	* eg. id, name, roles....etc. - ckchen@ebi.ac.uk
+	*/	
 	
+	global $user;		
+	drupal_add_js(array('infrafrontier' => array('drupaluser' => $user)), 'setting'); 
+
 	// look, if page is has a menu item, and if so, what level
 	$tree = menu_tree_page_data('main-menu');
 	$level = 0;
@@ -72,3 +81,11 @@ function infrafrontier_breadcrumb($variables) {
 		return $crumbs;
 	}
 }
+
+/*function infrafrontier_preprocess_html() {  
+ 
+  global $user;	
+	
+	#drupal_add_js(array('infrafrontier' => array('drupaluser' => $user)), 'setting'); 
+	
+}*/

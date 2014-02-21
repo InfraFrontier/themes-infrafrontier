@@ -276,7 +276,7 @@ function do_NKI_cells_page() {
 }
 function redirectLoggedInUserByRoles(){
 	
-	var oUser = Drupal.settings.infrautils.drupaluser;
+	var oUser = Drupal.settings.infrafrontier.drupaluser;
 	
 	if (window.location.pathname == '/users/' + oUser.name){
 		var aRoles = ['infrafrontier', 'Infrafrontier GmbH', 'nfrafrontier I3', 'EMMA', 'InfraCoMP', 'emma_infra13', 'administrator'];			
