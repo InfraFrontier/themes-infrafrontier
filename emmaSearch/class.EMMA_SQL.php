@@ -110,7 +110,7 @@ class EMMA_SQL {
 		global $db;
 
 		// links to order strains
-		$formBaseUrl = "http://dev.infrafrontier.eu/emma/RegisterInterest/requestFormView.emma";
+		$formBaseUrl = "http://infrafrontier.eu/emma/RegisterInterest/requestFormView.emma";
 		$imgBaseUrl  = "/sites/infrafrontier.eu/themes/custom/infrafrontier/emmaSearch/images";
 		$docBaseUrl  = "/sites/infrafrontier.eu/files/upload/public/pdf/mtas";
 		$sql = "select * from nki_es_cells";
