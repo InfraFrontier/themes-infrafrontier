@@ -275,11 +275,11 @@ function do_NKI_cells_page() {
 	}
 }
 function redirectLoggedInUserByRoles(){
-
+	
 	var oUser = Drupal.settings.infrautils.drupaluser;
-	alert(oUser.name);
+	
 	if (window.location.pathname == '/users/' + oUser.name){
-		var aRoles = ['infrafrontier', 'Infrafrontier GmbH', 'nfrafrontier I3', 'EMMA', 'InfraCoMP', 'emma_infra13','administrator'];			
+		var aRoles = ['infrafrontier', 'Infrafrontier GmbH', 'nfrafrontier I3', 'EMMA', 'InfraCoMP', 'emma_infra13'];			
 		var oUser_roles = oUser.roles;	
 
 		// check user roles for page redirect
