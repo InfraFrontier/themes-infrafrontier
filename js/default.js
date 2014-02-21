@@ -315,7 +315,7 @@ $(document).ready(function() {
 	customiseReadMoreTextAndLinks();
 	hide_imprint_login_register();
 	do_NKI_cells_page();	
-	//redirectLoggedInUserByRoles();
+	redirectLoggedInUserByRoles();
 
 	if ($('body').hasClass('front')) { autoHeightFront(); }
 
