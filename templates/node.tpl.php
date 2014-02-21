@@ -23,8 +23,9 @@
             	<p class="editlink"><a class="editlink" href="/node/<?php print $node->nid; ?>/edit" title="Edit">edit</a></p>
             <?php endif; ?>
             
+			
         </div>
-        
+		
     <?php endif; ?>
 
 </div>

@@ -279,7 +279,7 @@ function redirectLoggedInUserByRoles(){
 	var oUser = Drupal.settings.infrautils.drupaluser;
 	
 	if (window.location.pathname == '/users/' + oUser.name){
-		var aRoles = ['infrafrontier', 'Infrafrontier GmbH', 'nfrafrontier I3', 'EMMA', 'InfraCoMP', 'emma_infra13'];			
+		var aRoles = ['infrafrontier', 'Infrafrontier GmbH', 'nfrafrontier I3', 'EMMA', 'InfraCoMP', 'emma_infra13', 'administrator'];			
 		var oUser_roles = oUser.roles;	
 
 		// check user roles for page redirect
@@ -315,11 +315,11 @@ $(document).ready(function() {
 	customiseReadMoreTextAndLinks();
 	hide_imprint_login_register();
 	do_NKI_cells_page();	
-	redirectLoggedInUserByRoles();
+	//redirectLoggedInUserByRoles();
 
 	if ($('body').hasClass('front')) { autoHeightFront(); }
 
 });
 
-})(jQuery);
-jQuery.noConflict();
+})(window.jQuery);
+window.jQuery.noConflict();
