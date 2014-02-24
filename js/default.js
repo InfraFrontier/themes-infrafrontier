@@ -279,7 +279,8 @@ function redirectLoggedInUserByRoles(){
 	var oUser = Drupal.settings.infrafrontier.drupaluser;
 	
 	if (window.location.pathname == '/users/' + oUser.name){
-		var aRoles = ['infrafrontier', 'Infrafrontier GmbH', 'nfrafrontier I3', 'EMMA', 'InfraCoMP', 'emma_infra13', 'administrator'];			
+			
+		var aRoles = ['infrafrontier', 'Infrafrontier GmbH', 'nfrafrontier I3', 'EMMA', 'InfraCoMP', 'emma_infra13', 'infrafr_I_three', 'rome_meeting'];			
 		var oUser_roles = oUser.roles;	
 
 		// check user roles for page redirect
