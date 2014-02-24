@@ -280,7 +280,7 @@ function redirectLoggedInUserByRoles(){
 	
 	if (window.location.pathname == '/users/' + oUser.name){
 			
-		var aRoles = ['infrafrontier', 'Infrafrontier GmbH', 'Infrafrontier I3', 'EMMA', 'InfraCoMP', 'emma_infra13', 'rome_meeting'];			
+		var aRoles = ['infrafrontier', 'Infrafrontier GmbH', 'Infrafrontier_I3', 'EMMA', 'InfraCoMP', 'emma_infra13', 'rome_meeting'];			
 		var oUser_roles = oUser.roles;	
 
 		// check user roles for page redirect
