@@ -161,7 +161,7 @@ class EMMA_SQL {
 				$mtaTd   = "<td class='mtadoc'>$mtaLink</td>";				
 				
 				$orderUrl= $formBaseUrl . "?new=y" . "&type=nkiescells". "&id=${row['clone_id']}" . "&sname=" . urlencode($row['strain_name']) . "&cname="; 
-				$orderLink = "<a href='" . $orderUrl . "'><img src='${imgBaseUrl}/cady.png' /></a>";	
+				$orderLink = "<a href='" . $orderUrl . "' target='_blank'><img src='${imgBaseUrl}/cady.png' /></a>";	
 				$orderTd = "<td class=''>$orderLink</td>";				
 
 				$trs2 .= "<tr>$tds2 $mtaTd $orderTd</tr>";
