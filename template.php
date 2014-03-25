@@ -9,10 +9,15 @@ function infrafrontier_preprocess_html(&$vars) {
 	* eg. id, name, roles....etc. - ckchen@ebi.ac.uk
 	*/	
 	
-	global $user;		
+	global $user;	
 	drupal_add_js(array('infrafrontier' => array('drupaluser' => $user)), 'setting'); 
 
-	// look, if page is has a menu item, and if so, what level
+
+	/* show last change to page */
+	echo format_date($node->changed);
+
+
+	// look, if page has a menu item, and if so, what level
 	$tree = menu_tree_page_data('main-menu');
 	$level = 0;
 	while ($tree) {
@@ -30,8 +35,9 @@ function infrafrontier_preprocess_page(&$vars) {
 	if (($node = menu_get_object()) && $node->type == 'page') {
 		$view = node_view($node);
 		$vars['field_headimage'] = drupal_render($view['field_headimage']);
-	}
 		
+		drupal_add_js(array('infrafrontier' => array('lastmodified' => DATE("Y-m-d",$node->changed), 'type' => $node->type)), 'setting'); 
+	}		
 }
 
 // clean head
@@ -82,10 +88,3 @@ function infrafrontier_breadcrumb($variables) {
 	}
 }
 
-/*function infrafrontier_preprocess_html() {  
- 
-  global $user;	
-	
-	#drupal_add_js(array('infrafrontier' => array('drupaluser' => $user)), 'setting'); 
-	
-}*/

@@ -300,6 +300,14 @@ function inArray(item, list) {
     }
     return false;
 }
+function show_page_last_edit() {
+	var modified = Drupal.settings.infrafrontier.lastmodified;
+	var type = Drupal.settings.infrafrontier.type; 
+	
+	if ( typeof type != 'undefined' ){
+		$('div#container').append("Page last modified: " + modified);
+	}	
+}
 
 $(document).ready(function() {	
 	
@@ -316,6 +324,7 @@ $(document).ready(function() {
 	hide_imprint_login_register();
 	do_NKI_cells_page();	
 	redirectLoggedInUserByRoles();
+	show_page_last_edit();
 
 	if ($('body').hasClass('front')) { autoHeightFront(); }
 
