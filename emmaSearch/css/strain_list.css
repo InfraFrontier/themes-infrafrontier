@@ -772,5 +772,11 @@ table#nki td:nth-child(3),table#nki td:nth-child(4)  {
 	vertical-align: middle;
 	text-align: center;
 }
+/* page wide: img in <p> to be centered */
+p img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
 
 
