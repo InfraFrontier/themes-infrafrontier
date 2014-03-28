@@ -36,7 +36,7 @@ function infrafrontier_preprocess_page(&$vars) {
 		$view = node_view($node);
 		$vars['field_headimage'] = drupal_render($view['field_headimage']);
 		
-		drupal_add_js(array('infrafrontier' => array('lastmodified' => DATE("Y-m-d",$node->changed), 'type' => $node->type)), 'setting'); 
+		drupal_add_js(array('infrafrontier' => array('lastmodified' => DATE("d M Y",$node->changed), 'type' => $node->type)), 'setting'); 
 	}		
 }
 
