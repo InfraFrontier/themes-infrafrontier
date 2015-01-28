@@ -35,3 +35,11 @@ project = "infrafrontier"
 datestamp = "1365086454"
 
 
+
+
+; Information added by drush on 2015-01-28
+version = "7.x-1.0-dev"
+core = "7.x"
+project = "infrafrontier"
+datestamp = "1422450642"
+
