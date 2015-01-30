@@ -50,7 +50,7 @@
    </ul>
   </li>
 
-  <li><a href="<?php echo ${url} ?>eucomm" class='top_level_link'>EUCOMM strains</a></li>
+  <li><a href="<?php echo ${url} ?>eucomm" class='top_level_link'>IKMC/IMPC strains</a></li>
   <li><a href="<?php echo ${url} ?>full_list" class='top_level_link'>Full strain list</a></li>
 </ul>
 
