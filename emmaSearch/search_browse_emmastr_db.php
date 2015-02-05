@@ -253,6 +253,7 @@ else if ( isset($_GET['query']) ){
      	 . " OR ss.name         $restriction"
      	 . " OR s.pheno_text    $restriction"
      	 . " OR s.pheno_text    $restriction"
+	. " OR s.ls_consortium $restriction"
      	 . " OR ao.omim_name    $restriction"
      	 . " OR ao.omim_id      $restriction"
      	 . " OR convert(s.emma_id using latin1) collate latin1_general_ci $restriction)";  
