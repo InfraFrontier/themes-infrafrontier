@@ -22,5 +22,6 @@ $mutype= array(
 	      "TET"=>"with Tet expression system",
 	      "DEL"=>"Deltagen strains",
 	      "LEX"=>"Lexicon strains",
-	      "EUC"=>"IKMC/IMPC strains",);
+	      "EUC"=>"IKMC/IMPC strains",
+       	"EUCCRE"=>"EUCOMMTools Cre strains",);
 ?>
