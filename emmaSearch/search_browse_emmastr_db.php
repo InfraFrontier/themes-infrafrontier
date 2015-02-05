@@ -101,7 +101,7 @@ else if ( $_GET['sublist'] ){
                 #echo "$sql <br>";
 
                 $DATA = $emmaSql->make_table($sql, $_POST, $_GET, $tblClass, $qrystr, $mode);  
-                $caption = "<div class='strainType'><a name=${subtype}i> $mutype[$subtype] </a><a class='top' href='#top'>Top</a></div>";
+		$caption = "<div class='strainType'><a name=${subtype}i> $mutype[$subtype] </a><a class='top' href='#top'>Top</a></div>";
                 $tblId_record[$mode] = $DATA['record'];                     
                 #$table .= $caption . $DATA['record'] . $DATA['result'];
                 $table .= $caption . $DATA['result'];
@@ -134,7 +134,11 @@ else if ( $_GET['sublist'] ){
 
         # strain introduction info for DEL, LEX, EUCOMM ...
         $strain_info = $emmaSql->fetch_strain_intro($code);       
-        $caption =  "<div class='strainType'> $mutype[$code] </div>";            
+        if ( $qrystr = "EUCOMMTools Cre" ) {
+$caption =  "<div class='strainType'> EUCOMMTools Cre lines </div>";
+} else {
+$caption =  "<div class='strainType'> $mutype[$code] </div>";
+}            
         $table .= $caption . $strain_intro . $DATA['result'];
     }
 
