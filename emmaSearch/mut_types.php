@@ -23,5 +23,4 @@ $mutype= array(
 	      "DEL"=>"Deltagen strains",
 	      "LEX"=>"Lexicon strains",
 	      "EUC"=>"IKMC/IMPC strains",
-       	"EUCCRE"=>"EUCOMMTools Cre strains",);
 ?>
