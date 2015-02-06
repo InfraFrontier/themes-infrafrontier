@@ -134,7 +134,7 @@ else if ( $_GET['sublist'] ){
 
         # strain introduction info for DEL, LEX, EUCOMM ...
         $strain_info = $emmaSql->fetch_strain_intro($code);       
-        if ( $qrystr = "EUCOMMTools Cre" ) {
+        if ( $qrystr == "EUCOMMToolsCre" ) {
 $caption =  "<div class='strainType'> EUCOMMTools Cre lines </div>";
 } else {
 $caption =  "<div class='strainType'> $mutype[$code] </div>";
