@@ -122,9 +122,6 @@ else if ( $_GET['sublist'] ){
         #------------------
         #  do single table
         #------------------
-ob_start();
-echo "single T A B L E !";
-ob_end_flush();
         if ( array_key_exists($code, $code_rtls_id) ) {         
             $sql = $emmaSql->fetch_rtool_sql($code_rtls_id[$code], $sqla, $sqlb);
         }
@@ -136,11 +133,7 @@ ob_end_flush();
 
         # strain introduction info for DEL, LEX, EUCOMM ...
         $strain_info = $emmaSql->fetch_strain_intro($code);       
-        if ( $qrystr == "EUCOMMToolsCre" ) {
-$caption =  "<div class='strainType'> EUCOMMTools Cre lines </div>";
-} else {
 $caption =  "<div class='strainType'> $mutype[$code] </div>";
-}            
         $table .= $caption . $strain_intro . $DATA['result'];
     }
 
