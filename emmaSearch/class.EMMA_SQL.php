@@ -27,7 +27,8 @@ class EMMA_SQL {
 		      'TET' => 5,
 		      'LEX' => 6,
 		      'DEL' => 7,
-		      'EUC' => 9
+		      'EUC' => 9,
+'EUCre' => 10
 		      );
 
 		$rtls_id_type = array_flip($code_rtls_id);
