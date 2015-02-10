@@ -1689,7 +1689,7 @@ TBL;
     	   		. "target='_blank'>Guidance for Research Publication Acknowledgement Practice</a>. "
     	   		. "Customers must refer to the 'Wellcome Trust Knockout Mouse Resource'.</p><p>";
 		}
-  		else if ( $code == 'EUC' ){
+  		else if ( $code == 'EUC' || $code == 'EUCre'){
     		return "<p class='mutype_info'><br>Distribution of EUCOMM mice<br><br>In contrast to EUCOMM vectors and ES cells "
            		. "which are distributed by the <a href='http://www.eummcr.org' target='_blank'>European Mouse Mutant Cell "
            		. "Repository</a>, mutant mice produced from the EUCOMM ES cell resource by the <a href='http://www.eucomm.org' "
