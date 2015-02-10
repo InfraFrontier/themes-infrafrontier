@@ -1004,7 +1004,7 @@ class EMMA_SQL {
   		$subtypes = array(
 		    'TM'  => array('TMKO', 'TMKI', 'TMTC','TMTNC', 'TMPM', 'TMCM', 'TMOTH'),
 		    'IN'  => array('INCH','INXray'),
-		    'ALL' => array('TMKO', 'TMKI', 'TMTC','TMTNC', 'TMPM', 'TMCM', 'TMOTH', 'GT','TG','INCH', 'INXray', 'CH', 'SP', 'XX', 'Cre', 'TET', 'FLP', 'DEL', 'LEX', 'EUC')
+		    'ALL' => array('TMKO', 'TMKI', 'TMTC','TMTNC', 'TMPM', 'TMCM', 'TMOTH', 'GT','TG','INCH', 'INXray', 'CH', 'SP', 'XX', 'Cre', 'TET', 'FLP', 'DEL', 'LEX', 'EUC', 'EUCre')
 		);
   
   		return $subtypes[$code];
