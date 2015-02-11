@@ -51,7 +51,8 @@ $(document).ready(function(){
         "deltagen":"DEL",
         "lexicon":"LEX",
         "eucomm":"EUC",
-        "full_list":"ALL"
+        "full_list":"ALL",
+	"EUCOMMToolsCcre":"EUCre"
     };
 
 	// clear text onclick
