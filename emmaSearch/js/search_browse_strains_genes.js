@@ -51,7 +51,8 @@ $(document).ready(function(){
         "deltagen":"DEL",
         "lexicon":"LEX",
         "eucomm":"EUC",
-        "full_list":"ALL"
+        "full_list":"ALL",
+	"eucommtoolscre":"EUCre"
     };
 
 	// clear text onclick
@@ -148,7 +149,8 @@ function geneStrainSearch(keyword){
 		srchTxt = keyword;
 		$('#searchInputBox').val(srchTxt);
 	}
-   
+//alert(srchTxt);
+//  alert(EMMA.oCode_types[srchTxt.toLowerCase()]);
     if ( typeof EMMA.oCode_types[srchTxt.toLowerCase()] != 'undefined' ){
         $('div#strainTabs').tabs("select" , 0);
         fetch_data_by_sublist(EMMA.oCode_types[srchTxt.toLowerCase()]);  
