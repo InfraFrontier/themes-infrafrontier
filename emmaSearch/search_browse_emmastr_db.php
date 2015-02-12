@@ -133,7 +133,7 @@ else if ( $_GET['sublist'] ){
 
         # strain introduction info for DEL, LEX, EUCOMM ...
         $strain_info = $emmaSql->fetch_strain_intro($code);       
-$caption =  "<div class='strainType'>$code, $code_rtls_id $mutype[$code] </div>";
+$caption =  "<div class='strainType'> $mutype[$code] </div>";
         $table .= $caption . $strain_intro . $DATA['result'];
     }
 
