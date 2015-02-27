@@ -78,7 +78,7 @@ else if ( $_GET['sublist'] ){
     $code = $mode = $_GET['sublist'];         
     $tables = '';
 
-    if ( $code == 'TM' or $code == 'IN' or $code == 'ALL' ){ // see strain_menu.php
+    if ( $code == 'TM' or $code == 'IN' or $code == 'ALL' ){ // or $code == 'Cre'   see strain_menu.php
 
         #-----------------------------
         #  concat individual tables
@@ -205,9 +205,12 @@ else if ( isset($_POST['id_strs']) ){
     to_browser($DATA);
 }
 else if ( isset($_GET['query']) ){
-    $qrystr = '%' . $_GET['query'] .'%';   
+    $qrystr = '%' . $_GET['query'] .'%';
+if (strpos($qrystr,'cre_lines') !== false) {
+$qrystr = '%' . 'cre' .'%';
    	$restriction = "LIKE '$qrystr'";
-
+}
+echo "QUERYSTRING VALUE IS : $qrystr";
     /*$qrystr1 = trim($_GET['query']);
     $qrystr = '%' . $qrystr1 .'%';   
     $restriction = "LIKE '$qrystr'";
