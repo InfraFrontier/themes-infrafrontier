@@ -78,7 +78,7 @@ else if ( $_GET['sublist'] ){
     $code = $mode = $_GET['sublist'];         
     $tables = '';
 
-    if ( $code == 'TM' or $code == 'IN' or $code == 'ALL' ){ // see strain_menu.php
+    if ( $code == 'TM' or $code == 'IN' or $code == 'ALL' ){ // or $code == 'Cre'   see strain_menu.php
 
         #-----------------------------
         #  concat individual tables
@@ -205,14 +205,16 @@ else if ( isset($_POST['id_strs']) ){
     to_browser($DATA);
 }
 else if ( isset($_GET['query']) ){
-    $qrystr = '%' . $_GET['query'] .'%';   
+  $qrystr = '%' . $_GET['query'] .'%';
+//if (strpos($qrystr,'cre_lines') !== false) {
+//$qrystr = '%' . 'cre' .'%';
    	$restriction = "LIKE '$qrystr'";
-
+//}
+//echo "QUERYSTRING VALUE IS : $qrystr";
     /*$qrystr1 = trim($_GET['query']);
     $qrystr = '%' . $qrystr1 .'%';   
     $restriction = "LIKE '$qrystr'";
-
-    $id_str_restriction = null;
+   $id_str_restriction = null;
 
     if ( preg_match('/^\d+$/', $qrystr1) ){
         $id_str_restriction = $qrystr1;              
@@ -222,7 +224,6 @@ else if ( isset($_GET['query']) ){
     } 
     */
     $randomId = intval(rand());
-
     $sql = "SELECT DISTINCT ao.omim_name, ao.omim_id, ao.mgi_internal_omim_id, s.emma_id,      
   			GROUP_CONCAT(distinct(g.symbol), '*__*') as symbol,
     			ss.name as synonym, 
@@ -257,7 +258,12 @@ else if ( isset($_GET['query']) ){
      	 . " OR ao.omim_id      $restriction"
      	 . " OR convert(s.emma_id using latin1) collate latin1_general_ci $restriction)";  
 
-    $mode = 'search'. $randomId;     
+   /* ob_start();
+echo $sql;
+file_put_contents('/Users/setup/Desktop/debulog.txt',ob_get_contents());
+ob_end_flush();
+*/
+$mode = 'search'. $randomId;     
     $DATA = $emmaSql->make_table($sql, $_POST, $_GET, $tblClass, $qrystr, $mode);    
     //to_browser($DATA); 
     if ( $DATA ){

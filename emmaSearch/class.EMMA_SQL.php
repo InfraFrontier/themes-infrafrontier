@@ -1006,9 +1006,12 @@ class EMMA_SQL {
 		    'IN'  => array('INCH','INXray'),
 		    'ALL' => array('TMKO', 'TMKI', 'TMTC','TMTNC', 'TMPM', 'TMCM', 'TMOTH', 'GT','TG','INCH', 'INXray', 'CH', 'SP', 'XX', 'Cre', 'TET', 'FLP', 'DEL', 'LEX', 'EUC', 'EUCre')
 		);
-  
   		return $subtypes[$code];
 	}
+ #,
+#'Cre' => array('Cre')
+#, 'EUCre' 
+
 	function fetch_rtool_sql($rtool_id, $sqla, $sqlb){
   		return $sqla 
     	. "rtools_strains rs, " 
