@@ -78,7 +78,8 @@ else if ( $_GET['sublist'] ){
     $code = $mode = $_GET['sublist'];         
     $tables = '';
 
-    if ( $code == 'TM' or $code == 'IN' or $code == 'ALL' or $code == 'Cre') {//   see strain_menu.php
+    if ( $code == 'TM' or $code == 'IN' or $code == 'ALL' or $code == 'Cre') {
+	//   see strain_menu.php
 
         #-----------------------------
         #  concat individual tables
