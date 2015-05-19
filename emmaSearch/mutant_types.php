@@ -78,7 +78,7 @@
 	    $('#'+containerId).html("<div class='loader'><img src=\""+Loader+"\" /><span>loading ...</span></div>"); 	
 
         var aTableIds = [];
-        if ( sublist == 'TM' || sublist == 'IN' || sublist == 'ALL' ){    
+        if ( sublist == 'TM' || sublist == 'IN' || sublist == 'ALL' || sublist == 'Cre' ){    
 
             var url1 = fetch_url() + "?subType=" + sublist; 
            
