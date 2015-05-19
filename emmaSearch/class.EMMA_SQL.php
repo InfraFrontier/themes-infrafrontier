@@ -15,7 +15,6 @@ $sWhere = ""; // filtering
 
 
 class EMMA_SQL {
-
 	public $drupalScriptPath = '/sites/infrafrontier.eu/themes/custom/infrafrontier/emmaSearch';
 	public $drupalFilePath   = '/sites/infrafrontier.eu/files/upload/public';
 	public $lab_code_id;
@@ -1000,17 +999,15 @@ class EMMA_SQL {
 	}	
 	function get_subtypes($code){
   
-	 	 #echo $code;
+	 	 error_log("CODE:: $code",0);
   		$subtypes = array(
+'Cre' => array('Cre','EUCre'),
 		    'TM'  => array('TMKO', 'TMKI', 'TMTC','TMTNC', 'TMPM', 'TMCM', 'TMOTH'),
 		    'IN'  => array('INCH','INXray'),
-		    'ALL' => array('TMKO', 'TMKI', 'TMTC','TMTNC', 'TMPM', 'TMCM', 'TMOTH', 'GT','TG','INCH', 'INXray', 'CH', 'SP', 'XX', 'Cre', 'TET', 'FLP', 'DEL', 'LEX', 'EUC', 'EUCre')
+		    'ALL' => array('TMKO', 'TMKI', 'TMTC','TMTNC', 'TMPM', 'TMCM', 'TMOTH', 'GT','TG','INCH', 'INXray', 'CH', 'SP', 'XX', 'Cre', 'EUCre', 'TET', 'FLP', 'DEL', 'LEX', 'EUC'),
 		);
   		return $subtypes[$code];
 	}
- #,
-#'Cre' => array('Cre')
-#, 'EUCre' 
 
 	function fetch_rtool_sql($rtool_id, $sqla, $sqlb){
   		return $sqla 
@@ -1098,7 +1095,8 @@ class EMMA_SQL {
     }
 	
 	function makeDataTable($sql, $post, $get, $tblClass, $qrystr, $dataType){
-		$mpid    = $post['mpid'];
+		$has_curr_term;
+$mpid    = $post['mpid'];
   		$is_leaf = $post['leaf'];
   		$qry_term_name = $get['term_name'];
         global $sLimit, $sOrder, $sWhere;  
@@ -1422,7 +1420,7 @@ class EMMA_SQL {
         return $intnl_strname;
     }
 	function make_table($sql, $post, $get, $tblClass, $qrystr, $mode){
-        
+       $has_curr_term; 
 		$mpid    = $post['mpid'];
   		$is_leaf = $post['leaf'];
   		$qry_term_name = $get['term_name'];
