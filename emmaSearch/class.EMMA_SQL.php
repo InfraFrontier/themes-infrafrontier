@@ -131,7 +131,7 @@ class EMMA_SQL {
 		global $db;
 
 		// links to order strains
-		$formBaseUrl = "http://infrafrontier.eu/emma/RegisterInterest/requestFormView.emma";
+		$formBaseUrl = "https://www.infrafrontier.eu/emma/RegisterInterest/requestFormView.emma";
 		$imgBaseUrl  = "/sites/infrafrontier.eu/themes/custom/infrafrontier/emmaSearch/images";
 		$docBaseUrl  = "/sites/infrafrontier.eu/files/upload/public/pdf/mtas";
 		$sql = "SELECT * FROM nki_es_cells ORDER BY date_added DESC";
