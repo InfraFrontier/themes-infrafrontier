@@ -1,3 +1,25 @@
+//=======================================================
+// LICENCE
+//=======================================================
+
+/*
+
+Copyright 2015 EMBL-EBI
+
+Licensed under the Apache License, Version 2.0 (the "License"); 
+you may not use this file except in compliance with the License. 
+
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License 
+is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express 
+or implied. See the License for the specific language governing permissions and limitations under 
+the License.
+
+*/
+
 $(document).ready(function(){
 
     var regex = /infrafrontier.eu\/$|infrafrontier.eu\/emma/;
@@ -51,7 +73,8 @@ $(document).ready(function(){
         "deltagen":"DEL",
         "lexicon":"LEX",
         "eucomm":"EUC",
-        "full_list":"ALL"
+        "full_list":"ALL",
+	"eucommtoolscre":"EUCre"
     };
 
 	// clear text onclick
@@ -118,8 +141,7 @@ function fetch_data_by_sublist(sublist){
     $('#'+containerId).html("<div class='loader'><img src=\""+Loader+"\" /><span>loading ...</span></div>"); 	
 
     var aTableIds = [];
-    if ( sublist == 'TM' || sublist == 'IN' || sublist == 'ALL' ){    
-
+    if ( sublist == 'TM' || sublist == 'IN' || sublist == 'ALL'){// || sublist == 'Cre' ){    
         var url1 = fetch_url() + "?subType=" + sublist; 
        
         $.get(url1, function(data){
@@ -128,7 +150,8 @@ function fetch_data_by_sublist(sublist){
             loadDataTable(url2, containerId, aTableIds, 6);
         });   
     }
-    else { 			
+    else { 
+alert(sublist);			
 	    var url = fetch_url() + "?sublist=" + sublist;
         aTableIds.push(sublist);
         loadDataTable(url, containerId, aTableIds, 6);	
@@ -148,7 +171,7 @@ function geneStrainSearch(keyword){
 		srchTxt = keyword;
 		$('#searchInputBox').val(srchTxt);
 	}
-   
+//  alert(EMMA.oCode_types[srchTxt.toLowerCase()]);
     if ( typeof EMMA.oCode_types[srchTxt.toLowerCase()] != 'undefined' ){
         $('div#strainTabs').tabs("select" , 0);
         fetch_data_by_sublist(EMMA.oCode_types[srchTxt.toLowerCase()]);  
@@ -212,7 +235,7 @@ function invokeDataTable (oInfos){
     	},
   		"sAjaxSource": oInfos.ajaxSrc,    		
    		"fnServerParams": function ( aoData ) {
-    			aoData.push(	    			 
+    			aoData.push(	    			
    			    {"name": oInfos.mode,    				
    				 "value": JSON.stringify(oInfos, null, 2)
    				}	    
@@ -267,8 +290,8 @@ function loadDataTable(url, containerId, tblIds, iCols){
 }
 function makeTable(tblId, aAoColumnConf, iNoSort, record) {
     EMMA.multiOmimRowId = false;
-    
-    var oTable = $('table#'+ tblId).dataTable({        
+    var oTable = $('table#'+ tblId).dataTable({ 
+       
                 "bSortClasses": false,
                 "aoColumnDefs": [
                     { "bSortable": false, "aTargets": [ iNoSort ] }
