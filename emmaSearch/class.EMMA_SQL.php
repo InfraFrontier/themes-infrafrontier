@@ -1,4 +1,25 @@
 <?php 
+
+#===================
+# LICENCE
+#===================
+
+/*
+
+Copyright 2015 EMBL-EBI
+
+Licensed under the Apache License, Version 2.0 (the "License"); 
+you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is 
+distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+
+See the License for the specific language governing permissions and limitations under the License.
+
+*/
+
 #require('ontology/scripts/jsonwrapper/jsonwrapper.php'); // our server is still < than PHP 5.2
 
 require_once("class.database.php");
@@ -15,7 +36,6 @@ $sWhere = ""; // filtering
 
 
 class EMMA_SQL {
-
 	public $drupalScriptPath = '/sites/infrafrontier.eu/themes/custom/infrafrontier/emmaSearch';
 	public $drupalFilePath   = '/sites/infrafrontier.eu/files/upload/public';
 	public $lab_code_id;
@@ -27,7 +47,8 @@ class EMMA_SQL {
 		      'TET' => 5,
 		      'LEX' => 6,
 		      'DEL' => 7,
-		      'EUC' => 9
+		      'EUC' => 9,
+'EUCre' => 10
 		      );
 
 		$rtls_id_type = array_flip($code_rtls_id);
@@ -110,10 +131,10 @@ class EMMA_SQL {
 		global $db;
 
 		// links to order strains
-		$formBaseUrl = "http://infrafrontier.eu/emma/RegisterInterest/requestFormView.emma";
+		$formBaseUrl = "https://www.infrafrontier.eu/emma/RegisterInterest/requestFormView.emma";
 		$imgBaseUrl  = "/sites/infrafrontier.eu/themes/custom/infrafrontier/emmaSearch/images";
 		$docBaseUrl  = "/sites/infrafrontier.eu/files/upload/public/pdf/mtas";
-		$sql = "select * from nki_es_cells";
+		$sql = "SELECT * FROM nki_es_cells ORDER BY date_added DESC";
 		$rows = $db->db_fetch($sql);			
 		if ($rows == 'ERROR'){			
 			die("Can't execute query: ".mysql_error());
@@ -161,7 +182,7 @@ class EMMA_SQL {
 				$mtaTd   = "<td class='mtadoc'>$mtaLink</td>";				
 				
 				$orderUrl= $formBaseUrl . "?new=y" . "&type=nkiescells". "&id=${row['clone_id']}" . "&sname=" . urlencode($row['strain_name']) . "&cname="; 
-				$orderLink = "<a href='" . $orderUrl . "'><img src='${imgBaseUrl}/cady.png' /></a>";	
+				$orderLink = "<a href='" . $orderUrl . "' target='_blank'><img src='${imgBaseUrl}/cady.png' /></a>";	
 				$orderTd = "<td class=''>$orderLink</td>";				
 
 				$trs2 .= "<tr>$tds2 $mtaTd $orderTd</tr>";
@@ -999,15 +1020,16 @@ class EMMA_SQL {
 	}	
 	function get_subtypes($code){
   
-	 	 #echo $code;
+	 	 error_log("CODE:: $code",0);
   		$subtypes = array(
+'Cre' => array('Cre','EUCre'),
 		    'TM'  => array('TMKO', 'TMKI', 'TMTC','TMTNC', 'TMPM', 'TMCM', 'TMOTH'),
 		    'IN'  => array('INCH','INXray'),
-		    'ALL' => array('TMKO', 'TMKI', 'TMTC','TMTNC', 'TMPM', 'TMCM', 'TMOTH', 'GT','TG','INCH', 'INXray', 'CH', 'SP', 'XX', 'Cre', 'TET', 'FLP', 'DEL', 'LEX', 'EUC')
+		    'ALL' => array('TMKO', 'TMKI', 'TMTC','TMTNC', 'TMPM', 'TMCM', 'TMOTH', 'GT','TG','INCH', 'INXray', 'CH', 'SP', 'XX', 'Cre', 'EUCre', 'TET', 'FLP', 'DEL', 'LEX', 'EUC'),
 		);
-  
   		return $subtypes[$code];
 	}
+
 	function fetch_rtool_sql($rtool_id, $sqla, $sqlb){
   		return $sqla 
     	. "rtools_strains rs, " 
@@ -1094,7 +1116,8 @@ class EMMA_SQL {
     }
 	
 	function makeDataTable($sql, $post, $get, $tblClass, $qrystr, $dataType){
-		$mpid    = $post['mpid'];
+		$has_curr_term;
+$mpid    = $post['mpid'];
   		$is_leaf = $post['leaf'];
   		$qry_term_name = $get['term_name'];
         global $sLimit, $sOrder, $sWhere;  
@@ -1418,7 +1441,7 @@ class EMMA_SQL {
         return $intnl_strname;
     }
 	function make_table($sql, $post, $get, $tblClass, $qrystr, $mode){
-        
+       $has_curr_term; 
 		$mpid    = $post['mpid'];
   		$is_leaf = $post['leaf'];
   		$qry_term_name = $get['term_name'];
@@ -1689,7 +1712,7 @@ TBL;
     	   		. "target='_blank'>Guidance for Research Publication Acknowledgement Practice</a>. "
     	   		. "Customers must refer to the 'Wellcome Trust Knockout Mouse Resource'.</p><p>";
 		}
-  		else if ( $code == 'EUC' ){
+  		else if ( $code == 'EUC' || $code == 'EUCre'){
     		return "<p class='mutype_info'><br>Distribution of EUCOMM mice<br><br>In contrast to EUCOMM vectors and ES cells "
            		. "which are distributed by the <a href='http://www.eummcr.org' target='_blank'>European Mouse Mutant Cell "
            		. "Repository</a>, mutant mice produced from the EUCOMM ES cell resource by the <a href='http://www.eucomm.org' "

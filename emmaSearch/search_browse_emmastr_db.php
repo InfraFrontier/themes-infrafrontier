@@ -1,5 +1,26 @@
 <?php 
 
+
+#===================
+# LICENCE
+#===================
+
+/*
+
+Copyright 2015 EMBL-EBI
+
+Licensed under the Apache License, Version 2.0 (the "License"); 
+you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is 
+distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+
+See the License for the specific language governing permissions and limitations under the License.
+
+*/
+
 // Author: Chao-Kung Chen (ckchen@ebi.ac.uk)
 // This script provides functionalities for searching / browsing genes and strains of EMMA
 
@@ -78,7 +99,8 @@ else if ( $_GET['sublist'] ){
     $code = $mode = $_GET['sublist'];         
     $tables = '';
 
-    if ( $code == 'TM' or $code == 'IN' or $code == 'ALL' ){ // see strain_menu.php
+    if ( $code == 'TM' or $code == 'IN' or $code == 'ALL' or $code == 'Cre') {
+	//   see strain_menu.php
 
         #-----------------------------
         #  concat individual tables
@@ -101,7 +123,7 @@ else if ( $_GET['sublist'] ){
                 #echo "$sql <br>";
 
                 $DATA = $emmaSql->make_table($sql, $_POST, $_GET, $tblClass, $qrystr, $mode);  
-                $caption = "<div class='strainType'><a name=${subtype}i> $mutype[$subtype] </a><a class='top' href='#top'>Top</a></div>";
+		$caption = "<div class='strainType'><a name=${subtype}i> $mutype[$subtype] </a><a class='top' href='#top'>Top</a></div>";
                 $tblId_record[$mode] = $DATA['record'];                     
                 #$table .= $caption . $DATA['record'] . $DATA['result'];
                 $table .= $caption . $DATA['result'];
@@ -122,7 +144,6 @@ else if ( $_GET['sublist'] ){
         #------------------
         #  do single table
         #------------------
-
         if ( array_key_exists($code, $code_rtls_id) ) {         
             $sql = $emmaSql->fetch_rtool_sql($code_rtls_id[$code], $sqla, $sqlb);
         }
@@ -134,7 +155,7 @@ else if ( $_GET['sublist'] ){
 
         # strain introduction info for DEL, LEX, EUCOMM ...
         $strain_info = $emmaSql->fetch_strain_intro($code);       
-        $caption =  "<div class='strainType'> $mutype[$code] </div>";            
+$caption =  "<div class='strainType'> $mutype[$code] </div>";
         $table .= $caption . $strain_intro . $DATA['result'];
     }
 
@@ -206,14 +227,16 @@ else if ( isset($_POST['id_strs']) ){
     to_browser($DATA);
 }
 else if ( isset($_GET['query']) ){
-    $qrystr = '%' . $_GET['query'] .'%';   
+  $qrystr = '%' . $_GET['query'] .'%';
+//if (strpos($qrystr,'cre_lines') !== false) {
+//$qrystr = '%' . 'cre' .'%';
    	$restriction = "LIKE '$qrystr'";
-
+//}
+//echo "QUERYSTRING VALUE IS : $qrystr";
     /*$qrystr1 = trim($_GET['query']);
     $qrystr = '%' . $qrystr1 .'%';   
     $restriction = "LIKE '$qrystr'";
-
-    $id_str_restriction = null;
+   $id_str_restriction = null;
 
     if ( preg_match('/^\d+$/', $qrystr1) ){
         $id_str_restriction = $qrystr1;              
@@ -223,7 +246,6 @@ else if ( isset($_GET['query']) ){
     } 
     */
     $randomId = intval(rand());
-
     $sql = "SELECT DISTINCT ao.omim_name, ao.omim_id, ao.mgi_internal_omim_id, s.emma_id,      
   			GROUP_CONCAT(distinct(g.symbol), '*__*') as symbol,
     			ss.name as synonym, 
@@ -253,11 +275,17 @@ else if ( isset($_GET['query']) ){
      	 . " OR ss.name         $restriction"
      	 . " OR s.pheno_text    $restriction"
      	 . " OR s.pheno_text    $restriction"
+	. " OR s.ls_consortium $restriction"
      	 . " OR ao.omim_name    $restriction"
      	 . " OR ao.omim_id      $restriction"
      	 . " OR convert(s.emma_id using latin1) collate latin1_general_ci $restriction)";  
 
-    $mode = 'search'. $randomId;     
+   /* ob_start();
+echo $sql;
+file_put_contents('/Users/setup/Desktop/debulog.txt',ob_get_contents());
+ob_end_flush();
+*/
+$mode = 'search'. $randomId;     
     $DATA = $emmaSql->make_table($sql, $_POST, $_GET, $tblClass, $qrystr, $mode);    
     //to_browser($DATA); 
     if ( $DATA ){
